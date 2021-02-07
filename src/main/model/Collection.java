@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Collection {
+    Scanner sc = new Scanner(System.in);
     private List<Item> allItems;
 
     //EFFECTS: initialises allItems to NULL
@@ -49,14 +50,16 @@ public class Collection {
     //         and Item with those credentials
     public Item getItem() {
         Item item = new Item();
-        Scanner sc = new Scanner(System.in);
         System.out.println("Enter name of the product:");
         item.setName(sc.nextLine());
+        System.out.println("Enter brand of the product:");
+        item.setBrand(sc.nextLine());
         System.out.println("Enter a small description of the product");
         item.setDescription(sc.nextLine());
         System.out.println("Enter price of the product");
         item.setPrice(sc.nextInt());
-        System.out.println("Enter gender category of the product(male/female/kids)");
+        sc.nextLine(); // to fix the nextInt() followed by nextLine() bug
+        System.out.println("Enter gender category of the product(men/women/kids)");
         item.setCategory(sc.nextLine());
         System.out.println("Enter type of product(tshirt/jeans/suit/shirt/pant/dress/gown/frock)");
         item.setType(sc.nextLine());
@@ -73,16 +76,16 @@ public class Collection {
 
     //EFFECTS: adds a horizontal line of to separate rows of a table
     private void addLine() {
-        System.out.print("+-------+---------------------+---------------------------------------------------+------"
-                + "--+----------+----------------+-------+-----------+-----------+----------+\n");
+        System.out.print("+-------+---------------------+---------------------+--------------------------------------"
+                + "-------------+--------+----------+----------------+-------+-----------+-----------+----------+\n");
     }
 
 
     //EFFECTS: Displays all the products
     public void displayAllItems() {
         addLine();
-        System.out.printf("| %-6s| %-20s| %-50s| %-7s| %-9s| %-15s| %-6s| %-10s| %-10s| %-9s|\n",
-                "SNo.", "Name", "Description", "Price", "Category", "Type", "Size",
+        System.out.printf("| %-6s| %-20s| %-20s| %-50s| %-7s| %-9s| %-15s| %-6s| %-10s| %-10s| %-9s|\n",
+                "SNo.", "Name", "Brand", "Description", "Price", "Category", "Type", "Size",
                 "Colour", "Discount", "inStock");
 
         addLine();

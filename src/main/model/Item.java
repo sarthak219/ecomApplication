@@ -2,6 +2,7 @@ package model;
 
 public class Item {
     private String name;
+    private String brand;
     private String description;
     private int price;
     private String category;
@@ -13,6 +14,14 @@ public class Item {
 
     //EFFECTS: constructor
     public Item() {
+        this.name = null;
+        this.brand = null;
+        this.description = null;
+        this.price = 0;
+        this.category = null;
+        this.type = null;
+        this.size = null;
+        this.colour = null;
         this.discount = 0;
         this.inStock = true;
     }
@@ -32,6 +41,12 @@ public class Item {
     //EFFECTS: sets name to the given string
     public void setName(String name) {
         this.name = name;
+    }
+
+    //MODIFIES: this
+    //EFFECTS: sets brand to the given string
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     //MODIFIES: this
@@ -78,8 +93,8 @@ public class Item {
 
     //EFFECTS: displays all the fields of the Item
     public void showItem() {
-        System.out.printf("| %-20s| %-50s| %-7d| %-9s| %-15s| %-6s| %-10s| %-10d| %-9s|\n",
-                this.name, this.description, this.price, this.category, this.type, this.size, this.colour,
-                this.discount, this.inStock);
+        System.out.printf("| %-20s| %-20s| %-50s| %-7d| %-9s| %-15s| %-6s| %-10s| %-10d| %-9s|\n",
+                this.name, this.brand, this.description, this.price, this.category, this.type, this.size,
+                this.colour, this.discount, this.inStock);
     }
 }
