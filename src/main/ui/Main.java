@@ -11,26 +11,28 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int cont = 1;
 
-        Item xx = new Item();
-        xx.setName("tshirt");
-        xx.setDescription("Great_tshirt");
-        xx.setPrice(200);
-        xx.setCategory("male");
-        xx.setType("tshirt");
-        xx.setSize("M");
-        xx.setColour("Black");
-        xx.setDiscount(10);
-        xx.setInStock(true);
+//        Item xx1 = new Item();
+//        xx1.setName("tshirt");
+//        xx1.setDescription("Great tshirt with many colours");
+//        xx1.setPrice(200);
+//        xx1.setCategory("male");
+//        xx1.setType("tshirt");
+//        xx1.setSize("M");
+//        xx1.setColour("Black");
+//        xx1.setDiscount(10);
+//        xx1.setInStock(true);
 
         while (cont == 1) {
             if (cont != 1) {
                 break;
             }
             items.insertItem(items.getItem());
-            items.displayAllItems();
-
+            //items.displayAllItems();
+            System.out.println("Item added successfully!");
             System.out.println("Wish to add more items?(1/0)");
             cont = sc.nextInt();
         }
+        items.displayAllItems();
+
     }
 }

@@ -45,25 +45,25 @@ public class Collection {
         return allItems.size();
     }
 
-    //Effects: Takes values for all the fields of an Item and returns
+    //EFFECTS: Takes values for all the fields of an Item and returns
     //         and Item with those credentials
     public Item getItem() {
         Item item = new Item();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter name of the product:");
-        item.setName(sc.next());
+        item.setName(sc.nextLine());
         System.out.println("Enter a small description of the product");
-        item.setDescription(sc.next());
+        item.setDescription(sc.nextLine());
         System.out.println("Enter price of the product");
         item.setPrice(sc.nextInt());
         System.out.println("Enter gender category of the product(male/female/kids)");
-        item.setCategory(sc.next());
+        item.setCategory(sc.nextLine());
         System.out.println("Enter type of product(tshirt/jeans/suit/shirt/pant/dress/gown/frock)");
-        item.setType(sc.next());
+        item.setType(sc.nextLine());
         System.out.println("Enter size of the product");
-        item.setSize(sc.next());
+        item.setSize(sc.nextLine());
         System.out.println("Enter colour of the product");
-        item.setColour(sc.next());
+        item.setColour(sc.nextLine());
         System.out.println("Enter discount % of the product");
         item.setDiscount(sc.nextInt());
         System.out.println("Enter inStock Status (True/false)");
@@ -71,13 +71,26 @@ public class Collection {
         return item;
     }
 
+    //EFFECTS: adds a horizontal line of to separate rows of a table
+    private void addLine() {
+        System.out.print("+-------+---------------------+---------------------------------------------------+------"
+                + "--+----------+----------------+-------+-----------+-----------+----------+\n");
+    }
+
 
     //EFFECTS: Displays all the products
     public void displayAllItems() {
-        System.out.print("\nSNo.\tName\tDescription\tPrice\tCategory\tType\tSize\tColour\tDiscount\tinStock\n");
+        addLine();
+        System.out.printf("| %-6s| %-20s| %-50s| %-7s| %-9s| %-15s| %-6s| %-10s| %-10s| %-9s|\n",
+                "SNo.", "Name", "Description", "Price", "Category", "Type", "Size",
+                "Colour", "Discount", "inStock");
+
+        addLine();
         for (int i = 0; i < allItems.size(); i++) {
-            System.out.print(i + 1 + "\t\t");
+            System.out.printf("| %-6d", i + 1);
             allItems.get(i).showItem();
         }
+        addLine();
     }
+
 }

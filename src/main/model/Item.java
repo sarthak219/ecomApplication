@@ -13,7 +13,6 @@ public class Item {
 
     //EFFECTS: constructor
     public Item() {
-        this.name = "";
         this.discount = 0;
         this.inStock = true;
     }
@@ -79,10 +78,8 @@ public class Item {
 
     //EFFECTS: displays all the fields of the Item
     public void showItem() {
-        System.out.print(this.name + "\t" + this.description + "\t" + this.price + "\t\t" + this.category);
-        System.out.print("\t\t" + this.type + "\t" + this.size + "\t\t" + this.colour + "\t\t" + this.discount);
-        System.out.print("\t\t\t" + this.inStock + "\n");
-
-        //TODO: Fix Spacing issues in showItem() method
+        System.out.printf("| %-20s| %-50s| %-7d| %-9s| %-15s| %-6s| %-10s| %-10d| %-9s|\n",
+                this.name, this.description, this.price, this.category, this.type, this.size, this.colour,
+                this.discount, this.inStock);
     }
 }
