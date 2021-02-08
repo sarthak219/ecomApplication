@@ -12,6 +12,11 @@ public class AllUsers {
         this.allUsers = new ArrayList<>();
     }
 
+    //EFFECTS: returns allUsers
+    public ArrayList<User> getAllUsers() {
+        return allUsers;
+    }
+
     //EFFECTS: Creates a new user profile by using credentials from the user
     public User registerNewUser() {
         User person = new User();
@@ -67,7 +72,7 @@ public class AllUsers {
         return allUsers.contains(u);
     }
 
-    //EFFECTS: Returns true if Item with name n is present in allItems
+    //EFFECTS: Returns true if User with username n is present in allUsers
     public boolean containsWithName(String n) {
         for (User i : this.allUsers) {
             if (i.getUsername().equals(n)) {
@@ -85,9 +90,9 @@ public class AllUsers {
 
     public void displayAllUsers() {
         addLine();
-        System.out.printf("| %-6s| %-20s| %-20s| %-50s| %-7s| %-9s| %-15s| %-6s| %-10s| %-10s| %-9s|\n",
-                "SNo.", "Name", "Brand", "Description", "Price", "Category", "Type", "Size",
-                "Colour", "Discount", "inStock");
+        System.out.printf("| %-6s| %-20s|  %-20s| %-20s| %-50s| %-20s| %-15s| %-5s| %-10s|\n",
+                "SNo.", "First Name", "Last Name", "Username", "Email", "Password", "Mobile Number", "Age",
+                "Gender");
 
         addLine();
         for (int i = 0; i < allUsers.size(); i++) {
@@ -97,12 +102,8 @@ public class AllUsers {
         addLine();
     }
 
-    public void login() {
-        //stub
-    }
 
-    //TODO: Implement insertUser()
+
     //TODO: Implement displayUser()
     //TODO: Write tests
-    //TODO: Implement Login feature
 }

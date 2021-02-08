@@ -34,6 +34,20 @@ public class User {
         this.recentOrders = new ArrayList<>();
     }
 
+    public void makeGuestUser() {
+        this.firstName = "guest";
+        this.lastName = null;
+        this.username = "Guest@123";
+        this.emailId = null;
+        this.password = null;
+        this.mobileNumber = "0000000000";
+        this.age = 0;
+        this.gender = null;
+        this.wishlist = new ArrayList<>();
+        this.cart = new ArrayList<>();
+        this.recentOrders = new ArrayList<>();
+    }
+
     //MODIFIES: this
     //EFFECTS: sets the first name to the given string
     public void setFirstName(String firstName) {
@@ -102,13 +116,25 @@ public class User {
     }
 
 
-    //EFFECTS: returns username of the current User
+    //EFFECTS: returns username
     public String getUsername() {
         return this.username;
     }
 
+    //EFFECTS: returns the password
+    public String getPassword() {
+        return this.password;
+    }
+
+    //EFFECTS: returns first name of the current User
+    public String getFirstName() {
+        return this.firstName;
+    }
+
     public void showUser() {
-        //stub
+        System.out.printf("| %-6s| %-20s|  %-20s| %-20s| %-50s| %-20s| %-15s| %-5s| %-10s|\n",
+                this.firstName, this.lastName, this.username, this.emailId, this.password,
+                this.mobileNumber, this.age, this.gender);
     }
 
 }
