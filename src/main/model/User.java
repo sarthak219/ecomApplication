@@ -3,16 +3,13 @@ package model;
 import model.Item;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class User {
-    Scanner sc = new Scanner(System.in);
-
     private String firstName;
     private String lastName;
-    private String username;
+    protected String username;
     private String emailId;
-    private String password;
+    protected String password;
     private String mobileNumber;
     private int age;
     private String gender;
@@ -132,7 +129,7 @@ public class User {
     }
 
     public void showUser() {
-        System.out.printf("| %-6s| %-20s|  %-20s| %-20s| %-50s| %-20s| %-15s| %-5s| %-10s|\n",
+        System.out.printf("| %-20s|  %-20s| %-20s| %-50s| %-20s| %-15s| %-5s| %-10s|\n",
                 this.firstName, this.lastName, this.username, this.emailId, this.password,
                 this.mobileNumber, this.age, this.gender);
     }
