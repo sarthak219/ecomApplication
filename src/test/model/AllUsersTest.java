@@ -102,10 +102,12 @@ public class AllUsersTest {
     @Test
     public void userAuthenticationWithOneUserTest() {
         User user = new User();
-        user.setUsername("test1");
+        user.setUsername("test" + 1);
         user.setPassword("123");
         allUsers.insertUser(user);
         assertFalse(allUsers.userAuthentication("test", "1234"));
+        assertFalse(allUsers.userAuthentication("test1", "1234"));
+        assertFalse(allUsers.userAuthentication("test", "123"));
         assertTrue(allUsers.userAuthentication("test1", "123"));
     }
 
@@ -123,6 +125,9 @@ public class AllUsersTest {
             assertFalse(allUsers.userAuthentication(user.getUsername(), user.getPassword()));
             user.setUsername("test" + i);
             user.setPassword("pass_" + i);
+            assertFalse(allUsers.userAuthentication(user.getUsername() + 1, user.getPassword() + 1));
+            assertFalse(allUsers.userAuthentication(user.getUsername() + 1, user.getPassword()));
+            assertFalse(allUsers.userAuthentication(user.getUsername(), user.getPassword() + 1));
             assertTrue(allUsers.userAuthentication(user.getUsername(), user.getPassword()));
         }
     }
