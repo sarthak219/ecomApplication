@@ -184,12 +184,22 @@ public class User {
     //EFFECTS: returns true if Item is present in the current user's cart
     //         false otherwise
     public boolean inCart(Item item) {
-        return this.wishlist.contains(item);
+        return this.cart.contains(item);
     }
 
     //EFFECTS: returns true if item with the given id exists in cart
     public boolean cartContainsItemWithId(int id) {
         for (Item item : this.cart) {
+            if (item.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //EFFECTS: returns true if item with the given id exists in orderHistory
+    public boolean orderHistoryContainsItemWithId(int id) {
+        for (Item item : this.orderHistory) {
             if (item.getId() == id) {
                 return true;
             }
