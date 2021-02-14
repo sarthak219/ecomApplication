@@ -42,15 +42,15 @@ public class Display {
     //EFFECTS: adds a horizontal line of to separate rows of a table
     private void addLineToDisplayProducts() {
         System.out.print("+-------+-------+---------------------+---------------------+-------------------"
-                + "--------------------------------+--------+----------+-------+-----------+-----------+"
+                + "--------------------------------+--------------+----------+-------+-----------+--------------+"
                 + "----------+ \n");
     }
 
     //EFFECTS: displays the header row for the table of displayAllItems
     private void productsTableHeader() {
-        System.out.printf("| %-6s| %-6s| %-20s| %-20s| %-50s| %-7s| %-9s| %-6s| %-10s| %-10s| %-9s|\n",
-                "SNo.", "ID", "Name", "Brand", "Description", "Price", "Category", "Size",
-                "Colour", "Discount", "inStock");
+        System.out.printf("| %-6s| %-6s| %-20s| %-20s| %-50s| %-13s| %-9s| %-6s| %-10s| %-13s| %-9s|\n",
+                "SNo.", "ID", "Name", "Brand", "Description", "Price(CAD$)", "Category", "Size",
+                "Colour", "Discount (%)", "inStock");
     }
 
     //EFFECTS: displays all the products

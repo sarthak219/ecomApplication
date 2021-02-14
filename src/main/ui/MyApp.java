@@ -21,7 +21,6 @@ public class MyApp {
         this.users = new AllUsers();
         this.admin = new Admin();
         this.allProducts = new Collection();
-        //display = new Display(this.currentUser, this.users, this.allProducts);
         display = new Display();
     }
 
@@ -107,6 +106,7 @@ public class MyApp {
         }
     }
 
+    //EFFECTS: performs the task according to the choice
     private void optionsForHomePage1(int choice) {
         switch (choice) {
             case 1:
@@ -129,6 +129,7 @@ public class MyApp {
         }
     }
 
+    //EFFECTS: performs the task according to the choice
     private void optionsForHomePage2(int choice) {
         switch (choice) {
             case 6:
@@ -178,6 +179,7 @@ public class MyApp {
         }
     }
 
+    //EFFECTS: performs the task according to the choice
     private void optionsForAdminHomepage(int choice) {
         switch (choice) {
             case 1:
@@ -249,7 +251,7 @@ public class MyApp {
         System.out.println("Enter a small description of the product");
         item.setDescription(sc.nextLine());
         System.out.println("Enter price of the product(in CAD$)");
-        item.setPrice(sc.nextInt());
+        item.setPrice(sc.nextFloat());
         sc.nextLine(); // to fix the nextInt() followed by nextLine() bug
         System.out.println("Enter gender category of the product(men/women/kids)");
         item.setCategory(sc.nextLine());
@@ -258,7 +260,7 @@ public class MyApp {
         System.out.println("Enter colour of the product");
         item.setColour(sc.nextLine());
         System.out.println("Enter discount % of the product");
-        item.setDiscount(sc.nextInt());
+        item.setDiscount(sc.nextFloat());
         return item;
     }
 
@@ -415,7 +417,8 @@ public class MyApp {
         System.out.println("Item not found! Please enter a valid product ID");
     }
 
-
+    //MODIFIES: this
+    //EFFECTS: removes item from the wishlist
     private void removeItemFromWishlist() {
         int id = getProductIdFromUser();
         for (Item item : currentUser.getWishlist()) {
@@ -428,6 +431,8 @@ public class MyApp {
         System.out.println("Item not found in wishlist! Please enter a valid product ID");
     }
 
+    //MODIFIES: this
+    //EFFECTS: removes item from the cart
     private void removeItemFromCart() {
         int id = getProductIdFromUser();
         for (Item item : currentUser.getCart()) {
@@ -447,7 +452,7 @@ public class MyApp {
             return;
         }
         int choice;
-        int bill = currentUser.totalBill();
+        float bill = currentUser.totalBill();
         display.displayCart(currentUser);
         System.out.println("All these items will be ordered, and your order will amount to "
                 + bill + "CAD$" + " do you wish to continue?" + "(enter 1 for yes & 0 for no)");
@@ -483,6 +488,3 @@ public class MyApp {
         System.exit(0);
     }
 }
-
-//TODO: Write appropriate documentation
-//TODO: Write tests for all the methods

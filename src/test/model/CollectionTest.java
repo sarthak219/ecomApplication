@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CollectTest {
+class CollectionTest {
     private Collection items;
     private static final double NUM_ITEMS = 3; //must be at least 3
     public int size;

@@ -17,7 +17,9 @@ public class UserTest {
         user.makeGuestUser();
         user.setFirstName("fName");
         user.setLastName("lName");
+        user.setUsername("NewUser");
         user.setEmailId("abc@xyz.com");
+        user.setPassword("pass1");
         user.setMobileNumber("9876543210");
         user.setAge(18);
         user.setGender("male");
@@ -25,8 +27,10 @@ public class UserTest {
     }
 
     @Test
-    public void newUserFirstNameTest() {
+    public void matchNewUserCredentialsTest() {
         assertEquals("fName", user.getFirstName());
+        assertEquals("NewUser", user.getUsername());
+        assertEquals("pass1", user.getPassword());
         user.showUser();
     }
 
@@ -255,5 +259,22 @@ public class UserTest {
         user.removeItemsFromCart(user.getCart().get(1));
         assertEquals(NUM_ITEMS - 1, user.getCart().size());
         assertFalse(user.cartContainsItemWithId(1));
+    }
+
+    @Test
+    public void TotalBillTest() {
+        assertEquals(0, user.totalBill());
+
+        Item item1 = new Item();
+        item1.setPrice(200);
+        item1.setDiscount(10);
+        user.addItemToCart(item1);
+        assertEquals(180, user.totalBill());
+
+        Item item2 = new Item();
+        item2.setPrice(200);
+        item2.setDiscount(5);
+        user.addItemToCart(item2);
+        assertEquals(190 + 180, user.totalBill());
     }
 }

@@ -5,11 +5,11 @@ public class Item {
     private String name;
     private String brand;
     private String description;
-    private int price;
+    private float price;
     private String category;
     private String size;
     private String colour;
-    private int discount;
+    private float discount;
     private boolean inStock;
 
     //EFFECTS: constructor
@@ -42,12 +42,12 @@ public class Item {
     }
 
     //EFFECTS: returns the price
-    public int getPrice() {
+    public float getPrice() {
         return this.price;
     }
 
     //EFFECTS: returns the discount
-    public int getDiscount() {
+    public float getDiscount() {
         return this.discount;
     }
 
@@ -59,7 +59,7 @@ public class Item {
 
     //MODIFIES: this
     //EFFECTS: sets the price to the given price
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -101,7 +101,7 @@ public class Item {
 
     //MODIFIES: this
     //EFFECTS: sets the discount to the given discount
-    public void setDiscount(int discount) {
+    public void setDiscount(float discount) {
         this.discount = discount;
     }
 
@@ -113,7 +113,7 @@ public class Item {
 
     //EFFECTS: displays all the fields of the Item in a line separated by "|"
     public void showItem() {
-        System.out.printf("| %-6d| %-20s| %-20s| %-50s| %-7d| %-9s| %-6s| %-10s| %-10d| %-9s|\n",
+        System.out.printf("| %-6d| %-20s| %-20s| %-50s| %-13.2f| %-9s| %-6s| %-10s| %-13.2f| %-9s|\n",
                 this.id, this.name, this.brand, this.description, this.price, this.category,
                 this.size, this.colour, this.discount, this.inStock);
     }

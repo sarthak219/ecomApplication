@@ -1,5 +1,6 @@
 package model;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class User {
@@ -207,10 +208,11 @@ public class User {
         return false;
     }
 
-    public int totalBill() {
-        int bill = 0;
+    //EFFECTS: return the total payable amount after subtracting discount
+    public float totalBill() {
+        float bill = 0;
         for (Item item : this.cart) {
-            int priceAfterDiscount = item.getPrice() * (1 - item.getDiscount() / 100);
+            float priceAfterDiscount = item.getPrice() - item.getPrice() * item.getDiscount() / 100;
             bill += priceAfterDiscount;
         }
         return bill;
