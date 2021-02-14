@@ -3,9 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class AllUsers {
-    //Scanner sc = new Scanner(System.in);
-
-    private final ArrayList<User>  allUsers;
+    private final ArrayList<User> allUsers;
 
     public AllUsers() {
         this.allUsers = new ArrayList<>();
@@ -18,37 +16,36 @@ public class AllUsers {
 
     //REQUIRES: User with same username should not already be present in allUsers
     //MODIFIES: this
-    //EFFECTS: Item will be added to allUsers
+    //EFFECTS: User will be added to allUsers
     public void insertUser(User user) {
-        if (!allUsers.contains(user)) {
-            this.allUsers.add(user);
-        } else {
-            System.out.println("ERROR! Item already exists in the list");
-        }
+        this.allUsers.add(user);
+        System.out.println("Account created successfully!");
     }
-//
-//    //EFFECTS: adds a horizontal line of to separate rows of a table
-//    private void addLine() {
-//        System.out.print("+-------+---------------------+---------------------+--------------------------------------"
-//                + "-------------+--------+----------+----------------+-------+-----------+-----------+----------+\n");
-//    }
-//
-//    public void displayAllUsers() {
-//        addLine();
-//        System.out.printf("| %-6s| %-20s|  %-20s| %-20s| %-50s| %-20s| %-15s| %-5s| %-10s|\n",
-//                "SNo.", "First Name", "Last Name", "Username", "Email", "Password", "Mobile Number", "Age",
-//                "Gender");
-//
-//        addLine();
-//        for (int i = 0; i < allUsers.size(); i++) {
-//            System.out.printf("| %-6d", i + 1);
-//            allUsers.get(i).showUser();
-//        }
-//        addLine();
-//    }
+
+    //MODIFIES: this
+    //EFFECTS: removes the given User from allUsers
+    public void removeUser(String username) {
+        for (User u : allUsers) {
+            if (u.getUsername().equals(username)) {
+                allUsers.remove(u);
+                System.out.println("User removed successfully!");
+                return;
+            }
+        }
+        System.out.println("User not found!");
+    }
 
 
+    //EFFECTS: returns true if the given username and password match with those of an existing user
+    //false otherwise
+    public boolean userAuthentication(String username, String password) {
+        for (User user : allUsers) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    //TODO: Implement displayUser()
     //TODO: Write tests
 }

@@ -1,7 +1,5 @@
 package model;
 
-import model.Item;
-
 import java.util.ArrayList;
 
 public class User {
@@ -15,7 +13,7 @@ public class User {
     private String gender;
     private ArrayList<Item> wishlist;
     private ArrayList<Item> cart;
-    private ArrayList<Item> recentOrders;
+    private ArrayList<Item> orderHistory;
 
     public User() {
         this.firstName = null;
@@ -28,7 +26,7 @@ public class User {
         this.gender = null;
         this.wishlist = new ArrayList<>();
         this.cart = new ArrayList<>();
-        this.recentOrders = new ArrayList<>();
+        this.orderHistory = new ArrayList<>();
     }
 
     public void makeGuestUser() {
@@ -42,7 +40,7 @@ public class User {
         this.gender = null;
         this.wishlist = new ArrayList<>();
         this.cart = new ArrayList<>();
-        this.recentOrders = new ArrayList<>();
+        this.orderHistory = new ArrayList<>();
     }
 
     //MODIFIES: this
@@ -87,31 +85,15 @@ public class User {
         this.age = age;
     }
 
+    public void setCart(ArrayList<Item> cart) {
+        this.cart = cart;
+    }
+
     //MODIFIES: this
     //EFFECTS: sets the gender to the given string
     public void setGender(String gender) {
         this.gender = gender;
     }
-
-    //MODIFIES: this
-    //EFFECTS: sets the wishlist to the given ArrayList
-    public void setWishlist(ArrayList<Item> wishlist) {
-        this.wishlist = wishlist;
-    }
-
-    //MODIFIES: this
-    //EFFECTS: sets the wishlist to the given ArrayList
-    public void setCart(ArrayList<Item> cart) {
-        this.cart = cart;
-    }
-
-
-    //MODIFIES: this
-    //EFFECTS: sets the wishlist to the given ArrayList
-    public void setRecentOrders(ArrayList<Item> recentOrders) {
-        this.recentOrders = recentOrders;
-    }
-
 
     //EFFECTS: returns username
     public String getUsername() {
@@ -128,10 +110,78 @@ public class User {
         return this.firstName;
     }
 
+    //EFFECTS: returns cart
+    public ArrayList<Item> getCart() {
+        return this.cart;
+    }
+
+    //EFFECTS: returns wishlist
+    public ArrayList<Item> getWishlist() {
+        return this.wishlist;
+    }
+
+    //EFFECTS: returns order history
+    public ArrayList<Item> getOrderHistory() {
+        return this.orderHistory;
+    }
+
+    //EFFECTS: shows the user's credentials in a row separated by "|"
     public void showUser() {
         System.out.printf("| %-20s|  %-20s| %-20s| %-50s| %-20s| %-15s| %-5s| %-10s|\n",
                 this.firstName, this.lastName, this.username, this.emailId, this.password,
                 this.mobileNumber, this.age, this.gender);
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds the item to wishlist
+    public void addItemToWishlist(Item item) {
+        this.wishlist.add(item);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: adds the item to cart
+    public void addItemToCart(Item item) {
+        this.cart.add(item);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: adds the item to order history
+    public void addItemToOrderHistory(Item item) {
+        this.orderHistory.add(item);
+    }
+
+
+    //MODIFIES: this
+    //EFFECTS: removes the item from wishlist
+    public void removeItemsFromWishlist(Item item) {
+        this.wishlist.remove(item);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: removes the item from cart
+    public void removeItemsFromCart(Item item) {
+        this.cart.remove(item);
+    }
+
+
+    //EFFECTS: returns true if Item is present in the current user's cart
+    //         false otherwise
+    public boolean inWishlist(Item item) {
+        return this.wishlist.contains(item);
+    }
+
+    //EFFECTS: returns true if Item is present in the current user's cart
+    //         false otherwise
+    public boolean inCart(Item item) {
+        return this.wishlist.contains(item);
+    }
+
+    public int totalBill() {
+        int bill = 0;
+        for (Item item : this.cart) {
+            int priceAfterDiscount = item.getPrice() * (1 - item.getDiscount() / 100);
+            bill += priceAfterDiscount;
+        }
+        return bill;
+    }
 }

@@ -1,12 +1,12 @@
 package model;
 
 public class Item {
+    private int id;
     private String name;
     private String brand;
     private String description;
     private int price;
     private String category;
-    private String type;
     private String size;
     private String colour;
     private int discount;
@@ -14,20 +14,47 @@ public class Item {
 
     //EFFECTS: constructor
     public Item() {
+        this.id = 0;
         this.name = null;
         this.brand = null;
         this.description = null;
         this.price = 0;
         this.category = null;
-        this.type = null;
         this.size = null;
         this.colour = null;
         this.discount = 0;
         this.inStock = true;
     }
 
+    //EFFECTS: returns the product name
     public String getName() {
         return this.name;
+    }
+
+    //EFFECTS: returns the product id
+    public int getId() {
+        return this.id;
+    }
+
+    //EFFECTS: returns inStock
+    public boolean getInStock() {
+        return inStock;
+    }
+
+    //EFFECTS: returns the price
+    public int getPrice() {
+        return this.price;
+    }
+
+    //EFFECTS: returns the discount
+    public int getDiscount() {
+        return this.discount;
+    }
+
+    //MODIFIES: this
+    //EFFECTS: sets the the product id to the given value
+    public void setId(int id) {
+        this.id = id;
     }
 
     //MODIFIES: this
@@ -35,7 +62,6 @@ public class Item {
     public void setPrice(int price) {
         this.price = price;
     }
-
 
     //MODIFIES: this
     //EFFECTS: sets name to the given string
@@ -62,12 +88,6 @@ public class Item {
     }
 
     //MODIFIES: this
-    //EFFECTS: sets the category to the given category
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    //MODIFIES: this
     //EFFECTS: sets the size to the given size
     public void setSize(String size) {
         this.size = size;
@@ -91,10 +111,10 @@ public class Item {
         this.inStock = inStock;
     }
 
-    //EFFECTS: displays all the fields of the Item
+    //EFFECTS: displays all the fields of the Item in a line separated by "|"
     public void showItem() {
-        System.out.printf("| %-20s| %-20s| %-50s| %-7d| %-9s| %-15s| %-6s| %-10s| %-10d| %-9s|\n",
-                this.name, this.brand, this.description, this.price, this.category, this.type, this.size,
-                this.colour, this.discount, this.inStock);
+        System.out.printf("| %-6d| %-20s| %-20s| %-50s| %-7d| %-9s| %-6s| %-10s| %-10d| %-9s|\n",
+                this.id, this.name, this.brand, this.description, this.price, this.category,
+                this.size, this.colour, this.discount, this.inStock);
     }
 }
