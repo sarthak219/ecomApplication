@@ -120,6 +120,7 @@ public class AllUsersTest {
 
         for (int i = 0; i < NUM_USERS; ++i) {
             User user = new User();
+            assertFalse(allUsers.userAuthentication(user.getUsername(), user.getPassword()));
             user.setUsername("test" + i);
             user.setPassword("pass_" + i);
             assertTrue(allUsers.userAuthentication(user.getUsername(), user.getPassword()));
