@@ -276,5 +276,11 @@ public class UserTest {
         item2.setDiscount(5);
         user.addItemToCart(item2);
         assertEquals(190 + 180, user.totalBill());
+
+        Item item3 = new Item();
+        item3.setPrice(1000);
+        item3.setDiscount(100);
+        user.addItemToCart(item3);
+        assertEquals(190 + 180, user.totalBill());
     }
 }
