@@ -35,6 +35,21 @@ public class AllUsers {
         System.out.println("User not found!");
     }
 
+    //EFFECTS: Returns true if Item with name n is present in allItems
+    public boolean containsWithUsername(String username) {
+        for (User user : this.allUsers) {
+            if (user.getUsername().equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // EFFECTS: Returns the number of items in allItems
+    public int size() {
+        return allUsers.size();
+    }
+
 
     //EFFECTS: returns true if the given username and password match with those of an existing user
     //false otherwise
@@ -46,6 +61,4 @@ public class AllUsers {
         }
         return false;
     }
-
-    //TODO: Write tests
 }

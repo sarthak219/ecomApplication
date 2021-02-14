@@ -170,10 +170,31 @@ public class User {
         return this.wishlist.contains(item);
     }
 
+
+    //EFFECTS: returns true if item with the given id exists in wishlist
+    public boolean wishListContainsItemWithId(int id) {
+        for (Item item : this.wishlist) {
+            if (item.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //EFFECTS: returns true if Item is present in the current user's cart
     //         false otherwise
     public boolean inCart(Item item) {
         return this.wishlist.contains(item);
+    }
+
+    //EFFECTS: returns true if item with the given id exists in cart
+    public boolean cartContainsItemWithId(int id) {
+        for (Item item : this.cart) {
+            if (item.getId() == id) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public int totalBill() {

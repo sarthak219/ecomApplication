@@ -12,4 +12,5 @@ public class Admin extends User {
     public boolean adminAuthentication(String username, String password) {
         return this.username.equals(username) && this.password.equals(password);
     }
+
 }

@@ -23,11 +23,12 @@ public class Collection {
         System.out.println("Item added successfully!");
     }
 
+    //REQUIRES: allItems must have at least 1 item
     //MODIFIES: this
     //EFFECTS: removes the given Item from allItems
-    public void removeItem(String itemName) {
+    public void removeItem(int id) {
         for (Item i : allItems) {
-            if (i.getName().equals(itemName)) {
+            if (i.getId() == id) {
                 allItems.remove(i);
                 System.out.println("Item removed successfully!");
                 return;
@@ -42,16 +43,6 @@ public class Collection {
         return allItems.contains(i);
     }
 
-
-    //EFFECTS: Returns true if Item with name n is present in allItems
-    public boolean containsWithName(String n) {
-        for (Item i : this.allItems) {
-            if (i.getName().equals(n)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     //EFFECTS: Returns true if Item with name n is present in allItems
     public boolean containsWithId(int id) {

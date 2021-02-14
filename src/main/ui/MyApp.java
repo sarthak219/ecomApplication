@@ -190,7 +190,7 @@ public class MyApp {
                 display.displayAllItems(allProducts);
                 break;
             case 4:
-                allProducts.removeItem(getItemNameFromUser());
+                allProducts.removeItem(getProductIdFromUser());
                 break;
             case 5:
                 users.removeUser(getUsernameFromUser());
@@ -203,12 +203,6 @@ public class MyApp {
         }
     }
 
-    //EFFECTS: returns the name of the item that the user enters
-    private String getItemNameFromUser() {
-        sc.nextLine(); //to fix bug
-        System.out.println("Enter name of the item");
-        return sc.nextLine();
-    }
 
     //EFFECTS: returns the username entered by the user
     private String getUsernameFromUser() {
