@@ -134,7 +134,6 @@ public class MyApp {
         switch (choice) {
             case 6:
                 removeItemFromCart();
-                display.displayCart(currentUser);
                 break;
             case 7:
                 display.displayWishlist(currentUser);

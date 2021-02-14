@@ -76,7 +76,7 @@ public class Display {
         productsTableHeader();
         addLineToDisplayProducts();
         for (Item item : allProducts.getAllProducts()) {
-            if (item.getName().contains(name) && item.getInStock()) {
+            if (item.getName().contains(name)) {
                 System.out.printf("|%-6s ", i);
                 item.showItem();
                 ++i;
