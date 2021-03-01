@@ -28,12 +28,9 @@ public class Collection {
     //MODIFIES: this
     //EFFECTS: removes the given Item from allItems
     public void removeItem(int id) {
-        for (Item i : allItems) {
-            if (i.getId() == id) {
-                allItems.remove(i);
-                System.out.println("Item removed successfully!");
-                return;
-            }
+        if (this.allItems.removeIf(item -> item.getId() == id)) {
+            System.out.println("Item removed successfully!");
+            return;
         }
         System.out.println("Item not found!");
     }

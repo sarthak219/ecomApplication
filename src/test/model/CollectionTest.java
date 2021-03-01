@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CollectionTest {
     private Collection items;
-    private static final double NUM_ITEMS = 3; //must be at least 3
+    private static final double NUM_ITEMS = 500; //must be at least 3
     public int size;
 
     @BeforeEach
