@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+//represents the database of all users
 public class AllUsers {
     private final ArrayList<User> allUsers;
 
@@ -23,14 +24,11 @@ public class AllUsers {
     }
 
     //MODIFIES: this
-    //EFFECTS: removes the given User from allUsers
+    //EFFECTS: removes the user given username from allUsers
     public void removeUser(String username) {
-        for (User u : allUsers) {
-            if (u.getUsername().equals(username)) {
-                allUsers.remove(u);
-                System.out.println("User removed successfully!");
-                return;
-            }
+        if (this.allUsers.removeIf(user -> user.getUsername().equals(username))) {
+            System.out.println("User removed successfully!");
+            return;
         }
         System.out.println("User not found!");
     }

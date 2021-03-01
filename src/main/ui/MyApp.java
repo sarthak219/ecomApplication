@@ -5,6 +5,7 @@ import model.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//represents the application
 public class MyApp {
     Scanner sc = new Scanner(System.in);
     private User currentUser;

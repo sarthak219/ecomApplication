@@ -1,5 +1,6 @@
 package model;
 
+//represents the admin or a Superuser
 public class Admin extends User {
 
     public Admin() {

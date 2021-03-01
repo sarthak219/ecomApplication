@@ -1,5 +1,6 @@
 package model;
 
+//represents an item with name, brand, price, size, etc
 public class Item {
     private int id;
     private String name;
@@ -12,7 +13,7 @@ public class Item {
     private float discount;
     private boolean inStock;
 
-    //EFFECTS: constructor
+    //EFFECTS: constructs a new Item
     public Item() {
         this.id = 0;
         this.name = null;

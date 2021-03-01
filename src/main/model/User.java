@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+// represents a user account with his/her credentials, cart, wishlist and order history
 public class User {
     private String firstName;
     private String lastName;

@@ -7,7 +7,7 @@ import model.User;
 
 import java.util.Scanner;
 
-
+//represents the class which displays the databases
 public class Display {
     Scanner sc = new Scanner(System.in);
 

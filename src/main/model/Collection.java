@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+//represents the collection of all products in the store
 public class Collection {
     private final ArrayList<Item> allItems;
 
