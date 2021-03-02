@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 //represents the database of all users
-public class AllUsers {
+public class AllUsers implements Writable {
     private final ArrayList<User> allUsers;
 
     public AllUsers() {
@@ -33,7 +37,7 @@ public class AllUsers {
         System.out.println("User not found!");
     }
 
-    //EFFECTS: Returns true if Item with name n is present in allItems
+    //EFFECTS: Returns true if user with given username exists in allUsers, false otherwise
     public boolean containsWithUsername(String username) {
         for (User user : this.allUsers) {
             if (user.getUsername().equals(username)) {
@@ -58,5 +62,21 @@ public class AllUsers {
             }
         }
         return false;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("users", allUsersToJson());
+        return json;
+    }
+
+    private JSONArray allUsersToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (User user : allUsers) {
+            jsonArray.put(user.toJson());
+        }
+        return jsonArray;
     }
 }

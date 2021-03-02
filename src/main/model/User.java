@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 // represents a user account with his/her credentials, cart, wishlist and order history
-public class User {
+public class User implements Writable {
     private String firstName;
     private String lastName;
     protected String username;
@@ -216,5 +220,46 @@ public class User {
             bill += priceAfterDiscount;
         }
         return bill;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("firstName", this.firstName);
+        json.put("lastName", this.lastName);
+        json.put("username", this.username);
+        json.put("emailId", this.emailId);
+        json.put("password", this.password);
+        json.put("mobileNumber", this.mobileNumber);
+        json.put("age", this.age);
+        json.put("gender", this.gender);
+        json.put("wishlist", wishlistToJson());
+        json.put("cart", cartToJson());
+        json.put("orderHistory", orderHistoryToJson());
+        return json;
+    }
+
+    private JSONArray wishlistToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Item item : this.wishlist) {
+            jsonArray.put(item.toJson());
+        }
+        return jsonArray;
+    }
+
+    private JSONArray cartToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Item item : this.cart) {
+            jsonArray.put(item.toJson());
+        }
+        return jsonArray;
+    }
+
+    private JSONArray orderHistoryToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Item item : this.orderHistory) {
+            jsonArray.put(item.toJson());
+        }
+        return jsonArray;
     }
 }

@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 //represents the collection of all products in the store
-public class Collection {
+public class Collection implements Writable {
     private final ArrayList<Item> allItems;
 
     //EFFECTS: initialises allItems to NULL
@@ -55,5 +59,22 @@ public class Collection {
     // EFFECTS: Returns the number of items in allItems
     public int size() {
         return allItems.size();
+    }
+
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("items", allItemsToJson());
+        return json;
+    }
+
+    private JSONArray allItemsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Item item : allItems) {
+            jsonArray.put(item.toJson());
+        }
+        return jsonArray;
     }
 }

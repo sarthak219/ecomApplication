@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 //represents an item with name, brand, price, size, etc
-public class Item {
+public class Item implements Writable {
     private int id;
     private String name;
     private String brand;
@@ -117,5 +120,21 @@ public class Item {
         System.out.printf("| %-6d| %-20s| %-20s| %-50s| %-13.2f| %-9s| %-6s| %-10s| %-13.2f| %-9s|\n",
                 this.id, this.name, this.brand, this.description, this.price, this.category,
                 this.size, this.colour, this.discount, this.inStock);
+    }
+
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("", this.id);
+        json.put("", this.brand);
+        json.put("", this.description);
+        json.put("", this.price);
+        json.put("", this.category);
+        json.put("", this.size);
+        json.put("", this.colour);
+        json.put("", this.discount);
+        json.put("", this.inStock);
+        return json;
     }
 }

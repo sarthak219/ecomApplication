@@ -1,18 +1,24 @@
 package ui;
 
 import model.*;
+import persistence.JsonWriter;
+import persistence.JsonWriterForAllUsers;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 //represents the application
 public class MyApp {
     Scanner sc = new Scanner(System.in);
+    private static final String JSON_USER_DATABASE = "./data/users.json";
     private User currentUser;
     private final Admin admin;
     private final AllUsers users;
     private final Collection allProducts;
     private final Display display;
+    private final JsonWriterForAllUsers jsonWriterForAllUsers;
+    //private final JsonReader jsonReader;
 
     //MODIFIES: this
     //EFFECTS: Constructor for MyApp, creates a guest user and instantiates admin and user
@@ -24,6 +30,7 @@ public class MyApp {
         this.admin = new Admin();
         this.allProducts = new Collection();
         display = new Display();
+        jsonWriterForAllUsers = new JsonWriterForAllUsers(JSON_USER_DATABASE);
         welcomeScreen();
     }
 
@@ -52,27 +59,23 @@ public class MyApp {
 
     //EFFECTS: accepts a choice from the user and performs the selected task
     private void optionsForWelcomePage(int choice) {
-        switch (choice) {
-            case 1:
-                if (adminLogin()) {
-                    adminHomepage();
-                }
-                break;
-            case 2:
-                if (login()) {
-                    homePage();
-                }
-                break;
-            case 3:
-                users.insertUser(createUser());
-                break;
-            case 4:
-                currentUser = new User();
-                currentUser.makeGuestUser();
+        if (choice == 1) {
+            if (adminLogin()) {
+                adminHomepage();
+            }
+        } else if (choice == 2) {
+            if (login()) {
                 homePage();
-
-            default:
-                closeApp();
+            }
+        } else if (choice == 3) {
+            users.insertUser(createUser());
+            saveUsers();
+        } else if (choice == 4) {
+            currentUser = new User();
+            currentUser.makeGuestUser();
+            homePage();
+        } else {
+            closeApp();
         }
     }
 
@@ -111,50 +114,42 @@ public class MyApp {
 
     //EFFECTS: performs the task according to the choice
     private void optionsForHomePage1(int choice) {
-        switch (choice) {
-            case 1:
-                display.displayAllItems(allProducts);
-                break;
-            case 2:
-                display.searchAndShowProduct(allProducts);
-                break;
-            case 3:
-                addItemToWishlist();
-                break;
-            case 4:
-                removeItemFromWishlist();
-                break;
-            case 5:
-                addItemToCart();
-                break;
-            default:
-                System.out.println("Invalid input!");
+        if (choice == 1) {
+            display.displayAllItems(allProducts);
+        } else if (choice == 2) {
+            display.searchAndShowProduct(allProducts);
+        } else if (choice == 3) {
+            addItemToWishlist();
+            saveUsers();
+        } else if (choice == 4) {
+            removeItemFromWishlist();
+            saveUsers();
+        } else if (choice == 5) {
+            addItemToCart();
+            saveUsers();
+        } else {
+            System.out.println("Invalid input!");
         }
     }
 
     //EFFECTS: performs the task according to the choice
     private void optionsForHomePage2(int choice) {
-        switch (choice) {
-            case 6:
-                removeItemFromCart();
-                break;
-            case 7:
-                display.displayWishlist(currentUser);
-                break;
-            case 8:
-                display.displayCart(currentUser);
-                break;
-            case 9:
-                placeOrder();
-                break;
-            case 10:
-                display.displayRecentOrders(currentUser);
-                break;
-            case 11:
-                logout();
-                break;
-            default:
-                closeApp();
+        if (choice == 6) {
+            removeItemFromCart();
+            saveUsers();
+        } else if (choice == 7) {
+            display.displayWishlist(currentUser);
+        } else if (choice == 8) {
+            display.displayCart(currentUser);
+        } else if (choice == 9) {
+            placeOrder();
+            saveUsers();
+        } else if (choice == 10) {
+            display.displayRecentOrders(currentUser);
+        } else if (choice == 11) {
+            logout();
+        } else {
+            closeApp();
         }
     }
 
@@ -183,27 +178,21 @@ public class MyApp {
 
     //EFFECTS: performs the task according to the choice
     private void optionsForAdminHomepage(int choice) {
-        switch (choice) {
-            case 1:
-                display.displayAllUsers(users);
-                break;
-            case 2:
-                allProducts.insertItem(getItem());
-                break;
-            case 3:
-                display.displayAllItems(allProducts);
-                break;
-            case 4:
-                allProducts.removeItem(getProductIdFromUser());
-                break;
-            case 5:
-                users.removeUser(getUsernameFromUser());
-                break;
-            case 6:
-                logout();
-                break;
-            default:
-                System.out.println("Invalid input!!!");
+        if (choice == 1) {
+            display.displayAllUsers(users);
+        } else if (choice == 2) {
+            allProducts.insertItem(getItem());
+        } else if (choice == 3) {
+            display.displayAllItems(allProducts);
+        } else if (choice == 4) {
+            allProducts.removeItem(getProductIdFromUser());
+        } else if (choice == 5) {
+            users.removeUser(getUsernameFromUser());
+            saveUsers();
+        } else if (choice == 6) {
+            logout();
+        } else {
+            System.out.println("Invalid input!!!");
         }
     }
 
@@ -287,7 +276,7 @@ public class MyApp {
         }
     }
 
-    //EFFECTS: creates a new user and adds it to allUsers
+    //EFFECTS: creates a new user and returns it
     public User createUser() {
         User person = new User();
         System.out.println("Enter first name");
@@ -398,8 +387,8 @@ public class MyApp {
     }
 
 
-    //MODIFIES: this, changes inStock to false
-    //EFFECTS: adds the item which the user enters in its cart
+    //MODIFIES: this
+    //EFFECTS: adds the item which the user enters in its cart and changes item.inStock to false
     private void addItemToCart() {
         int id = getProductIdFromUser();
         for (Item item : allProducts.getAllProducts()) {
@@ -466,7 +455,6 @@ public class MyApp {
         }
         for (Item item : currentUser.getCart()) {
             currentUser.addItemToOrderHistory(item);
-            //currentUser.removeItemsFromCart(item);
             item.setInStock(false);
         }
         currentUser.setCart(new ArrayList<>());
@@ -488,5 +476,17 @@ public class MyApp {
         System.out.println("Closing the app....");
         System.out.println("Thanks for using!");
         System.exit(0);
+    }
+
+    // EFFECTS: saves the workroom to file
+    private void saveUsers() {
+        try {
+            jsonWriterForAllUsers.open();
+            jsonWriterForAllUsers.write(users);
+            jsonWriterForAllUsers.close();
+            System.out.println("Changes saved to " + JSON_USER_DATABASE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_USER_DATABASE);
+        }
     }
 }
