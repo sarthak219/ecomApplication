@@ -16,6 +16,7 @@ public class MyApp {
 
     //MODIFIES: this
     //EFFECTS: Constructor for MyApp, creates a guest user and instantiates admin and user
+    //         directs the user to welcome screen
     public MyApp() {
         this.currentUser = new User();
         currentUser.makeGuestUser();
@@ -23,6 +24,7 @@ public class MyApp {
         this.admin = new Admin();
         this.allProducts = new Collection();
         display = new Display();
+        welcomeScreen();
     }
 
     //EFFECTS: A welcome page for the user
