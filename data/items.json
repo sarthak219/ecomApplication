@@ -1,26 +1,50 @@
 {"items": [
     {
-        "colour": "red",
+        "colour": "black",
         "size": "M",
-        "price": 199,
+        "price": 499,
         "name": "tshirt1",
-        "description": "dry fit sportswear tshirt",
+        "description": "premium tshirt",
         "discount": 10,
         "inStock": false,
         "id": 1001,
         "category": "men",
-        "brand": "nike"
+        "brand": "Armani Exchange"
     },
     {
-        "colour": "white",
-        "size": "M",
-        "price": 349,
-        "name": "tshirt2",
-        "description": "casual wear tshirt",
-        "discount": 15,
+        "colour": "blue",
+        "size": "L",
+        "price": 299,
+        "name": "jeans",
+        "description": "slim fit",
+        "discount": 10,
         "inStock": false,
         "id": 1002,
+        "category": "women",
+        "brand": "levi's"
+    },
+    {
+        "colour": "black",
+        "size": "XS",
+        "price": 199,
+        "name": "jacket",
+        "description": "stylish zippers",
+        "discount": 10,
+        "inStock": false,
+        "id": 1003,
+        "category": "kids",
+        "brand": "zara"
+    },
+    {
+        "colour": "red",
+        "size": "M",
+        "price": 100,
+        "name": "tshirt1",
+        "description": "ainvi hai",
+        "discount": 20,
+        "inStock": true,
+        "id": 1004,
         "category": "men",
-        "brand": "CK"
+        "brand": "nike"
     }
 ]}

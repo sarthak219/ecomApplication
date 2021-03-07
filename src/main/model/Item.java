@@ -25,10 +25,14 @@ public class Item implements Writable {
         this.price = price;
         this.category = category;
         this.size = size;
+        this.discount = 0;
+        this.inStock = true;
     }
 
     //EFFECTS: constructs a new Item
     public Item() {
+        this.discount = 0;
+        this.inStock = true;
     }
 
     //REQUIRES: id > 0

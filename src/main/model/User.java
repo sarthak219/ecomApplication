@@ -21,6 +21,9 @@ public class User implements Writable {
     private ArrayList<Item> orderHistory;
 
     public User() {
+        this.wishlist = new ArrayList<>();
+        this.cart = new ArrayList<>();
+        this.orderHistory = new ArrayList<>();
     }
 
     public User(String firstName, String lastName, String username, String emailId, String password, int age) {
@@ -30,17 +33,20 @@ public class User implements Writable {
         this.emailId = emailId;
         this.password = password;
         this.age = age;
+        this.wishlist = new ArrayList<>();
+        this.cart = new ArrayList<>();
+        this.orderHistory = new ArrayList<>();
     }
 
     public void makeGuestUser() {
         this.firstName = "guest";
-        this.lastName = null;
+        this.lastName = "";
         this.username = "Guest@123";
-        this.emailId = null;
-        this.password = null;
+        this.emailId = "";
+        this.password = "";
         this.mobileNumber = "0000000000";
         this.age = 0;
-        this.gender = null;
+        this.gender = "";
         this.wishlist = new ArrayList<>();
         this.cart = new ArrayList<>();
         this.orderHistory = new ArrayList<>();
