@@ -23,15 +23,36 @@ public class UserTest {
         user.setMobileNumber("9876543210");
         user.setAge(18);
         user.setGender("male");
+        user.setWishlist(new ArrayList<>());
         user.setCart(new ArrayList<>());
+        user.setOrderHistory(new ArrayList<>());
     }
 
     @Test
     public void matchNewUserCredentialsTest() {
         assertEquals("fName", user.getFirstName());
+        assertEquals("lName", user.getLastName());
         assertEquals("NewUser", user.getUsername());
+        assertEquals("abc@xyz.com", user.getEmailId());
         assertEquals("pass1", user.getPassword());
+        assertEquals("9876543210", user.getMobileNumber());
+        assertEquals(18, user.getAge());
+        assertEquals("male", user.getGender());
+        assertEquals(0, user.getWishlist().size());
+        assertEquals(0, user.getCart().size());
+        assertEquals(0, user.getOrderHistory().size());
         user.showUser();
+    }
+
+    @Test
+    public void matchNewUserCredentialsWithParametrizedConstructorTest() {
+        User testUser = new User("fName1", "lName1", "username", "email", "pass", 11);
+        assertEquals("fName1", testUser.getFirstName());
+        assertEquals("lName1", testUser.getLastName());
+        assertEquals("username", testUser.getUsername());
+        assertEquals("email", testUser.getEmailId());
+        assertEquals("pass", testUser.getPassword());
+        assertEquals(11, testUser.getAge());
     }
 
     @Test

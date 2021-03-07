@@ -126,11 +126,6 @@ public class Item implements Writable {
         return colour;
     }
 
-    //EFFECTS: returns the product inStock status
-    public boolean isInStock() {
-        return inStock;
-    }
-
     //EFFECTS: returns the product brand
     public String getBrand() {
         return this.brand;
@@ -173,6 +168,4 @@ public class Item implements Writable {
         json.put("inStock", this.inStock);
         return json;
     }
-
-
 }

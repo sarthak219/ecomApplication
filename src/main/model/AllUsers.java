@@ -73,7 +73,6 @@ public class AllUsers implements Writable {
     // EFFECTS: returns users in this ArrayList of users as a JSON array
     private JSONArray allUsersToJson() {
         JSONArray jsonArray = new JSONArray();
-
         for (User user : allUsers) {
             jsonArray.put(user.toJson());
         }
