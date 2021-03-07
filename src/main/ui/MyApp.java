@@ -102,7 +102,8 @@ public class MyApp {
         System.out.println("8. View cart");
         System.out.println("9. Place order");
         System.out.println("10. View order history");
-        System.out.println("11. Logout");
+        System.out.println("11. Return a product");
+        System.out.println("12. Logout");
     }
 
     //EFFECTS: Homepage for a user
@@ -150,13 +151,14 @@ public class MyApp {
         } else if (choice == 10) {
             display.displayRecentOrders(currentUser);
         } else if (choice == 11) {
+            returnItem();
+        } else if (choice == 12) {
             logout();
         } else {
             saveEverything();
             closeApp();
         }
     }
-
 
     //EFFECTS: shows options for admin account
     private void displayOptionsForAdminHomepage() {
@@ -391,7 +393,7 @@ public class MyApp {
 
 
     //MODIFIES: this
-    //EFFECTS: adds the item which the user enters in its cart and changes item.inStock to false
+    //EFFECTS: adds the item which the user enters in its cart
     private void addItemToCart() {
         int id = getProductIdFromUser();
         for (Item item : allProducts.getAllProducts()) {
@@ -440,7 +442,7 @@ public class MyApp {
     }
 
     //MODIFIES: this
-    //EFFECTS: Orders all the products in the cart
+    //EFFECTS: Orders all the products in the cart and makes the item out of stock
     private void placeOrder() {
         if (currentUser.getCart().size() == 0) {
             System.out.println("Your cart is empty, please add products to it first.");
@@ -466,6 +468,33 @@ public class MyApp {
                 + " Please keep " + bill + " CAD$ ready with you!");
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets the Item back in stock
+    private void returnItem() {
+        float returnAmount = 0;
+        int itemIndex = 0;
+        display.displayRecentOrders(currentUser);
+        int id = getProductIdFromUser();
+        for (Item item : currentUser.getOrderHistory()) {
+            if (item.getId() == id) {
+                itemIndex = currentUser.getOrderHistory().indexOf(item);
+                if (item.getInStock()) {
+                    System.out.println("You have already returned this item earlier!");
+                    return;
+                }
+            }
+        }
+        for (Item item : allProducts.getAllProducts()) {
+            if (item.getId() == id) {
+                returnAmount = item.getPrice() - item.getPrice() * item.getDiscount() / 100;
+                item.setInStock(true);
+                break;
+            }
+        }
+        currentUser.getOrderHistory().get(itemIndex).setInStock(true);
+        System.out.println("Item returned successfully! Your refund of amount "
+                + returnAmount + " CAD$ has been initiated, you will get your refund soon!");
+    }
 
     //MODIFIES: this
     //EFFECTS: logs the user out and returns to welcome page
@@ -478,7 +507,7 @@ public class MyApp {
     //EFFECTS: closes the application
     private void closeApp() {
         System.out.println("Closing the app....");
-        System.out.println("Thanks for using!");
+        System.out.println("Goodbye! Thanks for using!");
         System.exit(0);
     }
 

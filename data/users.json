@@ -14,7 +14,7 @@
             "name": "tshirt1",
             "description": "premium tshirt",
             "discount": 10,
-            "inStock": false,
+            "inStock": true,
             "id": 1001,
             "category": "men",
             "brand": "Armani Exchange"
@@ -26,7 +26,7 @@
             "name": "jeans",
             "description": "slim fit",
             "discount": 10,
-            "inStock": false,
+            "inStock": true,
             "id": 1002,
             "category": "women",
             "brand": "levi's"
@@ -38,7 +38,7 @@
             "name": "jacket",
             "description": "stylish zippers",
             "discount": 10,
-            "inStock": false,
+            "inStock": true,
             "id": 1003,
             "category": "kids",
             "brand": "zara"

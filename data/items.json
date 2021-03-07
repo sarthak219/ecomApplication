@@ -6,7 +6,7 @@
         "name": "tshirt1",
         "description": "premium tshirt",
         "discount": 10,
-        "inStock": false,
+        "inStock": true,
         "id": 1001,
         "category": "men",
         "brand": "Armani Exchange"
@@ -18,7 +18,7 @@
         "name": "jeans",
         "description": "slim fit",
         "discount": 10,
-        "inStock": false,
+        "inStock": true,
         "id": 1002,
         "category": "women",
         "brand": "levi's"
@@ -30,21 +30,93 @@
         "name": "jacket",
         "description": "stylish zippers",
         "discount": 10,
-        "inStock": false,
+        "inStock": true,
         "id": 1003,
         "category": "kids",
         "brand": "zara"
     },
     {
-        "colour": "red",
+        "colour": "grey",
         "size": "M",
-        "price": 100,
-        "name": "tshirt1",
-        "description": "ainvi hai",
+        "price": 199,
+        "name": "shoes1",
+        "description": "sneakers for casual wear",
+        "discount": 0,
+        "inStock": true,
+        "id": 1005,
+        "category": "men",
+        "brand": "lacoste"
+    },
+    {
+        "colour": "white",
+        "size": "L",
+        "price": 249,
+        "name": "tshirt2",
+        "description": "premium tshirt",
         "discount": 20,
         "inStock": true,
-        "id": 1004,
+        "id": 1006,
         "category": "men",
-        "brand": "nike"
+        "brand": "hackett"
+    },
+    {
+        "colour": "blue",
+        "size": "L",
+        "price": 99,
+        "name": "jeans2",
+        "description": "loose fit jeans",
+        "discount": 5,
+        "inStock": true,
+        "id": 1004,
+        "category": "women",
+        "brand": "indian terrain"
+    },
+    {
+        "colour": "orange",
+        "size": "S",
+        "price": 120,
+        "name": "hoodie",
+        "description": "cool hoodie for casual wear",
+        "discount": 0,
+        "inStock": true,
+        "id": 1007,
+        "category": "kids",
+        "brand": "h&m"
+    },
+    {
+        "colour": "pink",
+        "size": "M",
+        "price": 80,
+        "name": "tshirt3",
+        "description": "sportswear",
+        "discount": 20,
+        "inStock": true,
+        "id": 1008,
+        "category": "women",
+        "brand": "puma"
+    },
+    {
+        "colour": "black",
+        "size": "L",
+        "price": 299,
+        "name": "shoes2",
+        "description": "leather sneakers for party wear",
+        "discount": 15,
+        "inStock": true,
+        "id": 1009,
+        "category": "men",
+        "brand": "urbane"
+    },
+    {
+        "colour": "grey",
+        "size": "M",
+        "price": 99,
+        "name": "pant1",
+        "description": "formal pants",
+        "discount": 0,
+        "inStock": true,
+        "id": 1010,
+        "category": "men",
+        "brand": "louis phillipe"
     }
 ]}
