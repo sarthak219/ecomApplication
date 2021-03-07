@@ -24,7 +24,6 @@ public class AllUsers implements Writable {
     //EFFECTS: User will be added to allUsers
     public void insertUser(User user) {
         this.allUsers.add(user);
-        //System.out.println("Account created successfully!");
     }
 
     //MODIFIES: this
@@ -37,7 +36,7 @@ public class AllUsers implements Writable {
         System.out.println("User not found!");
     }
 
-    //EFFECTS: Returns true if user with given username exists in allUsers, false otherwise
+    //EFFECTS: returns true if user with given username exists in allUsers, false otherwise
     public boolean containsWithUsername(String username) {
         for (User user : this.allUsers) {
             if (user.getUsername().equals(username)) {
@@ -47,7 +46,7 @@ public class AllUsers implements Writable {
         return false;
     }
 
-    // EFFECTS: Returns the number of items in allItems
+    // EFFECTS: returns the number of items in allItems
     public int size() {
         return allUsers.size();
     }
@@ -71,6 +70,7 @@ public class AllUsers implements Writable {
         return json;
     }
 
+    // EFFECTS: returns users in this ArrayList of users as a JSON array
     private JSONArray allUsersToJson() {
         JSONArray jsonArray = new JSONArray();
 

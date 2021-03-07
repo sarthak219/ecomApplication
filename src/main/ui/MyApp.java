@@ -76,7 +76,7 @@ public class MyApp {
             }
         } else if (choice == 3) {
             users.insertUser(createUser());
-            //saveUsers();
+            System.out.println("Account created successfully!");
         } else if (choice == 4) {
             currentUser = new User();
             currentUser.makeGuestUser();
@@ -186,15 +186,13 @@ public class MyApp {
             display.displayAllUsers(users);
         } else if (choice == 2) {
             allProducts.insertItem(getItem());
-            //saveItems();
+            System.out.println("Item added successfully!");
         } else if (choice == 3) {
             display.displayAllItems(allProducts);
         } else if (choice == 4) {
             allProducts.removeItem(getProductIdFromUser());
-            //saveItems();
         } else if (choice == 5) {
             users.removeUser(getUsernameFromUser());
-            //saveUsers();
         } else if (choice == 6) {
             logout();
         } else {

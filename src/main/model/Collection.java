@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Collection implements Writable {
     private final ArrayList<Item> allItems;
 
-    //EFFECTS: initialises allItems to NULL
+    //EFFECTS: constructs a new Collection of Items
     public Collection() {
         this.allItems = new ArrayList<>();
     }
@@ -25,7 +25,6 @@ public class Collection implements Writable {
     //EFFECTS: Item will be added to allItems
     public void insertItem(Item item) {
         this.allItems.add(item);
-        //System.out.println("Item added successfully!");
     }
 
     //REQUIRES: allItems must have at least 1 item
@@ -39,10 +38,10 @@ public class Collection implements Writable {
         System.out.println("Item not found!");
     }
 
-    // EFFECTS: Returns true if Item i is in allItems
+    // EFFECTS: Returns true if the given item is in allItems
     // and false otherwise
-    public boolean contains(Item i) {
-        return allItems.contains(i);
+    public boolean contains(Item item) {
+        return allItems.contains(item);
     }
 
 
@@ -69,9 +68,9 @@ public class Collection implements Writable {
         return json;
     }
 
+    // EFFECTS: returns items in this Collection as a JSON array
     private JSONArray allItemsToJson() {
         JSONArray jsonArray = new JSONArray();
-
         for (Item item : allItems) {
             jsonArray.put(item.toJson());
         }

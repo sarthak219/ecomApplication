@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /*
- * Citation: Code obtained from JsonSerializationDemo
+ * Citation: Code referenced from JsonSerializationDemo
  * link to GitHub repo: "https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git"
  */
 
@@ -20,7 +20,7 @@ public class JsonReaderForAllUsers extends JsonReader {
         super(source);
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads allUsers from file and returns it;
     // throws IOException if an error occurs reading data from file
     public AllUsers read() throws IOException {
         String jsonData = readFile(source);
@@ -28,7 +28,7 @@ public class JsonReaderForAllUsers extends JsonReader {
         return parseAllUsers(jsonObject);
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses allUsers from JSON object and returns it
     private AllUsers parseAllUsers(JSONObject jsonObject) {
         AllUsers users = new AllUsers();
         addUsers(users, jsonObject);
@@ -36,7 +36,7 @@ public class JsonReaderForAllUsers extends JsonReader {
     }
 
     // MODIFIES: users
-    // EFFECTS: parses thingies from JSON object and adds them to workroom
+    // EFFECTS: parses users from JSON object and adds them to allUsers
     private void addUsers(AllUsers users, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("users");
         for (Object json : jsonArray) {
@@ -45,8 +45,8 @@ public class JsonReaderForAllUsers extends JsonReader {
         }
     }
 
-    // MODIFIES: allStudents
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // MODIFIES: allUsers
+    // EFFECTS: parses user from JSON object and adds it to allUsers
     private void addUser(AllUsers allUsers, JSONObject jsonObject) {
         String firstName = jsonObject.getString("firstName");
         String lastName = jsonObject.getString("lastName");
@@ -68,12 +68,15 @@ public class JsonReaderForAllUsers extends JsonReader {
         allUsers.insertUser(user);
     }
 
+    // EFFECTS: parses wishlist from JSON object and returns it
     private ArrayList<Item> parseWishlist(JSONObject jsonObject) {
         ArrayList<Item> wishlist = new ArrayList<>();
         addItemsToWishlist(wishlist, jsonObject);
         return wishlist;
     }
 
+    //MODIFIES: wishlist
+    // EFFECTS: parses item from JSON object and adds it to wishlist
     private void addItemsToWishlist(ArrayList<Item> wishlist, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("wishlist");
         for (Object json : jsonArray) {
@@ -82,12 +85,15 @@ public class JsonReaderForAllUsers extends JsonReader {
         }
     }
 
+    // EFFECTS: parses cart from JSON object and returns it
     private ArrayList<Item> parseCart(JSONObject jsonObject) {
         ArrayList<Item> cart = new ArrayList<>();
         addItemsToCart(cart, jsonObject);
         return cart;
     }
 
+    //MODIFIES: cart
+    // EFFECTS: parses item from JSON object and adds it to cart
     private void addItemsToCart(ArrayList<Item> cart, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("cart");
         for (Object json : jsonArray) {
@@ -96,12 +102,15 @@ public class JsonReaderForAllUsers extends JsonReader {
         }
     }
 
+    // EFFECTS: parses orderHistory from JSON object and returns it
     private ArrayList<Item> parseOrderHistory(JSONObject jsonObject) {
         ArrayList<model.Item> orderHistory = new ArrayList<>();
         addItemsToOrderHistory(orderHistory, jsonObject);
         return orderHistory;
     }
 
+    //MODIFIES: orderHistory
+    // EFFECTS: parses item from JSON object and adds it to orderHistory
     private void addItemsToOrderHistory(ArrayList<Item> orderHistory, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("orderHistory");
         for (Object json : jsonArray) {
@@ -110,6 +119,8 @@ public class JsonReaderForAllUsers extends JsonReader {
         }
     }
 
+    //MODIFIES: itemArrayList
+    // EFFECTS: parses item from JSON object and adds it to the given ArrayList
     private void addItem(ArrayList<Item> itemArrayList, JSONObject jsonObject) {
         int id = jsonObject.getInt("id");
         String name = jsonObject.getString("name");

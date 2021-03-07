@@ -16,6 +16,7 @@ public class Item implements Writable {
     private float discount;
     private boolean inStock;
 
+    //EFFECTS: constructs a new Item with the given arguments
     public Item(int id, String name, String brand, String description, float price, String category, String size) {
         this.id = id;
         this.name = name;
@@ -38,6 +39,71 @@ public class Item implements Writable {
         this.colour = null;
         this.discount = 0;
         this.inStock = true;
+    }
+
+    //REQUIRES: id > 0
+    //MODIFIES: this
+    //EFFECTS: sets the the product id to the given value
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    //REQUIRES: price > 0
+    //MODIFIES: this
+    //EFFECTS: sets the price to the given price
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    //MODIFIES: this
+    //EFFECTS: sets name to the given string
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    //MODIFIES: this
+    //EFFECTS: sets brand to the given string
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    //MODIFIES: this
+    //EFFECTS: sets the description to the given description
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    //REQUIRES: category is one of "men", "women" or "kids"
+    //MODIFIES: this
+    //EFFECTS: sets the gender to the given gender
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    //REQUIRES: size is one of "XS", "S", "M", "L", "XL" or "XXL"
+    //MODIFIES: this
+    //EFFECTS: sets the size to the given size
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    //MODIFIES: this
+    //EFFECTS: sets the colour to the given colour
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
+
+    //REQUIRES: discount >= 0
+    //MODIFIES: this
+    //EFFECTS: sets the discount to the given discount
+    public void setDiscount(float discount) {
+        this.discount = discount;
+    }
+
+    //MODIFIES: this
+    //EFFECTS: sets the status of inStock to the given status of inStock
+    public void setInStock(boolean inStock) {
+        this.inStock = inStock;
     }
 
     //EFFECTS: returns the product name
@@ -65,73 +131,12 @@ public class Item implements Writable {
         return this.discount;
     }
 
-    //MODIFIES: this
-    //EFFECTS: sets the the product id to the given value
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    //MODIFIES: this
-    //EFFECTS: sets the price to the given price
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    //MODIFIES: this
-    //EFFECTS: sets name to the given string
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    //MODIFIES: this
-    //EFFECTS: sets brand to the given string
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    //MODIFIES: this
-    //EFFECTS: sets the description to the given description
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    //MODIFIES: this
-    //EFFECTS: sets the gender to the given gender
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    //MODIFIES: this
-    //EFFECTS: sets the size to the given size
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    //MODIFIES: this
-    //EFFECTS: sets the colour to the given colour
-    public void setColour(String colour) {
-        this.colour = colour;
-    }
-
-    //MODIFIES: this
-    //EFFECTS: sets the discount to the given discount
-    public void setDiscount(float discount) {
-        this.discount = discount;
-    }
-
-    //MODIFIES: this
-    //EFFECTS: sets the status of inStock to the given status of inStock
-    public void setInStock(boolean inStock) {
-        this.inStock = inStock;
-    }
-
     //EFFECTS: displays all the fields of the Item in a line separated by "|"
     public void showItem() {
         System.out.printf("| %-6d| %-20s| %-20s| %-50s| %-13.2f| %-9s| %-6s| %-10s| %-13.2f| %-9s|\n",
                 this.id, this.name, this.brand, this.description, this.price, this.category,
                 this.size, this.colour, this.discount, this.inStock);
     }
-
 
     @Override
     public JSONObject toJson() {

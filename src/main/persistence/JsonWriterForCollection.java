@@ -15,7 +15,7 @@ public class JsonWriterForCollection extends JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of AllUsers to file
+    // EFFECTS: writes JSON representation of Collection to file
     public void write(Collection allProducts) {
         JSONObject json = allProducts.toJson();
         saveToFile(json.toString(TAB));

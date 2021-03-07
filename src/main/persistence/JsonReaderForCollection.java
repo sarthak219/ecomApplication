@@ -8,7 +8,7 @@ import java.io.IOException;
 
 
 /*
- * Citation: Code obtained from JsonSerializationDemo
+ * Citation: Code referenced from JsonSerializationDemo
  * link to GitHub repo: "https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git"
  */
 
@@ -18,7 +18,7 @@ public class JsonReaderForCollection extends JsonReader {
         super(source);
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads allItems from file and returns it;
     // throws IOException if an error occurs reading data from file
     public Collection read() throws IOException {
         String jsonData = readFile(source);
@@ -26,7 +26,7 @@ public class JsonReaderForCollection extends JsonReader {
         return parseCollection(jsonObject);
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses allItems from JSON object and returns it
     private Collection parseCollection(JSONObject jsonObject) {
 //        String name = jsonObject.getString("name");
         Collection items = new Collection();
@@ -34,8 +34,8 @@ public class JsonReaderForCollection extends JsonReader {
         return items;
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingies from JSON object and adds them to workroom
+    // MODIFIES: allItems
+    // EFFECTS: parses items from JSON object and adds them to allItems
     private void addItems(Collection items, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("items");
         for (Object json : jsonArray) {
@@ -44,8 +44,8 @@ public class JsonReaderForCollection extends JsonReader {
         }
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // MODIFIES: allItems
+    // EFFECTS: parses item from JSON object and adds it to items
     private void addItem(Collection items, JSONObject jsonObject) {
         int id = jsonObject.getInt("id");
         String name = jsonObject.getString("name");

@@ -20,6 +20,9 @@ public class User implements Writable {
     private ArrayList<Item> cart;
     private ArrayList<Item> orderHistory;
 
+    public User() {
+    }
+
     public User(String firstName, String lastName, String username, String emailId, String password, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -27,20 +30,6 @@ public class User implements Writable {
         this.emailId = emailId;
         this.password = password;
         this.age = age;
-    }
-
-    public User() {
-        this.firstName = null;
-        this.lastName = null;
-        this.username = null;
-        this.emailId = null;
-        this.password = null;
-        this.mobileNumber = "0000000000";
-        this.age = 0;
-        this.gender = null;
-        this.wishlist = new ArrayList<>();
-        this.cart = new ArrayList<>();
-        this.orderHistory = new ArrayList<>();
     }
 
     public void makeGuestUser() {
@@ -93,24 +82,32 @@ public class User implements Writable {
         this.mobileNumber = mobileNumber;
     }
 
+    //REQUIRES: age > 0
     //MODIFIES: this
     //EFFECTS: sets the age to the given value
     public void setAge(int age) {
         this.age = age;
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets the cart to the given value
     public void setCart(ArrayList<Item> cart) {
         this.cart = cart;
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets the wishlist to the given value
     public void setWishlist(ArrayList<Item> wishlist) {
         this.wishlist = wishlist;
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets the orderHistory to the given value
     public void setOrderHistory(ArrayList<Item> orderHistory) {
         this.orderHistory = orderHistory;
     }
 
+    //REQUIRES: gender is one of "male", "female" or "other"
     //MODIFIES: this
     //EFFECTS: sets the gender to the given string
     public void setGender(String gender) {
@@ -154,12 +151,14 @@ public class User implements Writable {
                 this.mobileNumber, this.age, this.gender);
     }
 
+    //REQUIRES: item shouldn't already be present in wishlist
     //MODIFIES: this
     //EFFECTS: adds the item to wishlist
     public void addItemToWishlist(Item item) {
         this.wishlist.add(item);
     }
 
+    //REQUIRES: item shouldn't already be present in cart and should be in stock
     //MODIFIES: this
     //EFFECTS: adds the item to cart
     public void addItemToCart(Item item) {
@@ -256,6 +255,7 @@ public class User implements Writable {
         return json;
     }
 
+    // EFFECTS: returns items in this wishlist as a JSON array
     private JSONArray wishlistToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Item item : this.wishlist) {
@@ -264,6 +264,7 @@ public class User implements Writable {
         return jsonArray;
     }
 
+    // EFFECTS: returns items in this cart as a JSON array
     private JSONArray cartToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Item item : this.cart) {
@@ -272,6 +273,7 @@ public class User implements Writable {
         return jsonArray;
     }
 
+    // EFFECTS: returns items in this orderHistory as a JSON array
     private JSONArray orderHistoryToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Item item : this.orderHistory) {
