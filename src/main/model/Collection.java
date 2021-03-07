@@ -25,7 +25,7 @@ public class Collection implements Writable {
     //EFFECTS: Item will be added to allItems
     public void insertItem(Item item) {
         this.allItems.add(item);
-        System.out.println("Item added successfully!");
+        //System.out.println("Item added successfully!");
     }
 
     //REQUIRES: allItems must have at least 1 item

@@ -16,6 +16,16 @@ public class Item implements Writable {
     private float discount;
     private boolean inStock;
 
+    public Item(int id, String name, String brand, String description, float price, String category, String size) {
+        this.id = id;
+        this.name = name;
+        this.brand = brand;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+        this.size = size;
+    }
+
     //EFFECTS: constructs a new Item
     public Item() {
         this.id = 0;
@@ -126,15 +136,16 @@ public class Item implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("", this.id);
-        json.put("", this.brand);
-        json.put("", this.description);
-        json.put("", this.price);
-        json.put("", this.category);
-        json.put("", this.size);
-        json.put("", this.colour);
-        json.put("", this.discount);
-        json.put("", this.inStock);
+        json.put("id", this.id);
+        json.put("name", this.name);
+        json.put("brand", this.brand);
+        json.put("description", this.description);
+        json.put("price", this.price);
+        json.put("category", this.category);
+        json.put("size", this.size);
+        json.put("colour", this.colour);
+        json.put("discount", this.discount);
+        json.put("inStock", this.inStock);
         return json;
     }
 }

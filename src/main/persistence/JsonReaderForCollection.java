@@ -1,5 +1,60 @@
 package persistence;
 
-public class JsonReaderForCollection {
+import model.Collection;
+import model.Item;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.io.IOException;
+
+public class JsonReaderForCollection extends JsonReader {
+    public JsonReaderForCollection(String source) {
+        super(source);
+    }
+
+    // EFFECTS: reads workroom from file and returns it;
+    // throws IOException if an error occurs reading data from file
+    public Collection read() throws IOException {
+        String jsonData = readFile(source);
+        JSONObject jsonObject = new JSONObject(jsonData);
+        return parseCollection(jsonObject);
+    }
+
+    // EFFECTS: parses workroom from JSON object and returns it
+    private Collection parseCollection(JSONObject jsonObject) {
+//        String name = jsonObject.getString("name");
+        Collection items = new Collection();
+        addItems(items, jsonObject);
+        return items;
+    }
+
+    // MODIFIES: wr
+    // EFFECTS: parses thingies from JSON object and adds them to workroom
+    private void addItems(Collection items, JSONObject jsonObject) {
+        JSONArray jsonArray = jsonObject.getJSONArray("items");
+        for (Object json : jsonArray) {
+            JSONObject nextItem = (JSONObject) json;
+            addItem(items, nextItem);
+        }
+    }
+
+    // MODIFIES: wr
+    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    private void addItem(Collection items, JSONObject jsonObject) {
+        int id = jsonObject.getInt("id");
+        String name = jsonObject.getString("name");
+        String brand = jsonObject.getString("brand");
+        String description = jsonObject.getString("description");
+        float price = jsonObject.getFloat("price");
+        String category = jsonObject.getString("category");
+        String size = jsonObject.getString("size");
+        String colour = jsonObject.getString("colour");
+        float discount = jsonObject.getFloat("discount");
+        boolean inStock = jsonObject.getBoolean("inStock");
+        Item item = new Item(id, name, brand, description, price, category, size);
+        item.setDiscount(discount);
+        item.setColour(colour);
+        item.setInStock(inStock);
+        items.insertItem(item);
+    }
 }

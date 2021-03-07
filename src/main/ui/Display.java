@@ -60,7 +60,7 @@ public class Display {
         productsTableHeader();
         addLineToDisplayProducts();
         for (int i = 0; i < allProducts.size(); i++) {
-            System.out.printf("| %-6d", i + 1);
+            System.out.printf("| %-6s", i + 1);
             allProducts.getAllProducts().get(i).showItem();
         }
         addLineToDisplayProducts();
@@ -77,7 +77,7 @@ public class Display {
         addLineToDisplayProducts();
         for (Item item : allProducts.getAllProducts()) {
             if (item.getName().contains(name)) {
-                System.out.printf("| %-6s ", i);
+                System.out.printf("| %-6s", i);
                 item.showItem();
                 ++i;
             }
@@ -96,7 +96,7 @@ public class Display {
         productsTableHeader();
         addLineToDisplayProducts();
         for (Item item : user.getWishlist()) {
-            System.out.printf("| %-6s ", i);
+            System.out.printf("| %-6s", i);
             item.showItem();
             ++i;
         }
@@ -111,7 +111,7 @@ public class Display {
         productsTableHeader();
         addLineToDisplayProducts();
         for (Item item : user.getCart()) {
-            System.out.printf("| %-6s ", i);
+            System.out.printf("| %-6s", i);
             item.showItem();
             ++i;
         }
@@ -126,7 +126,7 @@ public class Display {
         productsTableHeader();
         addLineToDisplayProducts();
         for (Item item : user.getOrderHistory()) {
-            System.out.printf("| %-6s ", i);
+            System.out.printf("| %-6s", i);
             item.showItem();
             ++i;
         }

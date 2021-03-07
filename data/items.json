@@ -1,0 +1,26 @@
+{"items": [
+    {
+        "colour": "red",
+        "size": "M",
+        "price": 199,
+        "name": "tshirt1",
+        "description": "dry fit sportswear tshirt",
+        "discount": 10,
+        "inStock": false,
+        "id": 1001,
+        "category": "men",
+        "brand": "nike"
+    },
+    {
+        "colour": "white",
+        "size": "M",
+        "price": 349,
+        "name": "tshirt2",
+        "description": "casual wear tshirt",
+        "discount": 15,
+        "inStock": false,
+        "id": 1002,
+        "category": "men",
+        "brand": "CK"
+    }
+]}

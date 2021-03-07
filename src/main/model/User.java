@@ -20,6 +20,15 @@ public class User implements Writable {
     private ArrayList<Item> cart;
     private ArrayList<Item> orderHistory;
 
+    public User(String firstName, String lastName, String username, String emailId, String password, int age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.emailId = emailId;
+        this.password = password;
+        this.age = age;
+    }
+
     public User() {
         this.firstName = null;
         this.lastName = null;
@@ -92,6 +101,14 @@ public class User implements Writable {
 
     public void setCart(ArrayList<Item> cart) {
         this.cart = cart;
+    }
+
+    public void setWishlist(ArrayList<Item> wishlist) {
+        this.wishlist = wishlist;
+    }
+
+    public void setOrderHistory(ArrayList<Item> orderHistory) {
+        this.orderHistory = orderHistory;
     }
 
     //MODIFIES: this

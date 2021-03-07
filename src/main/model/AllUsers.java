@@ -24,7 +24,7 @@ public class AllUsers implements Writable {
     //EFFECTS: User will be added to allUsers
     public void insertUser(User user) {
         this.allUsers.add(user);
-        System.out.println("Account created successfully!");
+        //System.out.println("Account created successfully!");
     }
 
     //MODIFIES: this

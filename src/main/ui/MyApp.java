@@ -1,10 +1,10 @@
 package ui;
 
 import model.*;
-import persistence.JsonWriter;
-import persistence.JsonWriterForAllUsers;
+import persistence.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,13 +12,16 @@ import java.util.Scanner;
 public class MyApp {
     Scanner sc = new Scanner(System.in);
     private static final String JSON_USER_DATABASE = "./data/users.json";
+    private static final String JSON_ITEMS_DATABASE = "./data/items.json";
     private User currentUser;
     private final Admin admin;
-    private final AllUsers users;
-    private final Collection allProducts;
+    private AllUsers users;
+    private Collection allProducts;
     private final Display display;
     private final JsonWriterForAllUsers jsonWriterForAllUsers;
-    //private final JsonReader jsonReader;
+    private final JsonReaderForAllUsers jsonReaderForAllUsers;
+    private final JsonWriterForCollection jsonWriterForCollection;
+    private final JsonReaderForCollection jsonReaderForCollection;
 
     //MODIFIES: this
     //EFFECTS: Constructor for MyApp, creates a guest user and instantiates admin and user
@@ -31,13 +34,17 @@ public class MyApp {
         this.allProducts = new Collection();
         display = new Display();
         jsonWriterForAllUsers = new JsonWriterForAllUsers(JSON_USER_DATABASE);
+        jsonReaderForAllUsers = new JsonReaderForAllUsers(JSON_USER_DATABASE);
+        jsonWriterForCollection = new JsonWriterForCollection(JSON_ITEMS_DATABASE);
+        jsonReaderForCollection = new JsonReaderForCollection(JSON_ITEMS_DATABASE);
+        updateDatabases();
         welcomeScreen();
     }
 
     //EFFECTS: A welcome page for the user
     public void welcomeScreen() {
         int choice;
-        System.out.println("\n\nWelcome to my app!!!");
+        System.out.println("\nWelcome to my app!!!");
         while (true) {
             displayOptionsForWelcomePage();
             choice = sc.nextInt();
@@ -69,12 +76,13 @@ public class MyApp {
             }
         } else if (choice == 3) {
             users.insertUser(createUser());
-            saveUsers();
+            //saveUsers();
         } else if (choice == 4) {
             currentUser = new User();
             currentUser.makeGuestUser();
             homePage();
         } else {
+            saveEverything();
             closeApp();
         }
     }
@@ -120,13 +128,13 @@ public class MyApp {
             display.searchAndShowProduct(allProducts);
         } else if (choice == 3) {
             addItemToWishlist();
-            saveUsers();
+            //saveUsers();
         } else if (choice == 4) {
             removeItemFromWishlist();
-            saveUsers();
+            //saveUsers();
         } else if (choice == 5) {
             addItemToCart();
-            saveUsers();
+            //saveUsers();
         } else {
             System.out.println("Invalid input!");
         }
@@ -136,19 +144,20 @@ public class MyApp {
     private void optionsForHomePage2(int choice) {
         if (choice == 6) {
             removeItemFromCart();
-            saveUsers();
+            //saveUsers();
         } else if (choice == 7) {
             display.displayWishlist(currentUser);
         } else if (choice == 8) {
             display.displayCart(currentUser);
         } else if (choice == 9) {
             placeOrder();
-            saveUsers();
+            //saveUsers();
         } else if (choice == 10) {
             display.displayRecentOrders(currentUser);
         } else if (choice == 11) {
             logout();
         } else {
+            saveEverything();
             closeApp();
         }
     }
@@ -158,7 +167,7 @@ public class MyApp {
     private void displayOptionsForAdminHomepage() {
         System.out.println("Admin Homepage");
         System.out.println("Enter a choice: ");
-        System.out.println("1. Show all users");
+        System.out.println("1. Display all users");
         System.out.println("2. Add products to stock");
         System.out.println("3. Display all products");
         System.out.println("4. Remove products from stock");
@@ -182,13 +191,15 @@ public class MyApp {
             display.displayAllUsers(users);
         } else if (choice == 2) {
             allProducts.insertItem(getItem());
+            //saveItems();
         } else if (choice == 3) {
             display.displayAllItems(allProducts);
         } else if (choice == 4) {
             allProducts.removeItem(getProductIdFromUser());
+            //saveItems();
         } else if (choice == 5) {
             users.removeUser(getUsernameFromUser());
-            saveUsers();
+            //saveUsers();
         } else if (choice == 6) {
             logout();
         } else {
@@ -446,7 +457,7 @@ public class MyApp {
         float bill = currentUser.totalBill();
         display.displayCart(currentUser);
         System.out.println("All these items will be ordered, and your order will amount to "
-                + bill + "CAD$" + " do you wish to continue?" + "(enter 1 for yes & 0 for no)");
+                + bill + " CAD$" + " do you wish to continue?" + "(enter 1 for yes & 0 for no)");
         choice = sc.nextInt();
         sc.nextLine();
         if (choice == 0) {
@@ -459,7 +470,7 @@ public class MyApp {
         }
         currentUser.setCart(new ArrayList<>());
         System.out.println("Order successfully placed! Your order will be delivered within 2 days."
-                + " Please keep " + bill + "CAD$ ready with you!");
+                + " Please keep " + bill + " CAD$ ready with you!");
     }
 
 
@@ -478,7 +489,7 @@ public class MyApp {
         System.exit(0);
     }
 
-    // EFFECTS: saves the workroom to file
+    // EFFECTS: saves the allUsers to file
     private void saveUsers() {
         try {
             jsonWriterForAllUsers.open();
@@ -488,5 +499,49 @@ public class MyApp {
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_USER_DATABASE);
         }
+    }
+
+    // EFFECTS: saves the allUsers to file
+    private void saveItems() {
+        try {
+            jsonWriterForCollection.open();
+            jsonWriterForCollection.write(allProducts);
+            jsonWriterForCollection.close();
+            System.out.println("Changes saved to " + JSON_ITEMS_DATABASE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_ITEMS_DATABASE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadUsers() {
+        try {
+            users = jsonReaderForAllUsers.read();
+            System.out.println("Loaded users from " + JSON_USER_DATABASE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_USER_DATABASE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads allProducts from file
+    private void loadItems() {
+        try {
+            allProducts = jsonReaderForCollection.read();
+            System.out.println("Loaded users from " + JSON_ITEMS_DATABASE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_ITEMS_DATABASE);
+        }
+    }
+
+    private void updateDatabases() {
+        loadItems();
+        loadUsers();
+    }
+
+    private void saveEverything() {
+        saveUsers();
+        saveItems();
     }
 }
