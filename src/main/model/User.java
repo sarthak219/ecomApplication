@@ -129,6 +129,31 @@ public class User implements Writable {
         return this.firstName;
     }
 
+    //EFFECTS: returns last name of the current User
+    public String getLastName() {
+        return lastName;
+    }
+
+    //EFFECTS: returns email of the current User
+    public String getEmailId() {
+        return emailId;
+    }
+
+    //EFFECTS: returns mobile number of the current User
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    //EFFECTS: returns age of the current User
+    public int getAge() {
+        return age;
+    }
+
+    //EFFECTS: returns gender of the current User
+    public String getGender() {
+        return gender;
+    }
+
     //EFFECTS: returns cart
     public ArrayList<Item> getCart() {
         return this.cart;

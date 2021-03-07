@@ -29,16 +29,6 @@ public class Item implements Writable {
 
     //EFFECTS: constructs a new Item
     public Item() {
-        this.id = 0;
-        this.name = null;
-        this.brand = null;
-        this.description = null;
-        this.price = 0;
-        this.category = null;
-        this.size = null;
-        this.colour = null;
-        this.discount = 0;
-        this.inStock = true;
     }
 
     //REQUIRES: id > 0
@@ -116,6 +106,36 @@ public class Item implements Writable {
         return this.id;
     }
 
+    //EFFECTS: returns the product description
+    public String getDescription() {
+        return description;
+    }
+
+    //EFFECTS: returns the product category
+    public String getCategory() {
+        return category;
+    }
+
+    //EFFECTS: returns the product size
+    public String getSize() {
+        return size;
+    }
+
+    //EFFECTS: returns the product colour
+    public String getColour() {
+        return colour;
+    }
+
+    //EFFECTS: returns the product inStock status
+    public boolean isInStock() {
+        return inStock;
+    }
+
+    //EFFECTS: returns the product brand
+    public String getBrand() {
+        return this.brand;
+    }
+
     //EFFECTS: returns inStock
     public boolean getInStock() {
         return inStock;
@@ -153,4 +173,6 @@ public class Item implements Writable {
         json.put("inStock", this.inStock);
         return json;
     }
+
+
 }

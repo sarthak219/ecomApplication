@@ -1,0 +1,103 @@
+{"users": [
+    {
+        "firstName": "fName1",
+        "lastName": "lName1",
+        "password": "pass1",
+        "gender": "male",
+        "mobileNumber": "345",
+        "wishlist": [],
+        "emailId": "email1",
+        "orderHistory": [
+            {
+                "colour": "red",
+                "size": "S",
+                "price": 100,
+                "name": "tshirt",
+                "description": "soft",
+                "discount": 10,
+                "inStock": true,
+                "id": 1001,
+                "category": "men",
+                "brand": "nike"
+            },
+            {
+                "colour": "pink",
+                "size": "M",
+                "price": 200,
+                "name": "tshirt1",
+                "description": "rough",
+                "discount": 15,
+                "inStock": true,
+                "id": 1002,
+                "category": "women",
+                "brand": "puma"
+            }
+        ],
+        "age": 12,
+        "cart": [
+            {
+                "colour": "red",
+                "size": "S",
+                "price": 100,
+                "name": "tshirt",
+                "description": "soft",
+                "discount": 10,
+                "inStock": true,
+                "id": 1001,
+                "category": "men",
+                "brand": "nike"
+            },
+            {
+                "colour": "pink",
+                "size": "M",
+                "price": 200,
+                "name": "tshirt1",
+                "description": "rough",
+                "discount": 15,
+                "inStock": true,
+                "id": 1002,
+                "category": "women",
+                "brand": "puma"
+            }
+        ],
+        "username": "username1"
+    },
+    {
+        "firstName": "fName2",
+        "lastName": "lName2",
+        "password": "pass2",
+        "gender": "female",
+        "mobileNumber": "123",
+        "wishlist": [
+            {
+                "colour": "red",
+                "size": "S",
+                "price": 100,
+                "name": "tshirt",
+                "description": "soft",
+                "discount": 10,
+                "inStock": true,
+                "id": 1001,
+                "category": "men",
+                "brand": "nike"
+            },
+            {
+                "colour": "pink",
+                "size": "M",
+                "price": 200,
+                "name": "tshirt1",
+                "description": "rough",
+                "discount": 15,
+                "inStock": true,
+                "id": 1002,
+                "category": "women",
+                "brand": "puma"
+            }
+        ],
+        "emailId": "email2",
+        "orderHistory": [],
+        "age": 11,
+        "cart": [],
+        "username": "username2"
+    }
+]}
