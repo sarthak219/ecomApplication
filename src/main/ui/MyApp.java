@@ -24,8 +24,8 @@ public class MyApp {
     private final JsonReaderForCollection jsonReaderForCollection;
 
     //MODIFIES: this
-    //EFFECTS: Constructor for MyApp, creates a guest user and instantiates admin and user
-    //         directs the user to welcome screen
+    //EFFECTS: Constructor for MyApp, creates a guest user and instantiates admin, user and JSON reader and writers,
+    //         loads user and items database, directs the user to welcome screen
     public MyApp() {
         this.currentUser = new User();
         currentUser.makeGuestUser();
@@ -128,13 +128,10 @@ public class MyApp {
             display.searchAndShowProduct(allProducts);
         } else if (choice == 3) {
             addItemToWishlist();
-            //saveUsers();
         } else if (choice == 4) {
             removeItemFromWishlist();
-            //saveUsers();
         } else if (choice == 5) {
             addItemToCart();
-            //saveUsers();
         } else {
             System.out.println("Invalid input!");
         }
@@ -144,14 +141,12 @@ public class MyApp {
     private void optionsForHomePage2(int choice) {
         if (choice == 6) {
             removeItemFromCart();
-            //saveUsers();
         } else if (choice == 7) {
             display.displayWishlist(currentUser);
         } else if (choice == 8) {
             display.displayCart(currentUser);
         } else if (choice == 9) {
             placeOrder();
-            //saveUsers();
         } else if (choice == 10) {
             display.displayRecentOrders(currentUser);
         } else if (choice == 11) {
@@ -228,12 +223,10 @@ public class MyApp {
     private boolean adminLogin() {
         String username;
         String password;
-
         System.out.println("Enter username");
         username = sc.nextLine();
         System.out.println("Enter password");
         password = sc.nextLine();
-
         if (admin.adminAuthentication(username, password)) {
             return true;
         }
@@ -242,7 +235,7 @@ public class MyApp {
     }
 
     //EFFECTS: Takes values for all the fields of an Item and returns
-    //         and Item with those credentials
+    //         an Item with those credentials
     public Item getItem() {
         Item item = new Item();
         item.setId(uniqueProductId());
@@ -266,7 +259,7 @@ public class MyApp {
         return item;
     }
 
-    //EFFECTS: accepts a product id from the user and return it if its unique
+    //EFFECTS: accepts a product id from the user and returns it if its unique
     private int uniqueProductId() {
         int t;
         System.out.println("Enter product ID (any number except 0)");
@@ -287,7 +280,8 @@ public class MyApp {
         }
     }
 
-    //EFFECTS: creates a new user and returns it
+    //EFFECTS: Takes values for all the fields of a user and returns
+    //         a User with those credentials
     public User createUser() {
         User person = new User();
         System.out.println("Enter first name");
@@ -345,7 +339,7 @@ public class MyApp {
     }
 
     //MODIFIES: this
-    //EFFECTS: logs in the user
+    //EFFECTS: logs in the user by setting currentUser to the user with the given credentials
     public boolean login() {
         String username;
         String password;
@@ -447,6 +441,7 @@ public class MyApp {
         System.out.println("Item not found in cart! Please enter a valid product ID");
     }
 
+    //MODIFIES: this
     //EFFECTS: Orders all the products in the cart
     private void placeOrder() {
         if (currentUser.getCart().size() == 0) {
@@ -514,7 +509,7 @@ public class MyApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads workroom from file
+    // EFFECTS: loads allUsers from file
     private void loadUsers() {
         try {
             users = jsonReaderForAllUsers.read();
@@ -535,11 +530,14 @@ public class MyApp {
         }
     }
 
+    //EFFECTS: loads items and users from their respective source files
     private void updateDatabases() {
         loadItems();
         loadUsers();
     }
 
+    //MODIFIES: this
+    //EFFECTS: saves items and users to their respective files
     private void saveEverything() {
         saveUsers();
         saveItems();

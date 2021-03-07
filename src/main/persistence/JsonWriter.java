@@ -5,6 +5,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
+/*
+ * Citation: Code obtained from JsonSerializationDemo
+ * link to GitHub repo: "https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git"
+ */
+
+//represents a JSON Writer which writes JSON representation of object to the file
 public class JsonWriter {
     protected static final int TAB = 4;
     protected PrintWriter writer;

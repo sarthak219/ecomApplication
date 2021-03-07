@@ -4,9 +4,15 @@ import model.Collection;
 import model.Item;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.io.IOException;
 
+
+/*
+ * Citation: Code obtained from JsonSerializationDemo
+ * link to GitHub repo: "https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git"
+ */
+
+// Represents a reader that reads Collection object data from JSON data stored in file
 public class JsonReaderForCollection extends JsonReader {
     public JsonReaderForCollection(String source) {
         super(source);

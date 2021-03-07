@@ -1,9 +1,14 @@
 package persistence;
 
-import model.AllUsers;
 import model.Collection;
 import org.json.JSONObject;
 
+/*
+ * Citation: Code referenced from JsonSerializationDemo
+ * link to GitHub repo: "https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git"
+ */
+
+// Represents a writer that writes JSON representation of Collection to file
 public class JsonWriterForCollection extends JsonWriter {
     public JsonWriterForCollection(String destination) {
         super(destination);

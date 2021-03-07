@@ -9,6 +9,12 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/*
+ * Citation: Code obtained from JsonSerializationDemo
+ * link to GitHub repo: "https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git"
+ */
+
+// Represents a reader that reads AllUsers object data from JSON data stored in file
 public class JsonReaderForAllUsers extends JsonReader {
     public JsonReaderForAllUsers(String source) {
         super(source);
