@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//represents the application
+// represents the application
 public class MyApp {
     Scanner sc = new Scanner(System.in);
     private static final String JSON_USER_DATABASE = "./data/users.json";
@@ -110,7 +110,6 @@ public class MyApp {
     public void homePage() {
         int choice;
         while (true) {
-            //setInStockToFalseForAll(currentUser.getOrderHistory(), 1001);
             displayOptionsForHomePage();
             choice = sc.nextInt();
             sc.nextLine(); //to fix bug
