@@ -20,6 +20,18 @@
             "brand": "Armani Exchange"
         },
         {
+            "colour": "black",
+            "size": "XS",
+            "price": 199,
+            "name": "jacket",
+            "description": "stylish zippers",
+            "discount": 10,
+            "inStock": true,
+            "id": 1003,
+            "category": "kids",
+            "brand": "zara"
+        },
+        {
             "colour": "blue",
             "size": "L",
             "price": 299,
@@ -33,15 +45,39 @@
         },
         {
             "colour": "black",
-            "size": "XS",
-            "price": 199,
-            "name": "jacket",
-            "description": "stylish zippers",
+            "size": "M",
+            "price": 499,
+            "name": "tshirt1",
+            "description": "premium tshirt",
             "discount": 10,
             "inStock": true,
-            "id": 1003,
-            "category": "kids",
-            "brand": "zara"
+            "id": 1001,
+            "category": "men",
+            "brand": "Armani Exchange"
+        },
+        {
+            "colour": "black",
+            "size": "M",
+            "price": 499,
+            "name": "tshirt1",
+            "description": "premium tshirt",
+            "discount": 10,
+            "inStock": true,
+            "id": 1001,
+            "category": "men",
+            "brand": "Armani Exchange"
+        },
+        {
+            "colour": "blue",
+            "size": "L",
+            "price": 299,
+            "name": "jeans",
+            "description": "slim fit",
+            "discount": 10,
+            "inStock": true,
+            "id": 1002,
+            "category": "women",
+            "brand": "levi's"
         }
     ],
     "age": 19,

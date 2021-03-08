@@ -110,6 +110,7 @@ public class MyApp {
     public void homePage() {
         int choice;
         while (true) {
+            //setInStockToFalseForAll(currentUser.getOrderHistory(), 1001);
             displayOptionsForHomePage();
             choice = sc.nextInt();
             sc.nextLine(); //to fix bug
@@ -461,6 +462,7 @@ public class MyApp {
         }
         for (Item item : currentUser.getCart()) {
             currentUser.addItemToOrderHistory(item);
+            setInStockToFalseForAll(currentUser.getOrderHistory(), item.getId());
             item.setInStock(false);
         }
         currentUser.setCart(new ArrayList<>());
@@ -469,21 +471,45 @@ public class MyApp {
     }
 
     //MODIFIES: this
-    //EFFECTS: sets the Item back in stock
-    private void returnItem() {
-        float returnAmount = 0;
-        int itemIndex = 0;
-        display.displayRecentOrders(currentUser);
-        int id = getProductIdFromUser();
-        for (Item item : currentUser.getOrderHistory()) {
+    //EFFECTS: sets inStock to false for all occurrences of Item with the given id
+    private void setInStockToFalseForAll(ArrayList<Item> items, int id) {
+        for (Item item : items) {
             if (item.getId() == id) {
-                itemIndex = currentUser.getOrderHistory().indexOf(item);
-                if (item.getInStock()) {
-                    System.out.println("You have already returned this item earlier!");
-                    return;
-                }
+                item.setInStock(false);
             }
         }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: sets the Item back in stock if it hasn't been returned earlier
+    private void returnItem() {
+        float returnAmount;
+        int itemIndex;
+        display.displayRecentOrders(currentUser);
+        int id = getProductIdFromUser();
+        if (currentUser.orderHistoryContainsItemWithId(id)) {
+            for (Item item : currentUser.getOrderHistory()) {
+                if (item.getId() == id) {
+                    itemIndex = currentUser.getOrderHistory().indexOf(item);
+                    if (item.getInStock()) {
+                        System.out.println("You have already returned this item!");
+                        return;
+                    }
+                    currentUser.getOrderHistory().get(itemIndex).setInStock(true);
+                }
+            }
+            returnAmount = setInStockToTrueInAllProducts(id);
+            System.out.println("Item returned successful! Refund of " + returnAmount + " CAD$ has been initiated!");
+        } else {
+            System.out.println("Item not found in order history");
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: sets InStock to true for the item with given id in allProducts
+    //         and returns the price of the item after discount
+    private float setInStockToTrueInAllProducts(int id) {
+        float returnAmount = 0;
         for (Item item : allProducts.getAllProducts()) {
             if (item.getId() == id) {
                 returnAmount = item.getPrice() - item.getPrice() * item.getDiscount() / 100;
@@ -491,9 +517,7 @@ public class MyApp {
                 break;
             }
         }
-        currentUser.getOrderHistory().get(itemIndex).setInStock(true);
-        System.out.println("Item returned successfully! Your refund of amount "
-                + returnAmount + " CAD$ has been initiated, you will get your refund soon!");
+        return returnAmount;
     }
 
     //MODIFIES: this
