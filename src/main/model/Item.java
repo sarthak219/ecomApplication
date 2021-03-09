@@ -152,8 +152,9 @@ public class Item implements Writable {
 
     //EFFECTS: displays all the fields of the Item in a line separated by "|"
     public void showItem() {
-        System.out.printf("| %-6d| %-20s| %-20s| %-50s| %-13.2f| %-9s| %-6s| %-10s| %-13.2f| %-9s|\n",
-                this.id, this.name, this.brand, this.description, this.price, this.category,
+        float priceAfterDiscount = this.price - this.price * this.discount / 100;
+        System.out.printf("| %-6d| %-20s| %-20s| %-50s| %-20.2f| %-13.2f| %-9s| %-6s| %-10s| %-13.2f| %-9s|\n",
+                this.id, this.name, this.brand, this.description, priceAfterDiscount, this.price, this.category,
                 this.size, this.colour, this.discount, this.inStock);
     }
 

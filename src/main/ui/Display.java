@@ -5,6 +5,7 @@ import model.Collection;
 import model.Item;
 import model.User;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 //represents the class which displays the databases
@@ -42,14 +43,14 @@ public class Display {
     //EFFECTS: adds a horizontal line of to separate rows of a table
     private void addLineToDisplayProducts() {
         System.out.print("+-------+-------+---------------------+---------------------+-------------------"
-                + "--------------------------------+--------------+----------+-------+-----------+--------------+"
-                + "----------+ \n");
+                + "--------------------------------+---------------------+--------------+----------+-------+"
+                + "-----------+--------------+----------+ \n");
     }
 
     //EFFECTS: displays the header row for the table of displayAllItems
     private void productsTableHeader() {
-        System.out.printf("| %-6s| %-6s| %-20s| %-20s| %-50s| %-13s| %-9s| %-6s| %-10s| %-13s| %-9s|\n",
-                "SNo.", "ID", "Name", "Brand", "Description", "Price(CAD$)", "Category", "Size",
+        System.out.printf("| %-6s| %-6s| %-20s| %-20s| %-50s| %-20s| %-13s| %-9s| %-6s| %-10s| %-13s| %-9s|\n",
+                "SNo.", "ID", "Name", "Brand", "Description", "Offer Price (CAD$)", "MRP(CAD$)", "Category", "Size",
                 "Colour", "Discount (%)", "inStock");
     }
 
@@ -59,10 +60,7 @@ public class Display {
         addLineToDisplayProducts();
         productsTableHeader();
         addLineToDisplayProducts();
-        for (int i = 0; i < allProducts.size(); i++) {
-            System.out.printf("| %-6s", i + 1);
-            allProducts.getAllProducts().get(i).showItem();
-        }
+        displayArrayListOfItems(allProducts.getAllProducts());
         addLineToDisplayProducts();
     }
 
@@ -83,7 +81,7 @@ public class Display {
             }
         }
         addLineToDisplayProducts();
-        if (i == 0) {
+        if (i == 1) {
             System.out.println("No items found");
         }
     }
@@ -95,11 +93,7 @@ public class Display {
         addLineToDisplayProducts();
         productsTableHeader();
         addLineToDisplayProducts();
-        for (Item item : user.getWishlist()) {
-            System.out.printf("| %-6s", i);
-            item.showItem();
-            ++i;
-        }
+        displayArrayListOfItems(user.getWishlist());
         addLineToDisplayProducts();
     }
 
@@ -110,11 +104,7 @@ public class Display {
         addLineToDisplayProducts();
         productsTableHeader();
         addLineToDisplayProducts();
-        for (Item item : user.getCart()) {
-            System.out.printf("| %-6s", i);
-            item.showItem();
-            ++i;
-        }
+        displayArrayListOfItems(user.getCart());
         addLineToDisplayProducts();
     }
 
@@ -125,11 +115,16 @@ public class Display {
         addLineToDisplayProducts();
         productsTableHeader();
         addLineToDisplayProducts();
-        for (Item item : user.getOrderHistory()) {
+        displayArrayListOfItems(user.getOrderHistory());
+        addLineToDisplayProducts();
+    }
+
+    private void displayArrayListOfItems(ArrayList<Item> items) {
+        int i = 1;
+        for (Item item : items) {
             System.out.printf("| %-6s", i);
             item.showItem();
             ++i;
         }
-        addLineToDisplayProducts();
     }
 }

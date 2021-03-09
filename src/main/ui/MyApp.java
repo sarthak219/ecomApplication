@@ -77,6 +77,7 @@ public class MyApp {
         } else if (choice == 3) {
             users.insertUser(createUser());
             System.out.println("Account created successfully!");
+            saveUsers();
         } else if (choice == 4) {
             currentUser = new User();
             currentUser.makeGuestUser();
@@ -129,10 +130,13 @@ public class MyApp {
             display.searchAndShowProduct(allProducts);
         } else if (choice == 3) {
             addItemToWishlist();
+            saveUsers();
         } else if (choice == 4) {
             removeItemFromWishlist();
+            saveUsers();
         } else if (choice == 5) {
             addItemToCart();
+            saveUsers();
         } else {
             System.out.println("Invalid input!");
         }
@@ -142,16 +146,19 @@ public class MyApp {
     private void optionsForHomePage2(int choice) {
         if (choice == 6) {
             removeItemFromCart();
+            saveUsers();
         } else if (choice == 7) {
             display.displayWishlist(currentUser);
         } else if (choice == 8) {
             display.displayCart(currentUser);
         } else if (choice == 9) {
             placeOrder();
+            saveEverything();
         } else if (choice == 10) {
             display.displayRecentOrders(currentUser);
         } else if (choice == 11) {
             returnItem();
+            saveEverything();
         } else if (choice == 12) {
             logout();
         } else {
@@ -189,12 +196,15 @@ public class MyApp {
         } else if (choice == 2) {
             allProducts.insertItem(getItem());
             System.out.println("Item added successfully!");
+            saveItems();
         } else if (choice == 3) {
             display.displayAllItems(allProducts);
         } else if (choice == 4) {
             allProducts.removeItem(getProductIdFromUser());
+            saveItems();
         } else if (choice == 5) {
             users.removeUser(getUsernameFromUser());
+            saveUsers();
         } else if (choice == 6) {
             logout();
         } else {
