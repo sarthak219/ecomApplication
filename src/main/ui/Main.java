@@ -1,11 +1,21 @@
 package ui;
 
-public class Main {
+import database.Database;
+import ui.screens.big.ScreenForUser;
+import ui.screens.small.WelcomeScreen;
+
+public class Main extends MyApp {
     public static void main(String[] args) {
-        //new MyApp();
-        String[] options = {"Back",
-                "Show Products", "Search Products", "Add to Wishlist",
-                "Add to Cart"};
-        new ScreenTemplate("Home", options);
+        Database database = new Database();
+
+//        String[] options = {"Back",
+//                "Show Products", "Search Products", "View Wishlist",
+//                "View Cart", "View Order History", "Log Out"};
+//        new ScreenTemplate("Home", options);
+       // new ScreenForUser("Home Screen", options, myApp.users.getAllUsers().get(0));
+
+        new WelcomeScreen("Welcome!", database);
+//        new LoginScreen("Login Screen");
+
     }
 }

@@ -11,17 +11,17 @@ import java.util.Scanner;
 // represents the application
 public class MyApp {
     Scanner sc = new Scanner(System.in);
-    private static final String JSON_USER_DATABASE = "./data/users.json";
-    private static final String JSON_ITEMS_DATABASE = "./data/items.json";
-    private User currentUser;
-    private final Admin admin;
-    private AllUsers users;
-    private Collection allProducts;
-    private final Display display;
-    private final JsonWriterForAllUsers jsonWriterForAllUsers;
-    private final JsonReaderForAllUsers jsonReaderForAllUsers;
-    private final JsonWriterForCollection jsonWriterForCollection;
-    private final JsonReaderForCollection jsonReaderForCollection;
+    protected static final String JSON_USER_DATABASE = "./data/users.json";
+    protected static final String JSON_ITEMS_DATABASE = "./data/items.json";
+    protected User currentUser;
+    protected final Admin admin;
+    protected AllUsers users;
+    protected Collection allProducts;
+    protected final Display display;
+    protected final JsonWriterForAllUsers jsonWriterForAllUsers;
+    protected final JsonReaderForAllUsers jsonReaderForAllUsers;
+    protected final JsonWriterForCollection jsonWriterForCollection;
+    protected final JsonReaderForCollection jsonReaderForCollection;
 
     //MODIFIES: this
     //EFFECTS: Constructor for MyApp, creates a guest user and instantiates admin, user and JSON reader and writers,
@@ -38,7 +38,7 @@ public class MyApp {
         jsonWriterForCollection = new JsonWriterForCollection(JSON_ITEMS_DATABASE);
         jsonReaderForCollection = new JsonReaderForCollection(JSON_ITEMS_DATABASE);
         updateDatabases();
-        welcomeScreen();
+        //welcomeScreen();
     }
 
     //EFFECTS: A welcome page for the user
@@ -54,7 +54,7 @@ public class MyApp {
     }
 
     //EFFECTS: prints all the options available for user in the welcomePage
-    private void displayOptionsForWelcomePage() {
+    public void displayOptionsForWelcomePage() {
         System.out.println("Choose one of the options");
         System.out.println("0. EXIT");
         System.out.println("1. Login as admin");
@@ -65,7 +65,7 @@ public class MyApp {
 
 
     //EFFECTS: accepts a choice from the user and performs the selected task
-    private void optionsForWelcomePage(int choice) {
+    public void optionsForWelcomePage(int choice) {
         if (choice == 1) {
             if (adminLogin()) {
                 adminHomepage();
@@ -89,7 +89,7 @@ public class MyApp {
     }
 
     //EFFECTS: displays all the options available for user in the homePage
-    private void displayOptionsForHomePage() {
+    public void displayOptionsForHomePage() {
         System.out.println("\nHello " + currentUser.getFirstName() + "!!!");
         System.out.println("Enter a choice: ");
         System.out.println("0. EXIT");
@@ -123,7 +123,7 @@ public class MyApp {
     }
 
     //EFFECTS: performs the task according to the choice
-    private void optionsForHomePage1(int choice) {
+    public void optionsForHomePage1(int choice) {
         if (choice == 1) {
             display.displayAllItems(allProducts);
         } else if (choice == 2) {
@@ -143,7 +143,7 @@ public class MyApp {
     }
 
     //EFFECTS: performs the task according to the choice
-    private void optionsForHomePage2(int choice) {
+    public void optionsForHomePage2(int choice) {
         if (choice == 6) {
             removeItemFromCart();
             saveUsers();
@@ -168,7 +168,7 @@ public class MyApp {
     }
 
     //EFFECTS: shows options for admin account
-    private void displayOptionsForAdminHomepage() {
+    public void displayOptionsForAdminHomepage() {
         System.out.println("Admin Homepage");
         System.out.println("Enter a choice: ");
         System.out.println("1. Display all users");
@@ -180,7 +180,7 @@ public class MyApp {
     }
 
     //EFFECTS: homepage for admin account
-    private void adminHomepage() {
+    public void adminHomepage() {
         while (true) {
             displayOptionsForAdminHomepage();
             int choice = sc.nextInt();
@@ -214,13 +214,13 @@ public class MyApp {
 
 
     //EFFECTS: returns the username entered by the user
-    private String getUsernameFromUser() {
+    public String getUsernameFromUser() {
         System.out.println("Enter username of the profile you want to delete");
         return sc.nextLine();
     }
 
     //EFFECTS: returns the product id entered by the user
-    private int getProductIdFromUser() {
+    public int getProductIdFromUser() {
         System.out.println("Enter product Id (any number except 0)");
         int id = sc.nextInt();
         sc.nextLine(); //to fix bug
@@ -230,7 +230,7 @@ public class MyApp {
 
     //EFFECTS: accepts username and password for admin account and
     //         logs into admin account if they are valid
-    private boolean adminLogin() {
+    protected boolean adminLogin() {
         String username;
         String password;
         System.out.println("Enter username");
@@ -246,7 +246,7 @@ public class MyApp {
 
     //EFFECTS: Takes values for all the fields of an Item and returns
     //         an Item with those credentials
-    public Item getItem() {
+    protected Item getItem() {
         Item item = new Item();
         item.setId(uniqueProductId());
         System.out.println("Enter name of the product:");
@@ -270,7 +270,7 @@ public class MyApp {
     }
 
     //EFFECTS: accepts a product id from the user and returns it if its unique
-    private int uniqueProductId() {
+    protected int uniqueProductId() {
         int t;
         System.out.println("Enter product ID (any number except 0)");
         while (true) {
@@ -292,7 +292,7 @@ public class MyApp {
 
     //EFFECTS: Takes values for all the fields of a user and returns
     //         a User with those credentials
-    public User createUser() {
+    protected User createUser() {
         User person = new User();
         System.out.println("Enter first name");
         person.setFirstName(sc.nextLine());
@@ -313,7 +313,7 @@ public class MyApp {
     }
 
     //EFFECTS: returns the accepted username if it is not already taken by another user
-    private String uniqueUsername() {
+    protected String uniqueUsername() {
         int t;
         System.out.println("Enter username");
         while (true) {
@@ -333,7 +333,7 @@ public class MyApp {
     }
 
     //EFFECTS: returns user entered password if both passwords match
-    private String confirmPassword() {
+    protected String confirmPassword() {
         while (true) {
             System.out.println("Enter password");
             String pass1 = sc.nextLine();
@@ -350,7 +350,7 @@ public class MyApp {
 
     //MODIFIES: this
     //EFFECTS: logs in the user by setting currentUser to the user with the given credentials
-    public boolean login() {
+    protected boolean login() {
         String username;
         String password;
 
@@ -374,7 +374,7 @@ public class MyApp {
 
     //MODIFIES: this
     //EFFECTS: adds the item which the user enters in its wishlist
-    private void addItemToWishlist() {
+    protected void addItemToWishlist() {
         int choice;
         int id = getProductIdFromUser();
         for (Item item : allProducts.getAllProducts()) {
@@ -404,7 +404,7 @@ public class MyApp {
 
     //MODIFIES: this
     //EFFECTS: adds the item which the user enters in its cart
-    private void addItemToCart() {
+    protected void addItemToCart() {
         int id = getProductIdFromUser();
         for (Item item : allProducts.getAllProducts()) {
             if (item.getId() == id && item.getInStock()) {
@@ -425,7 +425,7 @@ public class MyApp {
 
     //MODIFIES: this
     //EFFECTS: removes item from the wishlist
-    private void removeItemFromWishlist() {
+    protected void removeItemFromWishlist() {
         int id = getProductIdFromUser();
         for (Item item : currentUser.getWishlist()) {
             if (item.getId() == id) {
@@ -439,7 +439,7 @@ public class MyApp {
 
     //MODIFIES: this
     //EFFECTS: removes item from the cart
-    private void removeItemFromCart() {
+    protected void removeItemFromCart() {
         int id = getProductIdFromUser();
         for (Item item : currentUser.getCart()) {
             if (item.getId() == id) {
@@ -453,7 +453,7 @@ public class MyApp {
 
     //MODIFIES: this
     //EFFECTS: Orders all the products in the cart and makes the item out of stock
-    private void placeOrder() {
+    protected void placeOrder() {
         if (currentUser.getCart().size() == 0) {
             System.out.println("Your cart is empty, please add products to it first.");
             return;
@@ -481,7 +481,7 @@ public class MyApp {
 
     //MODIFIES: this
     //EFFECTS: sets inStock to false for all occurrences of Item with the given id
-    private void setInStockToFalseForAll(ArrayList<Item> items, int id) {
+    protected void setInStockToFalseForAll(ArrayList<Item> items, int id) {
         for (Item item : items) {
             if (item.getId() == id) {
                 item.setInStock(false);
@@ -491,7 +491,7 @@ public class MyApp {
 
     //MODIFIES: this
     //EFFECTS: sets the Item back in stock if it hasn't been returned earlier
-    private void returnItem() {
+    protected void returnItem() {
         float returnAmount;
         int itemIndex;
         display.displayRecentOrders(currentUser);
@@ -517,7 +517,7 @@ public class MyApp {
     //MODIFIES: this
     //EFFECTS: sets InStock to true for the item with given id in allProducts
     //         and returns the price of the item after discount
-    private float setInStockToTrueInAllProducts(int id) {
+    protected float setInStockToTrueInAllProducts(int id) {
         float returnAmount = 0;
         for (Item item : allProducts.getAllProducts()) {
             if (item.getId() == id) {
@@ -531,21 +531,21 @@ public class MyApp {
 
     //MODIFIES: this
     //EFFECTS: logs the user out and returns to welcome page
-    private void logout() {
+    protected void logout() {
         System.out.println("You have logged out successfully!");
         welcomeScreen();
     }
 
 
     //EFFECTS: closes the application
-    private void closeApp() {
+    protected void closeApp() {
         System.out.println("Closing the app....");
         System.out.println("Goodbye! Thanks for using!");
         System.exit(0);
     }
 
     // EFFECTS: saves the allUsers to file
-    private void saveUsers() {
+    protected void saveUsers() {
         try {
             jsonWriterForAllUsers.open();
             jsonWriterForAllUsers.write(users);
@@ -557,7 +557,7 @@ public class MyApp {
     }
 
     // EFFECTS: saves the allUsers to file
-    private void saveItems() {
+    protected void saveItems() {
         try {
             jsonWriterForCollection.open();
             jsonWriterForCollection.write(allProducts);
@@ -570,7 +570,7 @@ public class MyApp {
 
     // MODIFIES: this
     // EFFECTS: loads allUsers from file
-    private void loadUsers() {
+    protected void loadUsers() {
         try {
             users = jsonReaderForAllUsers.read();
             System.out.println("Loaded users from " + JSON_USER_DATABASE);
@@ -581,7 +581,7 @@ public class MyApp {
 
     // MODIFIES: this
     // EFFECTS: loads allProducts from file
-    private void loadItems() {
+    protected void loadItems() {
         try {
             allProducts = jsonReaderForCollection.read();
             System.out.println("Loaded users from " + JSON_ITEMS_DATABASE);
@@ -591,14 +591,14 @@ public class MyApp {
     }
 
     //EFFECTS: loads items and users from their respective source files
-    private void updateDatabases() {
+    protected void updateDatabases() {
         loadItems();
         loadUsers();
     }
 
     //MODIFIES: this
     //EFFECTS: saves items and users to their respective files
-    private void saveEverything() {
+    protected void saveEverything() {
         saveUsers();
         saveItems();
     }
