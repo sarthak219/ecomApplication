@@ -6,10 +6,7 @@ import ui.screens.big.ScreenForAdmin;
 import ui.screens.big.ScreenForUser;
 
 import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class LoginScreen extends SmallScreen {
     protected JTextField username;
@@ -29,14 +26,11 @@ public class LoginScreen extends SmallScreen {
         backButtonSetup();
         setupStatus();
 
-        login.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (title.equals("Admin Login")) {
-                    adminLogin(database);
-                } else {
-                    userLogin(database);
-                }
+        login.addActionListener(e -> {
+            if (title.equals("Admin Login")) {
+                adminLogin(database);
+            } else {
+                userLogin(database);
             }
         });
 
@@ -97,6 +91,7 @@ public class LoginScreen extends SmallScreen {
         String pass = String.valueOf(passwordField.getPassword());
         if (database.getAdmin().adminAuthentication(name, pass)) {
             new ScreenForAdmin("Admin Home Page", database);
+            dispose();
         } else {
             status.setText("Incorrect username or password!");
         }
@@ -111,6 +106,7 @@ public class LoginScreen extends SmallScreen {
                 if (user.getUsername().equals(name) && user.getPassword().equals(pass)) {
                     database.setCurrentUser(user);
                     new ScreenForUser("Homepage", database);
+                    dispose();
                 }
             }
         } else {

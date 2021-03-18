@@ -1,12 +1,13 @@
 package ui.screens.big;
 
 import database.Database;
+import ui.Card;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
-public class ScreenTemplate extends JFrame {
+public class BigScreenTemplate extends JFrame {
     public static final float SCALE = (float) 0.8;
     public static final int WIDTH = (int) (1440 * SCALE);
     public static final int HEIGHT = (int) (900 * SCALE);
@@ -17,12 +18,12 @@ public class ScreenTemplate extends JFrame {
     public static final int OPTIONS_HEIGHT = WORKSPACE_PANEL_HEIGHT / 10;
     protected JPanel menuPanel;
     protected JPanel titlePanel;
-    protected JPanel workspacePanel;
+    protected JLayeredPane workspacePanel;
     protected JScrollPane workspace;
     protected Border border;
     protected JTextField searchBar;
 
-    public ScreenTemplate(String title, Database database) {
+    public BigScreenTemplate(String title, Database database) {
         initialiseGraphics();
         initialiseMenuPanel();
         initialiseTitlePanel();
@@ -37,7 +38,6 @@ public class ScreenTemplate extends JFrame {
         pageHeading.setHorizontalAlignment(JLabel.LEFT);
         pageHeading.setVerticalAlignment(JLabel.BOTTOM);
         titlePanel.add(pageHeading);
-
 
 
         revalidate();
@@ -73,20 +73,26 @@ public class ScreenTemplate extends JFrame {
     }
 
     public void initialiseWorkspacePanel() {
-        workspacePanel = new JPanel();
+        workspacePanel = new JLayeredPane();
         workspacePanel.setBackground(new Color(23, 23, 23));
-        workspacePanel.setLayout(null);
-        workspacePanel.setBounds(MENU_PANEL_WIDTH, MARGIN, WORKSPACE_PANEL_WIDTH, HEIGHT - MARGIN);
+        workspacePanel.setLayout(new BoxLayout(workspacePanel, BoxLayout.Y_AXIS));
+        workspacePanel.setBorder(border);
+        workspacePanel.setBounds(MENU_PANEL_WIDTH, MARGIN, WORKSPACE_PANEL_WIDTH, HEIGHT / 2);
         workspacePanel.setVisible(true);
+        workspacePanel.setOpaque(true);
+        System.out.print(workspacePanel.getX());
     }
+
+    // workspacePanel.setLayout(new GridLayout(5, 0, 20, 20));
+    //workspacePanel.setBounds(MENU_PANEL_WIDTH, MARGIN, WORKSPACE_PANEL_WIDTH, HEIGHT - MARGIN);
 
     public void initialiseWorkspace() {
         workspace = new JScrollPane(workspacePanel, 22, 32);
         workspace.setBackground(new Color(144, 56, 56));
+        workspace.setForeground(new Color(23, 23, 23));
         workspace.setLayout(new ScrollPaneLayout());
         workspace.setBounds(MENU_PANEL_WIDTH, MARGIN, WORKSPACE_PANEL_WIDTH, HEIGHT - MARGIN);
         workspace.setVisible(true);
-        //workspace.add(workspacePanel);
         add(workspace);
     }
 

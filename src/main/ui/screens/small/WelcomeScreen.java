@@ -1,14 +1,8 @@
 package ui.screens.small;
 
-import com.sun.tools.corba.se.idl.StringGen;
 import database.Database;
-import model.Admin;
-import ui.MyApp;
-import ui.screens.big.ScreenForAdmin;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class WelcomeScreen extends SmallScreen {
     protected JButton adminLogin;
@@ -24,27 +18,27 @@ public class WelcomeScreen extends SmallScreen {
         userSignupButton();
         guestLoginButton();
 
-        adminLogin.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //if ()
-                new LoginScreen("Admin Login", database);
-                dispose();
-            }
+        adminLogin.addActionListener(e -> {
+            new LoginScreen("Admin Login", database);
+            dispose();
         });
 
-        userLogin.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new LoginScreen("User Login", database);
-                dispose();
-            }
+        userLogin.addActionListener(e -> {
+            new LoginScreen("User Login", database);
+            dispose();
+        });
+
+        userSignup.addActionListener(e -> {
+            JOptionPane.showConfirmDialog(this, "Do you wish to continue?", "Yes", 0, 3);
         });
 
         add(adminLogin);
         add(userLogin);
         add(userSignup);
         add(guestLogin);
+
+        revalidate();
+        repaint();
     }
 
     public void adminLoginButton() {
