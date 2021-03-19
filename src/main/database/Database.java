@@ -21,13 +21,12 @@ public class Database {
     protected AllUsers users;
     protected Collection allProducts;
     protected Display display;
-    protected String[] userOptions = {"Back",
-            "Show Products", "Search Products", "View Wishlist",
+    protected String[] userOptions = {"Show Products",
+            "Search Products", "View Wishlist",
             "View Cart", "You Orders", "Log Out"};
 
     protected String[] adminOptions = {"Show Users",
             "Show Products", "Add Products", "Log Out"};
-
     protected JsonWriterForAllUsers jsonWriterForAllUsers;
     protected JsonReaderForAllUsers jsonReaderForAllUsers;
     protected JsonWriterForCollection jsonWriterForCollection;

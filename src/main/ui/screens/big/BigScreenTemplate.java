@@ -1,11 +1,12 @@
 package ui.screens.big;
 
 import database.Database;
-import ui.Card;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.plaf.ScrollBarUI;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class BigScreenTemplate extends JFrame {
     public static final float SCALE = (float) 0.8;
@@ -18,10 +19,11 @@ public class BigScreenTemplate extends JFrame {
     public static final int OPTIONS_HEIGHT = WORKSPACE_PANEL_HEIGHT / 10;
     protected JPanel menuPanel;
     protected JPanel titlePanel;
-    protected JLayeredPane workspacePanel;
+    protected JPanel workspacePanel;
     protected JScrollPane workspace;
     protected Border border;
     protected JTextField searchBar;
+    protected ArrayList<JButton> buttons;
 
     public BigScreenTemplate(String title, Database database) {
         initialiseGraphics();
@@ -46,11 +48,11 @@ public class BigScreenTemplate extends JFrame {
 
     public void initialiseGraphics() {
         setVisible(true);
-        setSize(WIDTH, HEIGHT);
+        setSize(WIDTH, HEIGHT + 30);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(null);
         getContentPane().setBackground(new Color(23, 23, 23));
-        setResizable(true);
+        setResizable(false);
         border = BorderFactory.createLineBorder(Color.BLACK);
     }
 
@@ -73,39 +75,28 @@ public class BigScreenTemplate extends JFrame {
     }
 
     public void initialiseWorkspacePanel() {
-        workspacePanel = new JLayeredPane();
+        workspacePanel = new JPanel();
         workspacePanel.setBackground(new Color(23, 23, 23));
         workspacePanel.setLayout(new BoxLayout(workspacePanel, BoxLayout.Y_AXIS));
-        workspacePanel.setBorder(border);
-        workspacePanel.setBounds(MENU_PANEL_WIDTH, MARGIN, WORKSPACE_PANEL_WIDTH, HEIGHT / 2);
+        workspacePanel.setBorder(null);
+        workspacePanel.setBounds(11 * MENU_PANEL_WIDTH / 10, MARGIN, 9 * WORKSPACE_PANEL_WIDTH / 10, HEIGHT - MARGIN);
         workspacePanel.setVisible(true);
         workspacePanel.setOpaque(true);
-        System.out.print(workspacePanel.getX());
     }
-
-    // workspacePanel.setLayout(new GridLayout(5, 0, 20, 20));
-    //workspacePanel.setBounds(MENU_PANEL_WIDTH, MARGIN, WORKSPACE_PANEL_WIDTH, HEIGHT - MARGIN);
 
     public void initialiseWorkspace() {
-        workspace = new JScrollPane(workspacePanel, 22, 32);
-        workspace.setBackground(new Color(144, 56, 56));
+        workspace = new JScrollPane(workspacePanel, 20, 30);
+        //workspace.setBackground(new Color(144, 56, 56));
+        workspace.setBackground(null);
+        workspace.setBorder(null);
+        workspace.getVerticalScrollBar().setUI(new ScrollBarUI() {
+        });
         workspace.setForeground(new Color(23, 23, 23));
         workspace.setLayout(new ScrollPaneLayout());
-        workspace.setBounds(MENU_PANEL_WIDTH, MARGIN, WORKSPACE_PANEL_WIDTH, HEIGHT - MARGIN);
+        int panelXCor = MENU_PANEL_WIDTH + WORKSPACE_PANEL_WIDTH / 10;
+        workspace.setBounds(panelXCor, MARGIN, 8 * WORKSPACE_PANEL_WIDTH / 10, WORKSPACE_PANEL_HEIGHT);
         workspace.setVisible(true);
         add(workspace);
-    }
-
-    public void displayOptionsInMenuPanel(String[] buttons) {
-        for (int i = 0; i < buttons.length; ++i) {
-            JButton button = new JButton(buttons[i]);
-            button.setBounds(-1, OPTIONS_HEIGHT * i - i, MENU_PANEL_WIDTH + 2, OPTIONS_HEIGHT);
-            button.setBorder(border);
-            button.setHorizontalAlignment(JButton.CENTER);
-            button.setForeground(Color.WHITE);
-            button.setFont(new Font("Helvetica", Font.PLAIN, OPTIONS_HEIGHT / 5));
-            menuPanel.add(button);
-        }
     }
 
     public void initialiseSearchBar() {
@@ -123,7 +114,7 @@ public class BigScreenTemplate extends JFrame {
     public void initialiseSearchButton() {
         JButton searchButton = new JButton("Search");
         searchButton.setLayout(null);
-        searchButton.setBounds(19 * WIDTH / 20, MARGIN / 4, WIDTH / 21, MARGIN / 2);
+        searchButton.setBounds((19 * WIDTH / 20) - 1, MARGIN / 4, WIDTH / 21, MARGIN / 2);
         searchButton.setBorder(border);
         searchButton.setBackground(new Color(141, 141, 141));
         searchButton.setHorizontalAlignment(JButton.CENTER);
@@ -131,5 +122,19 @@ public class BigScreenTemplate extends JFrame {
         searchButton.setFont(new Font("Helvetica", Font.PLAIN, MARGIN / 5));
         //System.out.println((3 * MARGIN) / 4);
         titlePanel.add(searchButton);
+    }
+
+    public void displayOptionsInMenuPanel(String[] buttons) {
+        this.buttons = new ArrayList<>();
+        for (int i = 0; i < buttons.length; ++i) {
+            JButton button = new JButton(buttons[i]);
+            button.setBounds(-1, OPTIONS_HEIGHT * i - i, MENU_PANEL_WIDTH + 2, OPTIONS_HEIGHT);
+            button.setBorder(border);
+            button.setHorizontalAlignment(JButton.CENTER);
+            button.setForeground(Color.WHITE);
+            button.setFont(new Font("Helvetica", Font.PLAIN, OPTIONS_HEIGHT / 5));
+            this.buttons.add(button);
+            menuPanel.add(button);
+        }
     }
 }

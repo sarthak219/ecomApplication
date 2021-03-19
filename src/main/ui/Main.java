@@ -6,8 +6,7 @@ import ui.screens.small.WelcomeScreen;
 
 public class Main extends MyApp {
     public static void main(String[] args) {
-        Database database = new Database();
-        //new WelcomeScreen("Welcome!", database);
-        new ScreenForUser("Test Screen", database);
+        new WelcomeScreen("Welcome!", new Database());
+        //new ScreenForUser("Test Screen", new Database());
     }
 }
