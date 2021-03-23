@@ -114,7 +114,6 @@ public class BigScreen extends JFrame {
 
     public void initialiseWorkspace() {
         workspace = new JScrollPane(workspacePanel, 20, 30);
-        //workspace.setBackground(new Color(144, 56, 56));
         workspace.setBackground(null);
         workspace.setBorder(null);
         workspace.getVerticalScrollBar().setUI(new ScrollBarUI() {

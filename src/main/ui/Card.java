@@ -18,7 +18,7 @@ public class Card extends JPanel {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         border = BorderFactory.createLineBorder(Color.BLACK);
         setLayout(new GridLayout(3, 2));
-        //setBorder(border);
+        setBorder(border);
         setVisible(true);
         label1 = new JLabel("card");
         label1.setForeground(Color.WHITE);

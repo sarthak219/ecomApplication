@@ -18,6 +18,10 @@ public class ScreenForUser extends BigScreen {
         displayOptionsInMenuPanel(database.getUserOptions());
         displayAllProducts(database);
         initialiseWorkspacePanel();
+        //workspace = new JScrollPane(new TempPanel());
+        workspacePanel.setVisible(false);
+        workspacePanel = new TempPanel();
+
         revalidate();
         repaint();
     }

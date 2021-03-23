@@ -18,8 +18,8 @@ public class SmallScreen extends JFrame {
 
     public SmallScreen(String title, Database database) {
         initialiseGraphics();
+        initialiseScreen();
         border = BorderFactory.createLineBorder(Color.BLACK);
-
         setupTitle(title);
     }
 
@@ -37,6 +37,8 @@ public class SmallScreen extends JFrame {
         screen.setLayout(null);
         screen.setBounds(0, 0, WIDTH, HEIGHT);
         screen.setBackground(new Color(23, 23, 23));
+        screen.setOpaque(true);
+        screen.setVisible(true);
         add(screen);
     } //TODO: ask TA about coherency of this method
 
