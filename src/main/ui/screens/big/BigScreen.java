@@ -8,7 +8,7 @@ import javax.swing.plaf.ScrollBarUI;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class BigScreenTemplate extends JFrame {
+public class BigScreen extends JFrame {
     public static final float SCALE = (float) 0.8;
     public static final int WIDTH = (int) (1440 * SCALE);
     public static final int HEIGHT = (int) (900 * SCALE);
@@ -21,18 +21,22 @@ public class BigScreenTemplate extends JFrame {
     protected JPanel titlePanel;
     protected JPanel workspacePanel;
     protected JScrollPane workspace;
+    protected JScrollPane menu;
     protected Border border;
+    protected JSplitPane splitPane;
     protected JTextField searchBar;
     protected ArrayList<JButton> buttons;
 
-    public BigScreenTemplate(String title, Database database) {
+    public BigScreen(String title, Database database) {
         initialiseGraphics();
         initialiseMenuPanel();
+        initialiseMenu();
         initialiseTitlePanel();
         initialiseSearchBar();
         initialiseSearchButton();
         initialiseWorkspacePanel();
         initialiseWorkspace();
+        initialiseSplitPane();
 
         JLabel pageHeading = new JLabel(title);
         pageHeading.setBounds(MENU_PANEL_WIDTH + MARGIN / 5, 0, WIDTH, HEIGHT / 10);
@@ -56,6 +60,16 @@ public class BigScreenTemplate extends JFrame {
         border = BorderFactory.createLineBorder(Color.BLACK);
     }
 
+    public void initialiseSplitPane() {
+        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, menuPanel, workspace);
+        splitPane.setOneTouchExpandable(false);
+        splitPane.setDividerLocation(MENU_PANEL_WIDTH);
+        splitPane.setBounds(0, MARGIN, WIDTH, WORKSPACE_PANEL_HEIGHT);
+        splitPane.setBackground(Color.BLACK);
+        splitPane.setDividerSize(2);
+        getContentPane().add(splitPane);
+    }
+
     public void initialiseTitlePanel() {
         titlePanel = new JPanel();
         titlePanel.setBackground(new Color(76, 76, 76));
@@ -68,10 +82,24 @@ public class BigScreenTemplate extends JFrame {
     public void initialiseMenuPanel() {
         menuPanel = new JPanel();
         menuPanel.setBackground(new Color(40, 40, 40));
+        //menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
         menuPanel.setLayout(null);
         menuPanel.setBounds(0, MARGIN, MENU_PANEL_WIDTH, HEIGHT - MARGIN);
         menuPanel.setVisible(true);
-        add(menuPanel);
+        menuPanel.setOpaque(true);
+        //add(menuPanel);
+    }
+
+    public void initialiseMenu() {
+        menu = new JScrollPane(menuPanel, 22, 30);
+        menu.setBackground(null);
+        menu.setBorder(null);
+//        menu.getVerticalScrollBar().setUI(new ScrollBarUI() {
+//        });
+//        menu.setAlignmentX(CENTER_ALIGNMENT);
+        menu.setLayout(new ScrollPaneLayout());
+        menu.setBounds(0, MARGIN, MENU_PANEL_WIDTH, HEIGHT - MARGIN);
+        menu.setVisible(true);
     }
 
     public void initialiseWorkspacePanel() {
@@ -96,7 +124,6 @@ public class BigScreenTemplate extends JFrame {
         int panelXCor = MENU_PANEL_WIDTH + WORKSPACE_PANEL_WIDTH / 10;
         workspace.setBounds(panelXCor, MARGIN, 8 * WORKSPACE_PANEL_WIDTH / 10, WORKSPACE_PANEL_HEIGHT);
         workspace.setVisible(true);
-        add(workspace);
     }
 
     public void initialiseSearchBar() {
@@ -120,7 +147,6 @@ public class BigScreenTemplate extends JFrame {
         searchButton.setHorizontalAlignment(JButton.CENTER);
         searchButton.setOpaque(true);
         searchButton.setFont(new Font("Helvetica", Font.PLAIN, MARGIN / 5));
-        //System.out.println((3 * MARGIN) / 4);
         titlePanel.add(searchButton);
     }
 

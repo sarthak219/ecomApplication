@@ -35,7 +35,10 @@ public class LoginScreen extends SmallScreen {
         });
 
 
-        back.addActionListener(e -> new WelcomeScreen("Welcome!", database));
+        back.addActionListener(e -> {
+            new WelcomeScreen("Welcome!", database);
+            dispose();
+        });
 
         revalidate();
         repaint();

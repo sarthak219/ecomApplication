@@ -6,8 +6,9 @@ import ui.Card;
 import javax.swing.*;
 import java.awt.*;
 
-public class ScreenForUser extends BigScreenTemplate {
-    Card card;
+public class ScreenForUser extends BigScreen {
+    protected Card card;
+    //protected JList list;
     public static final int GAP = HEIGHT / 20;
 
     public ScreenForUser(String title, Database database) {

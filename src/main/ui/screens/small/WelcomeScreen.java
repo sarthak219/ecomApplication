@@ -2,7 +2,6 @@ package ui.screens.small;
 
 import database.Database;
 import ui.screens.big.ScreenForUser;
-
 import javax.swing.*;
 
 public class WelcomeScreen extends SmallScreen {

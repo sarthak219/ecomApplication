@@ -1,6 +1,6 @@
 package ui;
 
-import ui.screens.big.BigScreenTemplate;
+import ui.screens.big.BigScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -8,8 +8,8 @@ import java.awt.*;
 
 public class Card extends JPanel {
     public static final float SCALE = (float) (0.6);
-    public static final int WIDTH = (int) (BigScreenTemplate.WORKSPACE_PANEL_WIDTH * SCALE);
-    public static final int HEIGHT = (int) (BigScreenTemplate.WORKSPACE_PANEL_HEIGHT * BigScreenTemplate.SCALE / 3);
+    public static final int WIDTH = (int) (BigScreen.WORKSPACE_PANEL_WIDTH * SCALE);
+    public static final int HEIGHT = (int) (BigScreen.WORKSPACE_PANEL_HEIGHT * BigScreen.SCALE / 3);
     protected Border border;
     protected JLabel label1;
 
