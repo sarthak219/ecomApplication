@@ -13,6 +13,8 @@ public class TempSmallScreen extends JPanel {
     public TempSmallScreen(String title) {
         initialiseGraphics();
         //border = BorderFactory.createLineBorder(Color.BLACK);
+        setVisible(true);
+        setOpaque(true);
         setupTitle(title);
     }
 
@@ -20,7 +22,7 @@ public class TempSmallScreen extends JPanel {
         setVisible(true);
         setSize(WIDTH, HEIGHT);
         setLayout(null);
-        setBackground(new Color(161, 10, 10));
+        setBackground(new Color(10, 83, 161));
     }
 
     public void setupTitle(String title) {

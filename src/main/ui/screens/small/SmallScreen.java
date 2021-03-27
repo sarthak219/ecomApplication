@@ -19,6 +19,8 @@ public class SmallScreen extends JFrame {
     public SmallScreen(String title, Database database) {
         initialiseGraphics();
         initialiseScreen();
+        screen.setVisible(true);
+        this.screen = new TempSmallScreen(title);
         border = BorderFactory.createLineBorder(Color.BLACK);
         setupTitle(title);
     }
