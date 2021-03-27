@@ -7,6 +7,6 @@ import ui.screens.small.WelcomeScreen;
 
 public class Main extends MyApp {
     public static void main(String[] args) {
-        new SmallAppWindow("hello", new Database());
+        new SmallAppWindow(new Database());
     }
 }
