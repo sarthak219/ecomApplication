@@ -1,30 +1,33 @@
-package ui.screens.small;
+package ui.panels;
 
 import database.Database;
 import model.User;
+import ui.SmallAppWindow;
 import ui.screens.big.ScreenForAdmin;
 import ui.screens.big.ScreenForUser;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class LoginScreen extends SmallScreen {
+/**
+ * represents the login screen tab
+ */
+public class LoginScreenTab extends SmallTab {
     protected JTextField username;
     protected JPasswordField passwordField;
     protected JLabel status;
     protected JButton login;
     protected JButton back;
 
-    public LoginScreen(String title, Database database) {
-        super(title, database);
-        //marginTop += 40;
-        border = BorderFactory.createLineBorder(Color.BLACK);
-
+    public LoginScreenTab(SmallAppWindow controller, String title, Dimension dimension, Database database) {
+        super(controller, dimension);
+        this.database = database;
+        initialisePanel(title);
         getUsernameSetup();
         getPasswordSetup();
+        setupStatus();
         loginButtonSetup();
         backButtonSetup();
-        setupStatus();
 
         login.addActionListener(e -> {
             if (title.equals("Admin Login")) {
@@ -36,56 +39,53 @@ public class LoginScreen extends SmallScreen {
 
 
         back.addActionListener(e -> {
-            new WelcomeScreen("Welcome!", database);
-            dispose();
+            reset();
+            getController().getTabbedPane().setSelectedIndex(0);
         });
 
-        revalidate();
-        repaint();
     }
 
     private void setupStatus() {
         status = new JLabel("");
         status.setForeground(new Color(241, 14, 14));
         status.setVisible(true);
-        status.setBounds(WIDTH / 4, marginTop + 3 * GAP_IN_BETWEEN + 3 * HEIGHT / 10, WIDTH / 2, GAP_IN_BETWEEN);
+        status.setAlignmentX(Component.CENTER_ALIGNMENT);
+        //status.setBounds(WIDTH / 4, marginTop + 3 * GAP_IN_BETWEEN + 3 * HEIGHT / 10, WIDTH / 2, GAP_IN_BETWEEN);
         add(status);
     }
 
     public void getUsernameSetup() {
         username = new JTextField("Username");
-        username.setBounds(WIDTH / 4, marginTop + 2 * GAP_IN_BETWEEN + HEIGHT / 10, WIDTH / 2, BUTTON_HEIGHT);
         setupTextField(username);
         add(username);
     }
 
     public void getPasswordSetup() {
         passwordField = new JPasswordField("Password");
-        passwordField.setBounds(WIDTH / 4, marginTop + 3 * GAP_IN_BETWEEN + 2 * HEIGHT / 10, WIDTH / 2, BUTTON_HEIGHT);
         setupTextField(passwordField);
         add(passwordField);
     }
 
     public void loginButtonSetup() {
         login = new JButton("Login");
-        login.setBounds(WIDTH / 4, marginTop + 4 * GAP_IN_BETWEEN + 3 * HEIGHT / 10, WIDTH / 2, BUTTON_HEIGHT);
         setupButton(login);
         add(login);
     }
 
     public void backButtonSetup() {
         back = new JButton("Back");
-        back.setBounds(WIDTH / 4, marginTop + 5 * GAP_IN_BETWEEN + 4 * HEIGHT / 10, WIDTH / 2, BUTTON_HEIGHT);
         setupButton(back);
         add(back);
     }
 
     public void setupTextField(JTextField textField) {
+        add(Box.createRigidArea(new Dimension(dimension.width, GAP)));
         textField.setBorder(border);
         textField.setBackground(new Color(255, 255, 255));
         textField.setHorizontalAlignment(JButton.CENTER);
         textField.setOpaque(true);
-        textField.setFont(new Font("Helvetica", Font.PLAIN, 18));
+        textField.setFont(new Font("Helvetica", Font.PLAIN, 16));
+        textField.setMaximumSize(new Dimension(dimension.width / 2, 50));
     }
 
     public void adminLogin(Database database) {
@@ -93,11 +93,9 @@ public class LoginScreen extends SmallScreen {
         String pass = String.valueOf(passwordField.getPassword());
         if (database.getAdmin().adminAuthentication(name, pass)) {
             new ScreenForAdmin("Admin Home Page", database);
-            dispose();
         } else {
             status.setText("Incorrect username or password!");
         }
-
     }
 
     public void userLogin(Database database) {
@@ -107,12 +105,17 @@ public class LoginScreen extends SmallScreen {
             for (User user : database.getUsers().getAllUsers()) {
                 if (user.getUsername().equals(name) && user.getPassword().equals(pass)) {
                     database.setCurrentUser(user);
-                    new ScreenForUser("Homepage", database);
-                    dispose();
+                    new ScreenForUser(database.getCurrentUser().getFirstName() + "'s Homepage", database);
                 }
             }
         } else {
             status.setText("Incorrect username or password!");
         }
+    }
+
+    public void reset() {
+        username.setText("Username");
+        passwordField.setText("Password");
+        status.setText("");
     }
 }

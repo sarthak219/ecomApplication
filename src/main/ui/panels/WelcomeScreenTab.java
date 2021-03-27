@@ -1,23 +1,24 @@
 package ui.panels;
 
+import database.Database;
 import ui.SmallAppWindow;
+import ui.screens.big.ScreenForUser;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * represents the welcome screen
+ * represents the welcome screen tab
  */
-public class WelcomeScreenTab extends Tab {
-    protected Dimension dimension;
+public class WelcomeScreenTab extends SmallTab {
     protected JButton adminLogin;
     protected JButton userLogin;
     protected JButton userSignup;
     protected JButton guestLogin;
 
-    public WelcomeScreenTab(SmallAppWindow controller, String title, Dimension dimension) {
+    public WelcomeScreenTab(SmallAppWindow controller, String title, Dimension dimension, Database database) {
         super(controller, dimension);
-        this.dimension = dimension;
+        this.database = database;
         initialisePanel(title);
         adminLoginButton();
         userLoginButton();
@@ -25,29 +26,10 @@ public class WelcomeScreenTab extends Tab {
         guestLoginButton();
     }
 
-    private void initialisePanel(String title) {
-        setSize(dimension);
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBackground(new Color(23, 23, 23));
-        setupTitle(title);
-    }
-
-    //EFFECTS: adds the title to the Welcome Screen
-    public void setupTitle(String title) {
-        add(Box.createRigidArea(new Dimension(dimension.width, 3 * GAP)));
-        JLabel pageHeading = new JLabel(title);
-        pageHeading.setAlignmentX(Component.CENTER_ALIGNMENT);
-        pageHeading.setFont(new Font("Helvetica", Font.BOLD, 52));
-        pageHeading.setForeground(new Color(226, 226, 226));
-        this.add(pageHeading);
-    }
-
     public void adminLoginButton() {
         adminLogin = new JButton("Login as Admin");
         setupButton(adminLogin);
-        adminLogin.addActionListener(e -> {
-            getController().getTabbedPane().setSelectedIndex(1);
-        });
+        adminLogin.addActionListener(e -> getController().getTabbedPane().setSelectedIndex(1));
         add(adminLogin);
     }
 
@@ -55,14 +37,13 @@ public class WelcomeScreenTab extends Tab {
         userLogin = new JButton("Login as User");
         setupButton(userLogin);
         add(userLogin);
-        userLogin.addActionListener(e -> {
-            getController().getTabbedPane().setSelectedIndex(0);
-        });
+        userLogin.addActionListener(e -> getController().getTabbedPane().setSelectedIndex(2));
     }
 
     public void userSignupButton() {
         userSignup = new JButton("Create New Account");
         setupButton(userSignup);
+        userSignup.addActionListener(e -> JOptionPane.showConfirmDialog(this, "Do you wish to continue?", "Yes", 0, 3));
         add(userSignup);
     }
 
@@ -70,8 +51,9 @@ public class WelcomeScreenTab extends Tab {
         guestLogin = new JButton("Login as Guest");
 //        guestLogin.setBounds(WIDTH / 4, marginTop + 5 * GAP_IN_BETWEEN + 4 * HEIGHT / 10, WIDTH / 2, BUTTON_HEIGHT);
         setupButton(guestLogin);
+        guestLogin.addActionListener(e -> {
+            new ScreenForUser("Guest HomePage", database);
+        });
         add(guestLogin);
     }
-
-
 }

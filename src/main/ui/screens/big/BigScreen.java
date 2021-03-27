@@ -45,7 +45,6 @@ public class BigScreen extends JFrame {
         pageHeading.setVerticalAlignment(JLabel.BOTTOM);
         titlePanel.add(pageHeading);
 
-
         revalidate();
         repaint();
     }
@@ -94,9 +93,6 @@ public class BigScreen extends JFrame {
         menu = new JScrollPane(menuPanel, 22, 30);
         menu.setBackground(null);
         menu.setBorder(null);
-//        menu.getVerticalScrollBar().setUI(new ScrollBarUI() {
-//        });
-//        menu.setAlignmentX(CENTER_ALIGNMENT);
         menu.setLayout(new ScrollPaneLayout());
         menu.setBounds(0, MARGIN, MENU_PANEL_WIDTH, HEIGHT - MARGIN);
         menu.setVisible(true);
@@ -114,6 +110,7 @@ public class BigScreen extends JFrame {
 
     public void initialiseWorkspace() {
         workspace = new JScrollPane(workspacePanel, 20, 30);
+        workspace.getVerticalScrollBar().setUnitIncrement(10);
         workspace.setBackground(null);
         workspace.setBorder(null);
         workspace.getVerticalScrollBar().setUI(new ScrollBarUI() {
