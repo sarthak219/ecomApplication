@@ -81,7 +81,8 @@ public abstract class BigTab extends JPanel {
     public void initialiseSearchButton() {
         JButton searchButton = new JButton("Search");
         searchButton.setLayout(null);
-        searchButton.setBounds((19 * dimension.width / 20) - 20, dimension.height / 40, dimension.width / 21, dimension.height / 20);
+        int partOfHeight = dimension.height / 20;
+        searchButton.setBounds((19 * dimension.width / 20) - 20, partOfHeight / 2, dimension.width / 21, partOfHeight);
         searchButton.setBorder(border);
         searchButton.setBackground(new Color(141, 141, 141));
         searchButton.setHorizontalAlignment(JButton.CENTER);
