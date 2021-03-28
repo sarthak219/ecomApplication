@@ -68,7 +68,8 @@ public abstract class BigTab extends JPanel {
     public void initialiseSearchBar() {
         searchBar = new JTextField(20);
         searchBar.setLayout(null);
-        searchBar.setBounds(3 * dimension.width / 4 -  20, dimension.height / 40, dimension.width / 5, dimension.height / 20);
+        int tenthOfHeight = dimension.height / 10;
+        searchBar.setBounds(3 * dimension.width / 4 - 20, tenthOfHeight / 4, dimension.width / 5, tenthOfHeight / 2);
         searchBar.setBorder(border);
         searchBar.setBackground(new Color(255, 255, 255));
         searchBar.setHorizontalAlignment(JTextField.LEFT);
