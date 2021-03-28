@@ -38,15 +38,19 @@ public class BigScreen extends JFrame {
         initialiseWorkspace();
         initialiseSplitPane();
 
+        initialiseTitle(title);
+
+        revalidate();
+        repaint();
+    }
+
+    public void initialiseTitle(String title) {
         JLabel pageHeading = new JLabel(title);
         pageHeading.setBounds(MENU_PANEL_WIDTH + MARGIN / 5, 0, WIDTH, HEIGHT / 10);
         pageHeading.setFont(new Font("Helvetica", Font.BOLD, 5 * MARGIN / 7));
         pageHeading.setHorizontalAlignment(JLabel.LEFT);
         pageHeading.setVerticalAlignment(JLabel.BOTTOM);
         titlePanel.add(pageHeading);
-
-        revalidate();
-        repaint();
     }
 
     public void initialiseGraphics() {

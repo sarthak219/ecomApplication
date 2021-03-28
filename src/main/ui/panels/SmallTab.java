@@ -28,7 +28,7 @@ public abstract class SmallTab extends JPanel {
         setupTitle(title);
     }
 
-    //EFFECTS: adds the title to the Welcome Screen
+    //EFFECTS: adds the title to the Screen
     public void setupTitle(String title) {
         add(Box.createRigidArea(new Dimension(dimension.width, 3 * GAP)));
         JLabel pageHeading = new JLabel(title);

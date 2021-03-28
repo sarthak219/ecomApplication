@@ -1,6 +1,7 @@
 package ui;
 
 import database.Database;
+import ui.panels.UserTab;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -35,7 +36,7 @@ public class BigAppWindow extends JFrame {
 
     public void initialiseTabbedPane() {
         tabbedPane = new JTabbedPane();
-        tabbedPane.setBounds(0, -30, WIDTH, HEIGHT); //TODO:set y to -30
+        tabbedPane.setBounds(0, 0, WIDTH, HEIGHT); //TODO:set y to -30
         tabbedPane.setBackground(Color.white);
         tabbedPane.setForeground(Color.BLACK);
         addElementsToTabbedPane();
@@ -43,6 +44,15 @@ public class BigAppWindow extends JFrame {
     }
 
     public void addElementsToTabbedPane() {
-        // stub
+        String title = database.getCurrentUser().getFirstName() + "'s Homepage";
+        String title2 = "Admin Homepage";
+        tabbedPane.add("user", new UserTab(this, title, new Dimension(WIDTH, HEIGHT), database));
+        tabbedPane.add("admin", new UserTab(this, title2, new Dimension(WIDTH, HEIGHT), database));
+        tabbedPane.add("user", new UserTab(this, title, new Dimension(WIDTH, HEIGHT), database));
+    }
+
+    //EFFECTS: returns tabbedPane of this UI
+    public JTabbedPane getTabbedPane() {
+        return tabbedPane;
     }
 }
