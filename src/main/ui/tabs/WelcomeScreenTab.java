@@ -2,7 +2,7 @@ package ui.tabs;
 
 import database.Database;
 import ui.screens.SmallAppWindow;
-import ui.screens.big.ScreenForUser;
+//import ui.screens.big.ScreenForUser;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,7 +52,7 @@ public class WelcomeScreenTab extends SmallTab {
 //        guestLogin.setBounds(WIDTH / 4, marginTop + 5 * GAP_IN_BETWEEN + 4 * HEIGHT / 10, WIDTH / 2, BUTTON_HEIGHT);
         setupButton(guestLogin);
         guestLogin.addActionListener(e -> {
-            new ScreenForUser("Guest HomePage", database);
+            //new ScreenForUser("Guest HomePage", database);
         });
         add(guestLogin);
     }

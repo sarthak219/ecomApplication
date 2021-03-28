@@ -10,7 +10,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public abstract class BigTab extends JPanel {
-    public static final int OPTIONS_HEIGHT = 60;
+    public static final int OPTIONS_HEIGHT = 65;
     protected BigAppWindow controller;
     protected Border border;
     protected Dimension dimension;
@@ -28,11 +28,13 @@ public abstract class BigTab extends JPanel {
         this.controller = controller;
         this.database = database;
         initialisePanel();
-        initialiseWorkspaceTabbedPane();
         initialiseTitlePanel();
+        initialiseWorkspaceTabbedPane();
         initialiseMenuPanel();
         initialiseSearchBar();
         initialiseSearchButton();
+        validate();
+        repaint();
     }
 
     public void initialisePanel() {
@@ -111,8 +113,8 @@ public abstract class BigTab extends JPanel {
     public void initialiseWorkspaceTabbedPane() {
         workspaceTabbedPane = new JTabbedPane();
 //        workspaceTabbedPane.setBounds(0, 0, WIDTH, HEIGHT); //TODO:set y to -30
-        int tenthOfHeight = dimension.height / 10;
-        workspaceTabbedPane.setBounds(dimension.width / 5, tenthOfHeight, 4 * dimension.width / 5, 9 * tenthOfHeight);
+        int height = dimension.height / 10;
+        workspaceTabbedPane.setBounds(dimension.width / 5, height - 30, 4 * dimension.width / 5 - 10, 9 * height);
         workspaceTabbedPane.setBackground(Color.white);
         workspaceTabbedPane.setForeground(Color.BLACK);
         addElementsToWorkspaceTabbedPane();
@@ -120,13 +122,18 @@ public abstract class BigTab extends JPanel {
     }
 
     public void addElementsToWorkspaceTabbedPane() {
-        JScrollPane showProducts = new JScrollPane(new ShowProductsTab(dimension, database), 22, 32);
-        showProducts.getVerticalScrollBar().setUnitIncrement(10);
+        JScrollPane showProducts = new JScrollPane(new ShowProductsTab(dimension, database), 22, 30);
+        setupScrollPane(showProducts);
         workspaceTabbedPane.add("Products", showProducts);
     }
 
+    private void setupScrollPane(JScrollPane scrollPane) {
+        scrollPane.getVerticalScrollBar().setUnitIncrement(10);
+        scrollPane.setBorder(null);
+        scrollPane.setPreferredSize(new Dimension(dimension.width - 10, dimension.height));
+    }
+
     public void setupButton(JButton button) {
-        //button.setBounds(-1, OPTIONS_HEIGHT * i - i, dimension.width / 5 + 2, OPTIONS_HEIGHT);
         button.setMaximumSize(new Dimension(dimension.width / 5 + 4, OPTIONS_HEIGHT));
         button.setBorder(border);
         button.setAlignmentX(Component.CENTER_ALIGNMENT);

@@ -30,7 +30,7 @@ public class BigAppWindow extends JFrame {
     }
 
     public void initialiseGraphics() {
-        setSize(WIDTH, HEIGHT);
+        setSize(WIDTH - 20, HEIGHT - 15);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(null);
         getContentPane().setBackground(new Color(23, 23, 23));
@@ -40,7 +40,7 @@ public class BigAppWindow extends JFrame {
 
     public void initialiseTabbedPane() {
         tabbedPane = new JTabbedPane();
-        tabbedPane.setBounds(0, 0, WIDTH, HEIGHT); //TODO:set y to -30
+        tabbedPane.setBounds(-10, -33, WIDTH, HEIGHT); //TODO:set y to -33
         tabbedPane.setBackground(Color.white);
         tabbedPane.setForeground(Color.BLACK);
         addElementsToTabbedPane();
