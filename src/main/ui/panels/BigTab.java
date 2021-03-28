@@ -6,8 +6,10 @@ import ui.BigAppWindow;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.util.ArrayList;
 
 public abstract class BigTab extends JPanel {
+    public static final int OPTIONS_HEIGHT = 60;
     protected BigAppWindow controller;
     protected Border border;
     protected Dimension dimension;
@@ -15,6 +17,7 @@ public abstract class BigTab extends JPanel {
     protected JPanel menuPanel;
     protected JPanel titlePanel;
     protected JTextField searchBar;
+    protected ArrayList<JButton> buttons;
 
     //REQUIRES: BigAppWindow controller that holds this tab
     public BigTab(BigAppWindow controller, Dimension dimension) {
@@ -48,7 +51,7 @@ public abstract class BigTab extends JPanel {
         menuPanel = new JPanel();
         menuPanel.setBackground(new Color(40, 40, 40));
         //menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
-        menuPanel.setLayout(null);
+        menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
         int height = dimension.height - dimension.height / 10;
         menuPanel.setBounds(0, dimension.height / 10, dimension.width / 5, height);
         menuPanel.setVisible(true);
@@ -89,5 +92,25 @@ public abstract class BigTab extends JPanel {
         searchButton.setOpaque(true);
         searchButton.setFont(new Font("Helvetica", Font.PLAIN, dimension.height / 50));
         titlePanel.add(searchButton);
+    }
+
+    public void displayOptionsInMenuPanel(String[] buttons) {
+        this.buttons = new ArrayList<>();
+        for (String s : buttons) {
+            JButton button = new JButton(s);
+            setupButton(button);
+            this.buttons.add(button);
+            menuPanel.add(button);
+        }
+    }
+
+    public void setupButton(JButton button) {
+        //button.setBounds(-1, OPTIONS_HEIGHT * i - i, dimension.width / 5 + 2, OPTIONS_HEIGHT);
+        button.setMaximumSize(new Dimension(dimension.width / 5 + 4, OPTIONS_HEIGHT));
+        button.setBorder(border);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setHorizontalAlignment(JButton.CENTER);
+        button.setForeground(Color.WHITE);
+        button.setFont(new Font("Helvetica", Font.PLAIN, OPTIONS_HEIGHT / 5));
     }
 }

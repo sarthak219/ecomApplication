@@ -1,6 +1,7 @@
 package ui;
 
 import database.Database;
+import ui.panels.AdminTab;
 import ui.panels.UserTab;
 
 import javax.swing.*;
@@ -46,10 +47,8 @@ public class BigAppWindow extends JFrame {
     }
 
     public void addElementsToTabbedPane() {
-//        String title = database.getCurrentUser().getFirstName() + "'s Homepage";
-//        String title2 = "Admin Homepage";
         tabbedPane.add("user", new UserTab(this, title, new Dimension(WIDTH, HEIGHT), database));
-        tabbedPane.add("admin", new UserTab(this, title, new Dimension(WIDTH, HEIGHT), database));
+        tabbedPane.add("admin", new AdminTab(this, title, new Dimension(WIDTH, HEIGHT), database));
         tabbedPane.add("user", new UserTab(this, title, new Dimension(WIDTH, HEIGHT), database));
     }
 
