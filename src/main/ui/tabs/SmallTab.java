@@ -1,7 +1,7 @@
-package ui.panels;
+package ui.tabs;
 
 import database.Database;
-import ui.SmallAppWindow;
+import ui.screens.SmallAppWindow;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -21,6 +21,7 @@ public abstract class SmallTab extends JPanel {
         this.controller = controller;
     }
 
+    //EFFECTS: initialises a small tab
     public void initialisePanel(String title) {
         setSize(dimension);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

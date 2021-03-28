@@ -1,10 +1,9 @@
-package ui.panels;
+package ui.tabs;
 
 import database.Database;
 import model.User;
-import ui.BigAppWindow;
-import ui.SmallAppWindow;
-import ui.screens.big.ScreenForAdmin;
+import ui.screens.BigAppWindow;
+import ui.screens.SmallAppWindow;
 
 import javax.swing.*;
 import java.awt.*;

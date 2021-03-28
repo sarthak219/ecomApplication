@@ -1,8 +1,8 @@
-package ui;
+package ui.screens;
 
 import database.Database;
-import ui.panels.LoginScreenTab;
-import ui.panels.WelcomeScreenTab;
+import ui.tabs.LoginScreenTab;
+import ui.tabs.WelcomeScreenTab;
 
 import javax.swing.*;
 import javax.swing.border.Border;

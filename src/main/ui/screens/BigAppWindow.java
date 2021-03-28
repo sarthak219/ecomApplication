@@ -1,8 +1,8 @@
-package ui;
+package ui.screens;
 
 import database.Database;
-import ui.panels.AdminTab;
-import ui.panels.UserTab;
+import ui.tabs.AdminTab;
+import ui.tabs.UserTab;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -14,6 +14,7 @@ public class BigAppWindow extends JFrame {
     public static final int WIDTH = (int) (1440 * SCALE);
     public static final int HEIGHT = (int) (900 * SCALE);
     protected JTabbedPane tabbedPane;
+    protected JTabbedPane workspaceTabbedPane;
     protected Border border;
     protected Database database;
     protected String title;
@@ -52,8 +53,14 @@ public class BigAppWindow extends JFrame {
         tabbedPane.add("user", new UserTab(this, title, new Dimension(WIDTH, HEIGHT), database));
     }
 
+
     //EFFECTS: returns tabbedPane of this UI
     public JTabbedPane getTabbedPane() {
         return tabbedPane;
+    }
+
+    //EFFECTS: returns workspaceTabbedPane of this UI
+    public JTabbedPane getWorkspaceTabbedPane() {
+        return workspaceTabbedPane;
     }
 }

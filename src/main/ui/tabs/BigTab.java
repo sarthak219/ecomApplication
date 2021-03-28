@@ -1,7 +1,8 @@
-package ui.panels;
+package ui.tabs;
 
 import database.Database;
-import ui.BigAppWindow;
+import ui.screens.BigAppWindow;
+import ui.tabs.options.ShowProductsTab;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -18,13 +19,16 @@ public abstract class BigTab extends JPanel {
     protected JPanel titlePanel;
     protected JTextField searchBar;
     protected ArrayList<JButton> buttons;
+    private JTabbedPane workspaceTabbedPane;
 
     //REQUIRES: BigAppWindow controller that holds this tab
-    public BigTab(BigAppWindow controller, Dimension dimension) {
+    public BigTab(BigAppWindow controller, Dimension dimension, Database database) {
         this.border = BorderFactory.createLineBorder(Color.BLACK);
         this.dimension = dimension;
         this.controller = controller;
+        this.database = database;
         initialisePanel();
+        initialiseWorkspaceTabbedPane();
         initialiseTitlePanel();
         initialiseMenuPanel();
         initialiseSearchBar();
@@ -102,6 +106,23 @@ public abstract class BigTab extends JPanel {
             this.buttons.add(button);
             menuPanel.add(button);
         }
+    }
+
+    public void initialiseWorkspaceTabbedPane() {
+        workspaceTabbedPane = new JTabbedPane();
+//        workspaceTabbedPane.setBounds(0, 0, WIDTH, HEIGHT); //TODO:set y to -30
+        int tenthOfHeight = dimension.height / 10;
+        workspaceTabbedPane.setBounds(dimension.width / 5, tenthOfHeight, 4 * dimension.width / 5, 9 * tenthOfHeight);
+        workspaceTabbedPane.setBackground(Color.white);
+        workspaceTabbedPane.setForeground(Color.BLACK);
+        addElementsToWorkspaceTabbedPane();
+        add(workspaceTabbedPane);
+    }
+
+    public void addElementsToWorkspaceTabbedPane() {
+        JScrollPane showProducts = new JScrollPane(new ShowProductsTab(dimension, database), 22, 32);
+        showProducts.getVerticalScrollBar().setUnitIncrement(10);
+        workspaceTabbedPane.add("Products", showProducts);
     }
 
     public void setupButton(JButton button) {

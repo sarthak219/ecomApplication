@@ -1,7 +1,7 @@
-package ui.panels;
+package ui.tabs;
 
 import database.Database;
-import ui.SmallAppWindow;
+import ui.screens.SmallAppWindow;
 import ui.screens.big.ScreenForUser;
 
 import javax.swing.*;
