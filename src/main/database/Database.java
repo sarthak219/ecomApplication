@@ -22,12 +22,12 @@ public class Database {
     protected AllUsers users;
     protected Collection allProducts;
     protected Display display;
-    protected String[] userOptions = {"Show Products",
-            "Search Products", "View Wishlist",
+    protected String[] userOptions = {"Show Products", "View Wishlist",
             "View Cart", "You Orders", "Log Out"};
 
     protected String[] adminOptions = {"Show Users",
             "Show Products", "Add Products", "Log Out"};
+    
     protected JsonWriterForAllUsers jsonWriterForAllUsers;
     protected JsonReaderForAllUsers jsonReaderForAllUsers;
     protected JsonWriterForCollection jsonWriterForCollection;
@@ -74,18 +74,6 @@ public class Database {
 
     public Collection getAllProducts() {
         return allProducts;
-    }
-
-    public void setAllProducts(Collection allProducts) {
-        this.allProducts = allProducts;
-    }
-
-    public Display getDisplay() {
-        return display;
-    }
-
-    public void setDisplay(Display display) {
-        this.display = display;
     }
 
     public String[] getUserOptions() {
@@ -145,14 +133,14 @@ public class Database {
     }
 
     //EFFECTS: loads items and users from their respective source files
-    protected void updateDatabases() {
+    public void updateDatabases() {
         loadItems();
         loadUsers();
     }
 
     //MODIFIES: this
     //EFFECTS: saves items and users to their respective files
-    protected void saveEverything() {
+    public void saveEverything() {
         saveUsers();
         saveItems();
     }

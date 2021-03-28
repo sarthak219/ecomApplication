@@ -16,6 +16,7 @@ public class User implements Writable {
     private String mobileNumber;
     private int age;
     private String gender;
+    private boolean isAdmin;
     private ArrayList<Item> wishlist;
     private ArrayList<Item> cart;
     private ArrayList<Item> orderHistory;
@@ -173,6 +174,14 @@ public class User implements Writable {
     //EFFECTS: returns order history
     public ArrayList<Item> getOrderHistory() {
         return this.orderHistory;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean admin) {
+        isAdmin = admin;
     }
 
     //EFFECTS: shows the user's credentials in a row separated by "|"

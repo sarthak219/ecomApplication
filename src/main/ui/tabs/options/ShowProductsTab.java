@@ -1,7 +1,6 @@
 package ui.tabs.options;
 
 import database.Database;
-import ui.Card;
 import ui.ProductCard;
 
 import javax.swing.*;
@@ -18,7 +17,6 @@ public class ShowProductsTab extends OptionTab {
     public void displayAllProducts(Database database) {
         for (int i = 0; i < database.getAllProducts().size(); ++i) {
             productCard = new ProductCard(dimension, database.getAllProducts().getAllProducts().get(i), database);
-            //roductCard.setLabelName("" + (i + 1) + " " + database.getAllProducts().getAllProducts().get(i).getName());
             add(Box.createRigidArea(new Dimension(0, 20)));
             add(productCard);
         }

@@ -33,7 +33,7 @@ public class SmallAppWindow extends JFrame {
         setLayout(null);
         getContentPane().setBackground(new Color(23, 23, 23));
         setLocationRelativeTo(null);
-        setResizable(true);
+        setResizable(false);
     }
 
     public void initialiseTabbedPane() {

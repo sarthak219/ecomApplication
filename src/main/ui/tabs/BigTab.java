@@ -2,7 +2,9 @@ package ui.tabs;
 
 import database.Database;
 import ui.screens.BigAppWindow;
+import ui.tabs.options.ShowCartTab;
 import ui.tabs.options.ShowProductsTab;
+import ui.tabs.options.ShowWishlistTab;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -116,7 +118,7 @@ public abstract class BigTab extends JPanel {
         workspaceTabbedPane = new JTabbedPane();
 //        workspaceTabbedPane.setBounds(0, 0, WIDTH, HEIGHT); //TODO:set y to -30
         int height = dimension.height / 10;
-        workspaceTabbedPane.setBounds(dimension.width / 5, height - 30, 4 * dimension.width / 5 - 10, 9 * height);
+        workspaceTabbedPane.setBounds(dimension.width / 5, height, 4 * dimension.width / 5 - 10, 9 * height);
         workspaceTabbedPane.setBackground(Color.white);
         workspaceTabbedPane.setForeground(Color.BLACK);
         addElementsToWorkspaceTabbedPane();
@@ -127,6 +129,12 @@ public abstract class BigTab extends JPanel {
         JScrollPane showProducts = new JScrollPane(new ShowProductsTab(dimension, database), 22, 30);
         setupScrollPane(showProducts);
         workspaceTabbedPane.add("Products", showProducts);
+        JScrollPane showWishlist = new JScrollPane(new ShowWishlistTab(dimension, database), 22, 30);
+        setupScrollPane(showWishlist);
+        workspaceTabbedPane.add("wishlist", showWishlist);
+        JScrollPane showCart = new JScrollPane(new ShowCartTab(dimension, database), 22, 30);
+        setupScrollPane(showCart);
+        workspaceTabbedPane.add("Cart", showCart);
     }
 
     private void setupScrollPane(JScrollPane scrollPane) {

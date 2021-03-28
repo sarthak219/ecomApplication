@@ -2,6 +2,7 @@ package ui;
 
 import database.Database;
 import model.Item;
+import ui.screens.DialogueBox;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,6 +24,7 @@ public class ProductCard extends Card {
 
         this.addActionListener(e -> {
             //JOptionPane.showConfirmDialog(this, "Do you wish to continue?", "Yes", 0, 3);
+            new DialogueBox(item, database, "user");
         });
     }
 
