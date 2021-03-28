@@ -36,12 +36,10 @@ public class LoginScreenTab extends SmallTab {
             }
         });
 
-
         back.addActionListener(e -> {
             reset();
             getController().getTabbedPane().setSelectedIndex(0);
         });
-
     }
 
     private void setupStatus() {

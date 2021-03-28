@@ -14,10 +14,6 @@ import java.awt.*;
 public class SmallAppWindow extends JFrame {
     public static final int WIDTH = 500;
     public static final int HEIGHT = 500;
-    //    public static final int BUTTON_HEIGHT = 50;
-//    public static final int GAP_IN_BETWEEN = HEIGHT / 20;
-//    public static final int TITLE_HEIGHT = HEIGHT / 10;
-//    protected int marginTop = 30;
     protected Border border;
     protected JTabbedPane tabbedPane;
     protected Database database;
@@ -49,6 +45,7 @@ public class SmallAppWindow extends JFrame {
         add(tabbedPane);
     }
 
+    //EFFECTS: adds tabs to tabbedPane
     public void addElementsToTabbedPane() {
         tabbedPane.add("WelcomeScreen", new WelcomeScreenTab(this, "Welcome!", new Dimension(WIDTH, HEIGHT), database));
         tabbedPane.add("AdminLogin", new LoginScreenTab(this, "Admin Login", new Dimension(WIDTH, HEIGHT), database));

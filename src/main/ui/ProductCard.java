@@ -1,5 +1,6 @@
 package ui;
 
+import database.Database;
 import model.Item;
 
 import javax.swing.*;
@@ -12,12 +13,19 @@ import java.util.Locale;
 public class ProductCard extends Card {
     public static final String SPACE = "  ";
     private final Item item;
+    private Database database;
 
-    public ProductCard(Dimension dimension, Item item) {
+    public ProductCard(Dimension dimension, Item item, Database database) {
         super(dimension);
         this.item = item;
+        this.database = database;
         setupLabels();
+
+        this.addActionListener(e -> {
+            //JOptionPane.showConfirmDialog(this, "Do you wish to continue?", "Yes", 0, 3);
+        });
     }
+
 
     //EFFECTS: sets up different labels, each with a particular field of the given Item
     public void setupLabels() {
@@ -95,20 +103,21 @@ public class ProductCard extends Card {
 
     // EFFECTS: adds the colour JLabel to this card
     public void setupInStock() {
-        JLabel inStock;
-        if (item.getInStock()) {
-            inStock = new JLabel(SPACE);
-        } else {
-            inStock = new JLabel(SPACE + "Currently out of stock");
-        }
+        JLabel inStock = new JLabel();
         setupLabel(inStock);
-        inStock.setForeground(new Color(241, 14, 14));
+        if (item.getInStock()) {
+            inStock.setText(SPACE + "In stock");
+            inStock.setForeground(new Color(70, 255, 0));
+        } else {
+            inStock.setText(SPACE + "Currently out of stock");
+            inStock.setForeground(new Color(241, 14, 14));
+        }
         add(inStock);
     }
 
 
     //EFFECTS: formats the JLabel according to Card theme
-    public void setupLabel(JComponent label) {
+    public void setupLabel(JLabel label) {
         label.setForeground(new Color(231, 231, 231));
         label.setFont(new Font("Helvetica", Font.PLAIN, 16));
         label.setAlignmentX(Component.LEFT_ALIGNMENT);
