@@ -91,7 +91,7 @@ public class LoginScreenTab extends SmallTab {
         String name = username.getText();
         String pass = String.valueOf(passwordField.getPassword());
         if (database.getAdmin().adminAuthentication(name, pass)) {
-//            new ScreenForAdmin("Admin Home Page", database);
+            getController().dispose();
             new BigAppWindow("Admin Homepage", database).getTabbedPane().setSelectedIndex(1);
         } else {
             status.setText("Incorrect username or password!");
@@ -105,7 +105,7 @@ public class LoginScreenTab extends SmallTab {
             for (User user : database.getUsers().getAllUsers()) {
                 if (user.getUsername().equals(name) && user.getPassword().equals(pass)) {
                     database.setCurrentUser(user);
-//                    new ScreenForUser(database.getCurrentUser().getFirstName() + "'s Homepage", database);
+                    getController().dispose();
                     String title = database.getCurrentUser().getFirstName() + "'s Homepage";
                     new BigAppWindow(title, database).getTabbedPane().setSelectedIndex(0);
                 }

@@ -9,6 +9,9 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * represents an abstract tab for tabbedPane in BigAppWindow
+ */
 public abstract class BigTab extends JPanel {
     public static final int OPTIONS_HEIGHT = 65;
     protected BigAppWindow controller;
@@ -41,7 +44,6 @@ public abstract class BigTab extends JPanel {
         setSize(dimension);
         setLayout(null);
         setBackground(new Color(23, 23, 23));
-        //setupTitle(title);
     }
 
     public void initialiseTitlePanel() {

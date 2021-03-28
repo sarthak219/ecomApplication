@@ -17,8 +17,8 @@ public class ShowProductsTab extends OptionTab {
 
     public void displayAllProducts(Database database) {
         for (int i = 0; i < database.getAllProducts().size(); ++i) {
-            productCard = new ProductCard(dimension);
-            productCard.setLabelName("" + (i + 1) + " " + database.getAllProducts().getAllProducts().get(i).getName());
+            productCard = new ProductCard(dimension, database.getAllProducts().getAllProducts().get(i));
+            //roductCard.setLabelName("" + (i + 1) + " " + database.getAllProducts().getAllProducts().get(i).getName());
             add(Box.createRigidArea(new Dimension(Card.WIDTH, GAP)));
             add(productCard);
         }

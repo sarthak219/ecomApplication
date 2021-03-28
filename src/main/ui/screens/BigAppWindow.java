@@ -50,7 +50,6 @@ public class BigAppWindow extends JFrame {
     public void addElementsToTabbedPane() {
         tabbedPane.add("user", new UserTab(this, title, new Dimension(WIDTH, HEIGHT), database));
         tabbedPane.add("admin", new AdminTab(this, title, new Dimension(WIDTH, HEIGHT), database));
-        tabbedPane.add("user", new UserTab(this, title, new Dimension(WIDTH, HEIGHT), database));
     }
 
 

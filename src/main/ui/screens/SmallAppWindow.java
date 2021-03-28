@@ -53,7 +53,6 @@ public class SmallAppWindow extends JFrame {
         tabbedPane.add("WelcomeScreen", new WelcomeScreenTab(this, "Welcome!", new Dimension(WIDTH, HEIGHT), database));
         tabbedPane.add("AdminLogin", new LoginScreenTab(this, "Admin Login", new Dimension(WIDTH, HEIGHT), database));
         tabbedPane.add("UserLogin", new LoginScreenTab(this, "User Login", new Dimension(WIDTH, HEIGHT), database));
-//        tabbedPane.add("WelcomeScreen3", new WelcomeScreenTab(this, "Screen 3", new Dimension(WIDTH, HEIGHT)));
     }
 
 
