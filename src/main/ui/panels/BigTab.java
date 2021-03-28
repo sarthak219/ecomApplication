@@ -16,7 +16,7 @@ public abstract class BigTab extends JPanel {
     protected JPanel titlePanel;
     protected JTextField searchBar;
 
-    //REQUIRES: SmallAppWindow controller that holds this tab
+    //REQUIRES: BigAppWindow controller that holds this tab
     public BigTab(BigAppWindow controller, Dimension dimension) {
         this.border = BorderFactory.createLineBorder(Color.BLACK);
         this.dimension = dimension;

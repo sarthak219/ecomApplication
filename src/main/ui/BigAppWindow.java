@@ -15,9 +15,11 @@ public class BigAppWindow extends JFrame {
     protected JTabbedPane tabbedPane;
     protected Border border;
     protected Database database;
+    protected String title;
 
     public BigAppWindow(String title, Database database) {
         this.database = database;
+        this.title = title;
         initialiseGraphics();
         border = BorderFactory.createLineBorder(Color.BLACK);
         initialiseTabbedPane();
@@ -44,10 +46,10 @@ public class BigAppWindow extends JFrame {
     }
 
     public void addElementsToTabbedPane() {
-        String title = database.getCurrentUser().getFirstName() + "'s Homepage";
-        String title2 = "Admin Homepage";
+//        String title = database.getCurrentUser().getFirstName() + "'s Homepage";
+//        String title2 = "Admin Homepage";
         tabbedPane.add("user", new UserTab(this, title, new Dimension(WIDTH, HEIGHT), database));
-        tabbedPane.add("admin", new UserTab(this, title2, new Dimension(WIDTH, HEIGHT), database));
+        tabbedPane.add("admin", new UserTab(this, title, new Dimension(WIDTH, HEIGHT), database));
         tabbedPane.add("user", new UserTab(this, title, new Dimension(WIDTH, HEIGHT), database));
     }
 
