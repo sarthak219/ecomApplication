@@ -56,6 +56,7 @@ public abstract class BigTab extends JPanel {
         setSize(dimension);
         setLayout(null);
         setBackground(new Color(23, 23, 23));
+
     }
 
     public void initialiseTitlePanel() {

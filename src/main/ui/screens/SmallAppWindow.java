@@ -17,12 +17,22 @@ public class SmallAppWindow extends JFrame {
     protected Border border;
     protected JTabbedPane tabbedPane;
     protected Database database;
+    protected JLabel background;
 
     public SmallAppWindow(Database database) {
         this.database = database;
         initialiseGraphics();
         border = BorderFactory.createLineBorder(Color.BLACK);
+        ImageIcon icon = new ImageIcon("./data/images/background.jpg");
+        Image img = icon.getImage();
+        Image tempImage = img.getScaledInstance(7 * WIDTH / 4, HEIGHT, Image.SCALE_SMOOTH);
+        icon = new ImageIcon(tempImage);
+        background = new JLabel("", icon, JLabel.CENTER);
+        background.setBounds(0, 0, WIDTH, HEIGHT);
+        add(background);
         initialiseTabbedPane();
+        validate();
+        repaint();
         setVisible(true);
     }
 
@@ -42,7 +52,7 @@ public class SmallAppWindow extends JFrame {
         tabbedPane.setBackground(Color.white);
         tabbedPane.setForeground(Color.BLACK);
         addElementsToTabbedPane();
-        add(tabbedPane);
+        background.add(tabbedPane);
     }
 
     //EFFECTS: adds tabs to tabbedPane

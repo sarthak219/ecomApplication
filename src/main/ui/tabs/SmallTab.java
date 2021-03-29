@@ -23,6 +23,7 @@ public abstract class SmallTab extends JPanel {
         this.border = BorderFactory.createLineBorder(Color.BLACK);
         this.dimension = dimension;
         this.controller = controller;
+
     }
 
     //EFFECTS: initialises a small tab
@@ -31,6 +32,7 @@ public abstract class SmallTab extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(new Color(23, 23, 23));
         setupTitle(title);
+        setOpaque(false);
     }
 
     //EFFECTS: adds the title to the Screen

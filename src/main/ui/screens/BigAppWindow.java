@@ -44,6 +44,7 @@ public class BigAppWindow extends JFrame {
         tabbedPane.setBackground(Color.white);
         tabbedPane.setForeground(Color.BLACK);
         addElementsToTabbedPane();
+        tabbedPane.setOpaque(false);
         add(tabbedPane);
     }
 
