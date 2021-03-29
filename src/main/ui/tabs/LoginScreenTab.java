@@ -23,8 +23,8 @@ public class LoginScreenTab extends SmallTab {
         this.database = database;
         initialisePanel(title);
         getUsernameSetup();
-        getPasswordSetup();
         setupStatus();
+        getPasswordSetup();
         loginButtonSetup();
         backButtonSetup();
 

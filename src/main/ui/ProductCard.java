@@ -16,7 +16,7 @@ public class ProductCard extends Card {
     private final Item item;
     private Database database;
 
-    public ProductCard(Dimension dimension, Item item, Database database) {
+    public ProductCard(Dimension dimension, Item item, Database database, String loggedInPerson) {
         super(dimension);
         this.item = item;
         this.database = database;
@@ -24,7 +24,7 @@ public class ProductCard extends Card {
 
         this.addActionListener(e -> {
             //JOptionPane.showConfirmDialog(this, "Do you wish to continue?", "Yes", 0, 3);
-            new DialogueBox(item, database, "user");
+            new DialogueBox(item, database, loggedInPerson);
         });
     }
 

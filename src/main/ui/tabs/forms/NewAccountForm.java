@@ -246,7 +246,7 @@ public class NewAccountForm extends JPanel {
     public void setupTextField(JTextField textField) {
         add(Box.createRigidArea(new Dimension(dimension.width, GAP)));
         textField.setBorder(border);
-        textField.setBackground(new Color(255, 255, 255));
+        textField.setBackground(new Color(220, 220, 220));
         textField.setHorizontalAlignment(JButton.CENTER);
         textField.setOpaque(true);
         textField.setFont(new Font("Helvetica", Font.PLAIN, 16));

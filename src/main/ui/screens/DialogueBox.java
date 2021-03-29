@@ -131,7 +131,7 @@ public class DialogueBox extends JFrame {
         add(deleteButton);
     }
 
-    //EFFECTS: formats the given button accridng to theme
+    //EFFECTS: formats the given button according to theme
     public void setupButton(JButton button) {
         button.setBorder(border);
         button.setPreferredSize(new Dimension(150, 30));

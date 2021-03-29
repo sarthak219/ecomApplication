@@ -1,6 +1,6 @@
 package ui;
 
-import ui.screens.big.BigScreen;
+//import ui.screens.big.BigScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -11,8 +11,8 @@ import java.awt.*;
  */
 public abstract class Card extends JButton {
     public static final float SCALE = (float) (0.6);
-    public static final int WIDTH = (int) (BigScreen.WORKSPACE_PANEL_WIDTH * SCALE);
-    public static final int HEIGHT = (int) (BigScreen.WORKSPACE_PANEL_HEIGHT * BigScreen.SCALE / 3);
+    //public static final int WIDTH = (int) (BigScreen.WORKSPACE_PANEL_WIDTH * SCALE);
+    //public static final int HEIGHT = (int) (BigScreen.WORKSPACE_PANEL_HEIGHT * BigScreen.SCALE / 3);
     protected Border border;
     protected Dimension dimension;
 

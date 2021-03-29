@@ -16,7 +16,7 @@ public class ShowCartTab extends OptionTab {
 
     public void displayCart(Database database) {
         for (int i = 0; i < database.getCurrentUser().getCart().size(); ++i) {
-            productCard = new ProductCard(dimension, database.getCurrentUser().getCart().get(i), database);
+            productCard = new ProductCard(dimension, database.getCurrentUser().getCart().get(i), database, "user");
             add(Box.createRigidArea(new Dimension(0, 20)));
             add(productCard);
         }

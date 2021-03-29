@@ -108,5 +108,18 @@
         "age": 22,
         "cart": [],
         "username": "cpsc210"
+    },
+    {
+        "firstName": "suyash",
+        "lastName": "chauhan",
+        "password": "123",
+        "gender": "male",
+        "mobileNumber": "9876543210",
+        "wishlist": [],
+        "emailId": "abc@gmail.com",
+        "orderHistory": [],
+        "age": 15,
+        "cart": [],
+        "username": "suyash123"
     }
 ]}

@@ -6,7 +6,6 @@ import ui.screens.SmallAppWindow;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 
 public class UserTab extends BigTab {
 
@@ -19,11 +18,8 @@ public class UserTab extends BigTab {
 
     public void buttonFunctionality() {
         button1Action();
-
         button2Action();
-
         button3Action();
-
         button4Action();
         button5Action();
     }
@@ -70,7 +66,7 @@ public class UserTab extends BigTab {
         buttons.get(0).addActionListener(e -> {
             resetAllButtons();
             selectedButton(buttons.get(0));
-            showProductsTab.updatePanel();
+            showProductsTabForUser.updatePanel();
             workspaceTabbedPane.setSelectedIndex(0);
         });
     }

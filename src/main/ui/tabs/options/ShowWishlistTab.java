@@ -16,7 +16,7 @@ public class ShowWishlistTab extends OptionTab {
 
     public void displayWishlist(Database database) {
         for (int i = 0; i < database.getCurrentUser().getWishlist().size(); ++i) {
-            productCard = new ProductCard(dimension, database.getCurrentUser().getWishlist().get(i), database);
+            productCard = new ProductCard(dimension, database.getCurrentUser().getWishlist().get(i), database, "user");
             add(Box.createRigidArea(new Dimension(0, 20)));
             add(productCard);
         }

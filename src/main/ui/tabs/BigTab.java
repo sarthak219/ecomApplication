@@ -2,15 +2,11 @@ package ui.tabs;
 
 import database.Database;
 import ui.screens.BigAppWindow;
-import ui.tabs.options.ShowCartTab;
-import ui.tabs.options.ShowOrderHistoryTab;
-import ui.tabs.options.ShowProductsTab;
-import ui.tabs.options.ShowWishlistTab;
+import ui.tabs.options.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 /**
@@ -28,9 +24,11 @@ public abstract class BigTab extends JPanel {
     protected ArrayList<JButton> buttons;
     protected JTabbedPane workspaceTabbedPane;
     protected ShowWishlistTab showWishlistTab;
-    protected ShowProductsTab showProductsTab;
+    protected ShowProductsTab showProductsTabForUser;
+    protected ShowProductsTab showProductsTabForAdmin;
     protected ShowCartTab showCartTab;
     protected ShowOrderHistoryTab showOrderHistoryTab;
+    protected ShowUsersTab showUsersTab;
 
     //REQUIRES: BigAppWindow controller that holds this tab
     public BigTab(BigAppWindow controller, Dimension dimension, Database database) {
@@ -38,10 +36,12 @@ public abstract class BigTab extends JPanel {
         this.dimension = dimension;
         this.controller = controller;
         this.database = database;
-        showWishlistTab = new ShowWishlistTab(dimension, database);
-        showProductsTab = new ShowProductsTab(dimension, database);
-        showCartTab = new ShowCartTab(dimension, database);
-        showOrderHistoryTab = new ShowOrderHistoryTab(dimension, database);
+        this.showWishlistTab = new ShowWishlistTab(dimension, database);
+        this.showProductsTabForUser = new ShowProductsTab(dimension, database, "user");
+        this.showProductsTabForAdmin = new ShowProductsTab(dimension, database, "admin");
+        this.showCartTab = new ShowCartTab(dimension, database);
+        this.showOrderHistoryTab = new ShowOrderHistoryTab(dimension, database);
+        this.showUsersTab = new ShowUsersTab(dimension, database);
         initialisePanel();
         initialiseTitlePanel();
         initialiseWorkspaceTabbedPane();
@@ -115,6 +115,8 @@ public abstract class BigTab extends JPanel {
         titlePanel.add(searchButton);
     }
 
+    //MODIFIES: this
+    //EFFECTS: makes a button with every string in the given list of string and adds it to buttons.
     public void displayOptionsInMenuPanel(String[] buttons) {
         this.buttons = new ArrayList<>();
         for (String s : buttons) {
@@ -128,7 +130,6 @@ public abstract class BigTab extends JPanel {
 
     public void initialiseWorkspaceTabbedPane() {
         workspaceTabbedPane = new JTabbedPane();
-//        workspaceTabbedPane.setBounds(0, 0, WIDTH, HEIGHT); //TODO:set y to -30
         int height = dimension.height / 10;
         workspaceTabbedPane.setBounds(dimension.width / 5, height - 30, 4 * dimension.width / 5 - 10, 9 * height);
         workspaceTabbedPane.setBackground(Color.white);
@@ -138,9 +139,9 @@ public abstract class BigTab extends JPanel {
     }
 
     public void addElementsToWorkspaceTabbedPane() {
-        JScrollPane showProducts = new JScrollPane(showProductsTab, 22, 30);
-        setupScrollPane(showProducts);
-        workspaceTabbedPane.add("Products", showProducts);
+        JScrollPane showProductsForUser = new JScrollPane(showProductsTabForUser, 22, 30);
+        setupScrollPane(showProductsForUser);
+        workspaceTabbedPane.add("Products(user)", showProductsForUser);
         JScrollPane showWishlist = new JScrollPane(showWishlistTab, 22, 30);
         setupScrollPane(showWishlist);
         workspaceTabbedPane.add("Wishlist", showWishlist);
@@ -150,6 +151,12 @@ public abstract class BigTab extends JPanel {
         JScrollPane showHistory = new JScrollPane(showOrderHistoryTab, 22, 30);
         setupScrollPane(showHistory);
         workspaceTabbedPane.add("Order History", showHistory);
+        JScrollPane showUsers = new JScrollPane(showUsersTab, 22, 30);
+        setupScrollPane(showUsers);
+        workspaceTabbedPane.add("Users", showUsers);
+        JScrollPane showProductsForAdmin = new JScrollPane(showProductsTabForAdmin, 22, 30);
+        setupScrollPane(showProductsForAdmin);
+        workspaceTabbedPane.add("Products(Admin)", showProductsForAdmin);
     }
 
     private void setupScrollPane(JScrollPane scrollPane) {

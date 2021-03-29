@@ -4,7 +4,7 @@ import database.Database;
 import javax.swing.*;
 import java.awt.*;
 
-public class OptionTab extends JPanel {
+public abstract class OptionTab extends JPanel {
     public static final int GAP = 20;
     //    private SmallAppWindow controller;
     protected Dimension dimension;

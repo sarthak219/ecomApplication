@@ -41,7 +41,8 @@ public abstract class SmallTab extends JPanel {
         JLabel pageHeading = new JLabel(title);
         pageHeading.setAlignmentX(Component.CENTER_ALIGNMENT);
         pageHeading.setFont(new Font("Helvetica", Font.BOLD, 52));
-        pageHeading.setForeground(new Color(226, 226, 226));
+//        pageHeading.setForeground(new Color(226, 226, 226));
+        pageHeading.setForeground(Color.WHITE);
         this.add(pageHeading);
     }
 
