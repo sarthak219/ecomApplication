@@ -22,10 +22,10 @@ public class ShowCartTab extends OptionTab {
         }
     }
 
-    public void update() {
+    public void updatePanel() {
         removeAll();
         displayCart(database);
-        validate();
+        revalidate();
         repaint();
     }
 }

@@ -3,18 +3,20 @@ package ui.tabs;
 import database.Database;
 import ui.screens.BigAppWindow;
 import ui.tabs.options.ShowCartTab;
+import ui.tabs.options.ShowOrderHistoryTab;
 import ui.tabs.options.ShowProductsTab;
 import ui.tabs.options.ShowWishlistTab;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 /**
  * represents an abstract tab for tabbedPane in BigAppWindow
  */
-public abstract class BigTab extends JPanel {
+public abstract class BigTab extends JPanel implements MouseListener {
     public static final int OPTIONS_HEIGHT = 65;
     protected BigAppWindow controller;
     protected Border border;
@@ -24,7 +26,11 @@ public abstract class BigTab extends JPanel {
     protected JPanel titlePanel;
     protected JTextField searchBar;
     protected ArrayList<JButton> buttons;
-    private JTabbedPane workspaceTabbedPane;
+    protected JTabbedPane workspaceTabbedPane;
+    protected ShowWishlistTab showWishlistTab;
+    protected ShowProductsTab showProductsTab;
+    protected ShowCartTab showCartTab;
+    protected ShowOrderHistoryTab showOrderHistoryTab;
 
     //REQUIRES: BigAppWindow controller that holds this tab
     public BigTab(BigAppWindow controller, Dimension dimension, Database database) {
@@ -32,6 +38,10 @@ public abstract class BigTab extends JPanel {
         this.dimension = dimension;
         this.controller = controller;
         this.database = database;
+        showWishlistTab = new ShowWishlistTab(dimension, database);
+        showProductsTab = new ShowProductsTab(dimension, database);
+        showCartTab = new ShowCartTab(dimension, database);
+        showOrderHistoryTab = new ShowOrderHistoryTab(dimension, database);
         initialisePanel();
         initialiseTitlePanel();
         initialiseWorkspaceTabbedPane();
@@ -112,13 +122,14 @@ public abstract class BigTab extends JPanel {
             this.buttons.add(button);
             menuPanel.add(button);
         }
+        selectedButton(this.buttons.get(0));
     }
 
     public void initialiseWorkspaceTabbedPane() {
         workspaceTabbedPane = new JTabbedPane();
 //        workspaceTabbedPane.setBounds(0, 0, WIDTH, HEIGHT); //TODO:set y to -30
         int height = dimension.height / 10;
-        workspaceTabbedPane.setBounds(dimension.width / 5, height, 4 * dimension.width / 5 - 10, 9 * height);
+        workspaceTabbedPane.setBounds(dimension.width / 5, height - 30, 4 * dimension.width / 5 - 10, 9 * height);
         workspaceTabbedPane.setBackground(Color.white);
         workspaceTabbedPane.setForeground(Color.BLACK);
         addElementsToWorkspaceTabbedPane();
@@ -126,15 +137,18 @@ public abstract class BigTab extends JPanel {
     }
 
     public void addElementsToWorkspaceTabbedPane() {
-        JScrollPane showProducts = new JScrollPane(new ShowProductsTab(dimension, database), 22, 30);
+        JScrollPane showProducts = new JScrollPane(showProductsTab, 22, 30);
         setupScrollPane(showProducts);
         workspaceTabbedPane.add("Products", showProducts);
-        JScrollPane showWishlist = new JScrollPane(new ShowWishlistTab(dimension, database), 22, 30);
+        JScrollPane showWishlist = new JScrollPane(showWishlistTab, 22, 30);
         setupScrollPane(showWishlist);
-        workspaceTabbedPane.add("wishlist", showWishlist);
-        JScrollPane showCart = new JScrollPane(new ShowCartTab(dimension, database), 22, 30);
+        workspaceTabbedPane.add("Wishlist", showWishlist);
+        JScrollPane showCart = new JScrollPane(showCartTab, 22, 30);
         setupScrollPane(showCart);
         workspaceTabbedPane.add("Cart", showCart);
+        JScrollPane showHistory = new JScrollPane(showOrderHistoryTab, 22, 30);
+        setupScrollPane(showHistory);
+        workspaceTabbedPane.add("Order History", showHistory);
     }
 
     private void setupScrollPane(JScrollPane scrollPane) {
@@ -151,4 +165,12 @@ public abstract class BigTab extends JPanel {
         button.setForeground(Color.WHITE);
         button.setFont(new Font("Helvetica", Font.PLAIN, OPTIONS_HEIGHT / 5));
     }
+
+    public void selectedButton(JButton button) {
+        button.setBackground(Color.WHITE);
+        button.setForeground(Color.BLACK);
+        button.setOpaque(true);
+    }
+
+
 }

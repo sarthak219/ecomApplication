@@ -22,7 +22,7 @@ public class ShowWishlistTab extends OptionTab {
         }
     }
 
-    public void update() {
+    public void updatePanel() {
         removeAll();
         displayWishlist(database);
         validate();

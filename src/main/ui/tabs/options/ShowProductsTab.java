@@ -21,4 +21,11 @@ public class ShowProductsTab extends OptionTab {
             add(productCard);
         }
     }
+
+    public void updatePanel() {
+        removeAll();
+        displayAllProducts(database);
+        validate();
+        repaint();
+    }
 }

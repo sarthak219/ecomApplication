@@ -77,6 +77,7 @@ public class DialogueBox extends JFrame {
         for (Item item : database.getCurrentUser().getWishlist()) {
             if (item.getId() == id) {
                 database.getCurrentUser().removeItemsFromWishlist(item);
+                return;
             }
         }
     }
@@ -109,6 +110,7 @@ public class DialogueBox extends JFrame {
         for (Item item : database.getCurrentUser().getCart()) {
             if (item.getId() == id) {
                 database.getCurrentUser().removeItemsFromCart(item);
+                return;
             }
         }
     }

@@ -5,7 +5,18 @@
         "password": "123",
         "gender": "male",
         "mobileNumber": "9876543210",
-        "wishlist": [],
+        "wishlist": [{
+            "colour": "black",
+            "size": "XS",
+            "price": 199,
+            "name": "jacket",
+            "description": "stylish zippers",
+            "discount": 10,
+            "inStock": true,
+            "id": 1003,
+            "category": "kids",
+            "brand": "zara"
+        }],
         "emailId": "sarthak123",
         "orderHistory": [
             {
