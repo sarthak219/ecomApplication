@@ -19,6 +19,7 @@ public class NewAccountForm extends JPanel {
     private JTextField username;
     private JTextField emailId;
     private JPasswordField password;
+    private JPasswordField confirmPassword;
     private JTextField mobileNumber;
     private JTextField age;
     private JTextField gender;
@@ -64,6 +65,7 @@ public class NewAccountForm extends JPanel {
         setupEmailIdField();
         setupUserNameField();
         setupPasswordField();
+        setupConfirmPasswordField();
         setupMobileNumberField();
         setupAgeField();
         setupGenderField();
@@ -111,6 +113,16 @@ public class NewAccountForm extends JPanel {
         add(password);
     }
 
+    //EFFECTS: add text field and label to accept  password
+    public void setupConfirmPasswordField() {
+        JLabel enterName = new JLabel("Confirm Password");
+        confirmPassword = new JPasswordField();
+        setupLabel(enterName);
+        setupTextField(confirmPassword);
+        add(enterName);
+        add(confirmPassword);
+    }
+
     //EFFECTS: add text field and label to accept  email
     public void setupEmailIdField() {
         JLabel enterName = new JLabel("Enter  Email Id");
@@ -154,7 +166,7 @@ public class NewAccountForm extends JPanel {
 
     //EFFECTS: adds the okay Button
     private void setupOkayButton() {
-        JButton button = new JButton("Okay");
+        JButton button = new JButton("Create Account");
         setupButton(button);
         add(button);
 
@@ -162,25 +174,39 @@ public class NewAccountForm extends JPanel {
         button.addActionListener(e -> {
             int response = JOptionPane.showConfirmDialog(null, message, "Confirm", 0, 3);
             if (response == JOptionPane.YES_OPTION) {
-                if (isUniqueUsername()) {
+                if (isUniqueAndValidUsername() && passwordsMatch()) {
                     database.getUsers().insertUser(makeNewUser());
-                    database.updateDatabases();
+                    database.saveEverything();
                     JOptionPane.showMessageDialog(null, "Account successfully created! Changes Saved", "Success", 1);
                     controller.dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Username already exists", "Error", 0);
+                    if (!isUniqueAndValidUsername()) {
+                        JOptionPane.showMessageDialog(null, "Invalid Username!", "Error", 0);
+                    }
+                    if (!passwordsMatch()) {
+                        JOptionPane.showMessageDialog(null, "Passwords don't match!", "Error", 0);
+                    }
                 }
             }
         });
     }
 
-    private boolean isUniqueUsername() {
+    //EFFECTS: returns true if user with the entered username doesn't already exist, false otherwise
+    private boolean isUniqueAndValidUsername() {
+        if (username.getText().equals("") || username.getText() == null) {
+            return false;
+        }
         for (User user : database.getUsers().getAllUsers()) {
             if (user.getUsername().equals(username.getText())) {
                 return false;
             }
         }
         return true;
+    }
+
+    //EFFECTS: return true if both password and confirmPassword match, false otherwise
+    private boolean passwordsMatch() {
+        return String.valueOf(password.getPassword()).equals(String.valueOf(confirmPassword.getPassword()));
     }
 
     //EFFECTS: adds the okay Button
@@ -202,7 +228,7 @@ public class NewAccountForm extends JPanel {
     public User makeNewUser() {
         String emailId = this.emailId.getText();
         int age = Integer.parseInt(this.age.getText());
-        String password = String.valueOf(this.password.getText());
+        String password = String.valueOf(this.password.getPassword());
         User user = new User(firstName.getText(), lastName.getText(), username.getText(), emailId, password, age);
         user.setMobileNumber(mobileNumber.getText());
         user.setGender(gender.getText());
@@ -237,7 +263,7 @@ public class NewAccountForm extends JPanel {
         button.setVerticalAlignment(JButton.CENTER);
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
         button.setOpaque(true);
-        button.setFont(new Font("Helvetica", Font.PLAIN, 16));
+        button.setFont(new Font("Helvetica", Font.PLAIN, 13));
         add(Box.createRigidArea(new Dimension(dimension.width, 20)));
     }
 
