@@ -81,31 +81,4 @@ public class UserTab extends BigTab {
             button.setForeground(Color.WHITE);
         }
     }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        showCartTab.updatePanel();
-        showProductsTab.updatePanel();
-        showWishlistTab.updatePanel();
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
 }

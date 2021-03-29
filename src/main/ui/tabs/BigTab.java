@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * represents an abstract tab for tabbedPane in BigAppWindow
  */
-public abstract class BigTab extends JPanel implements MouseListener {
+public abstract class BigTab extends JPanel {
     public static final int OPTIONS_HEIGHT = 65;
     protected BigAppWindow controller;
     protected Border border;

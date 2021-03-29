@@ -7,6 +7,10 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
+
+/**
+ * represents an abstract tab for a SmallAppWindow
+ */
 public abstract class SmallTab extends JPanel {
     public static final int GAP = 20;
     private SmallAppWindow controller;
@@ -39,20 +43,13 @@ public abstract class SmallTab extends JPanel {
         this.add(pageHeading);
     }
 
-    //EFFECTS: creates and returns row with button included
-    public JPanel formatButtonRow(JComponent b) {
-        JPanel p = new JPanel();
-        p.setLayout(new FlowLayout());
-        p.add(b);
-
-        return p;
-    }
-
     //EFFECTS: returns the SmartHomeUI controller for this tab
     public SmallAppWindow getController() {
         return controller;
     }
 
+
+    //EFFECTS: formats the button to match the template of the app
     public void setupButton(JButton button) {
         add(Box.createRigidArea(new Dimension(dimension.width, GAP)));
         button.setBorder(border);

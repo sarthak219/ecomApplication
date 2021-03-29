@@ -1,6 +1,7 @@
 package ui.tabs;
 
 import database.Database;
+import ui.screens.Form;
 import ui.screens.SmallAppWindow;
 //import ui.screens.big.ScreenForUser;
 
@@ -43,7 +44,10 @@ public class WelcomeScreenTab extends SmallTab {
     public void userSignupButton() {
         userSignup = new JButton("Create New Account");
         setupButton(userSignup);
-        userSignup.addActionListener(e -> JOptionPane.showConfirmDialog(this, "Do you wish to continue?", "Yes", 0, 3));
+        userSignup.addActionListener(e -> {
+//            JOptionPane.showConfirmDialog(this, "Do you wish to continue?", "Yes", 0, 3)
+            new Form(database);
+        });
         add(userSignup);
     }
 
