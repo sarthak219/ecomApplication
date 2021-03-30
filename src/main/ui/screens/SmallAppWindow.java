@@ -48,7 +48,7 @@ public class SmallAppWindow extends JFrame {
 
     public void initialiseTabbedPane() {
         tabbedPane = new JTabbedPane();
-        tabbedPane.setBounds(0, -30, WIDTH, HEIGHT); //TODO:set y to -30
+        tabbedPane.setBounds(0, -30, WIDTH, HEIGHT);
         tabbedPane.setBackground(Color.white);
         tabbedPane.setForeground(Color.BLACK);
         addElementsToTabbedPane();
