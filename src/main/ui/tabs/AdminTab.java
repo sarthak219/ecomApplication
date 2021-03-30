@@ -30,7 +30,7 @@ public class AdminTab extends BigTab {
         buttons.get(0).addActionListener(e -> {
             resetAllButtons();
             selectedButton(buttons.get(0));
-            showProductsTabForUser.updatePanel();
+            showUsersTab.updatePanel();
             workspaceTabbedPane.setSelectedIndex(4);
         });
     }

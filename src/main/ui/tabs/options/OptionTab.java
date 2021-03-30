@@ -1,12 +1,12 @@
 package ui.tabs.options;
 
 import database.Database;
+
 import javax.swing.*;
 import java.awt.*;
 
 public abstract class OptionTab extends JPanel {
     public static final int GAP = 20;
-    //    private SmallAppWindow controller;
     protected Dimension dimension;
     protected Database database;
 

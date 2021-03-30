@@ -121,5 +121,18 @@
         "age": 15,
         "cart": [],
         "username": "suyash123"
+    },
+    {
+        "firstName": "firstName",
+        "lastName": "lastName",
+        "password": "123",
+        "gender": "female",
+        "mobileNumber": "9876512340",
+        "wishlist": [],
+        "emailId": "qwertyy@gmail.com",
+        "orderHistory": [],
+        "age": 29,
+        "cart": [],
+        "username": "username"
     }
 ]}
