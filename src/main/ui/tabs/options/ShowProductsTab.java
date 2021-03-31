@@ -14,8 +14,8 @@ public class ShowProductsTab extends OptionTab {
     protected ProductCard productCard;
     protected String loggedInPerson;
 
-    public ShowProductsTab(Dimension dimension, Database database, String loggedInPerson) {
-        super(dimension, database);
+    public ShowProductsTab(String title, Dimension dimension, Database database, String loggedInPerson) {
+        super(title, dimension, database);
         this.loggedInPerson = loggedInPerson;
         displayAllProducts(database);
     }
@@ -33,6 +33,7 @@ public class ShowProductsTab extends OptionTab {
     //EFFECTS: updates the panel
     public void updatePanel() {
         removeAll();
+        addTitle(title);
         displayAllProducts(database);
         validate();
         repaint();

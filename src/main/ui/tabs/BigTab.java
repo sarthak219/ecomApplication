@@ -36,12 +36,12 @@ public abstract class BigTab extends JPanel {
         this.dimension = dimension;
         this.controller = controller;
         this.database = database;
-        this.showWishlistTab = new ShowWishlistTab(dimension, database);
-        this.showProductsTabForUser = new ShowProductsTab(dimension, database, "user");
-        this.showProductsTabForAdmin = new ShowProductsTab(dimension, database, "admin");
-        this.showCartTab = new ShowCartTab(dimension, database);
-        this.showOrderHistoryTab = new ShowOrderHistoryTab(dimension, database);
-        this.showUsersTab = new ShowUsersTab(dimension, database);
+        this.showWishlistTab = new ShowWishlistTab("Wishlist", dimension, database);
+        this.showProductsTabForUser = new ShowProductsTab("All Products", dimension, database, "user");
+        this.showProductsTabForAdmin = new ShowProductsTab("All Products", dimension, database, "admin");
+        this.showCartTab = new ShowCartTab("Cart", dimension, database);
+        this.showOrderHistoryTab = new ShowOrderHistoryTab("Order History", dimension, database);
+        this.showUsersTab = new ShowUsersTab("All Users", dimension, database);
         initialisePanel();
         initialiseTitlePanel();
         initialiseWorkspaceTabbedPane();

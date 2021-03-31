@@ -19,8 +19,8 @@ public class ShowUsersTab extends OptionTab {
     protected DefaultTableModel tableModel;
     protected JScrollPane scrollPane;
 
-    public ShowUsersTab(Dimension dimension, Database database) {
-        super(dimension, database);
+    public ShowUsersTab(String title, Dimension dimension, Database database) {
+        super(title, dimension, database);
         this.users = database.getUsers();
         this.tableModel = new DefaultTableModel(rows, columnNames);
         updatePanel();
@@ -74,6 +74,7 @@ public class ShowUsersTab extends OptionTab {
     //EFFECTS: refreshes the table
     public void updatePanel() {
         removeAll();
+        addTitle(title);
         this.tableModel.getDataVector().removeAllElements();
         initializeTable();
         validate();

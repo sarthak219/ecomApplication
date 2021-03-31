@@ -9,8 +9,8 @@ import java.awt.*;
 public class ShowWishlistTab extends OptionTab {
     protected ProductCard productCard;
 
-    public ShowWishlistTab(Dimension dimension, Database database) {
-        super(dimension, database);
+    public ShowWishlistTab(String title, Dimension dimension, Database database) {
+        super(title, dimension, database);
         displayWishlist(database);
     }
 
@@ -24,6 +24,7 @@ public class ShowWishlistTab extends OptionTab {
 
     public void updatePanel() {
         removeAll();
+        addTitle(title);
         displayWishlist(database);
         validate();
         repaint();

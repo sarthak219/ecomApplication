@@ -10,8 +10,8 @@ import java.awt.*;
 public class ShowOrderHistoryTab extends OptionTab {
     protected ProductCard productCard;
 
-    public ShowOrderHistoryTab(Dimension dimension, Database database) {
-        super(dimension, database);
+    public ShowOrderHistoryTab(String title, Dimension dimension, Database database) {
+        super(title, dimension, database);
         displayOrderHistory(database);
     }
 
@@ -26,6 +26,7 @@ public class ShowOrderHistoryTab extends OptionTab {
 
     public void updatePanel() {
         removeAll();
+        addTitle(title);
         displayOrderHistory(database);
         validate();
         repaint();

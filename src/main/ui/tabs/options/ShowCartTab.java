@@ -9,8 +9,8 @@ import java.awt.*;
 public class ShowCartTab extends OptionTab {
     protected ProductCard productCard;
 
-    public ShowCartTab(Dimension dimension, Database database) {
-        super(dimension, database);
+    public ShowCartTab(String title, Dimension dimension, Database database) {
+        super(title, dimension, database);
         displayCart(database);
     }
 
@@ -24,6 +24,7 @@ public class ShowCartTab extends OptionTab {
 
     public void updatePanel() {
         removeAll();
+        addTitle(title);
         displayCart(database);
         revalidate();
         repaint();
