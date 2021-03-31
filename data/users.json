@@ -5,18 +5,44 @@
         "password": "123",
         "gender": "male",
         "mobileNumber": "9876543210",
-        "wishlist": [{
-            "colour": "black",
-            "size": "XS",
-            "price": 199,
-            "name": "jacket",
-            "description": "stylish zippers",
-            "discount": 10,
-            "inStock": true,
-            "id": 1003,
-            "category": "kids",
-            "brand": "zara"
-        }],
+        "wishlist": [
+            {
+                "colour": "black",
+                "size": "XS",
+                "price": 199,
+                "name": "jacket",
+                "description": "stylish zippers",
+                "discount": 10,
+                "inStock": true,
+                "id": 1003,
+                "category": "kids",
+                "brand": "zara"
+            },
+            {
+                "colour": "black",
+                "size": "M",
+                "price": 499,
+                "name": "tshirt1",
+                "description": "premium tshirt",
+                "discount": 10,
+                "inStock": true,
+                "id": 1001,
+                "category": "men",
+                "brand": "Armani Exchange"
+            },
+            {
+                "colour": "white",
+                "size": "L",
+                "price": 249,
+                "name": "tshirt2",
+                "description": "premium tshirt",
+                "discount": 20,
+                "inStock": true,
+                "id": 1006,
+                "category": "men",
+                "brand": "hackett"
+            }
+        ],
         "emailId": "sarthak123",
         "orderHistory": [
             {
@@ -93,7 +119,18 @@
             }
         ],
         "age": 19,
-        "cart": [],
+        "cart": [{
+            "colour": "black",
+            "size": "M",
+            "price": 499,
+            "name": "tshirt1",
+            "description": "premium tshirt",
+            "discount": 10,
+            "inStock": true,
+            "id": 1001,
+            "category": "men",
+            "brand": "Armani Exchange"
+        }],
         "username": "sarthak123"
     },
     {
@@ -134,5 +171,18 @@
         "age": 29,
         "cart": [],
         "username": "username"
+    },
+    {
+        "firstName": "name",
+        "lastName": "lastname",
+        "password": "123",
+        "gender": "male",
+        "mobileNumber": "987654321",
+        "wishlist": [],
+        "emailId": "1234567",
+        "orderHistory": [],
+        "age": 19,
+        "cart": [],
+        "username": "sarthak1234"
     }
 ]}

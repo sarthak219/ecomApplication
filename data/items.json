@@ -130,5 +130,17 @@
         "id": 1011,
         "category": "kids",
         "brand": "zara"
+    },
+    {
+        "colour": "blue",
+        "size": "L",
+        "price": 299,
+        "name": "sneakers",
+        "description": "casual wear",
+        "discount": 50,
+        "inStock": false,
+        "id": 1012,
+        "category": "Men",
+        "brand": "nike"
     }
 ]}

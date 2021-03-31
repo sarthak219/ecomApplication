@@ -2,6 +2,7 @@ package ui.tabs;
 
 import database.Database;
 import ui.screens.BigAppWindow;
+import ui.screens.FormWindow;
 import ui.screens.SmallAppWindow;
 
 import javax.swing.*;
@@ -20,6 +21,7 @@ public class AdminTab extends BigTab {
     public void buttonFunctionality() {
         button1Action();
         button2Action();
+        button3Action();
         button4Action();
     }
 
@@ -39,8 +41,16 @@ public class AdminTab extends BigTab {
         buttons.get(1).addActionListener(e -> {
             resetAllButtons();
             selectedButton(buttons.get(1));
-            showProductsTabForUser.updatePanel();
+            showProductsTabForAdmin.updatePanel();
             workspaceTabbedPane.setSelectedIndex(5);
+        });
+    }
+
+    private void button3Action() {
+        buttons.get(2).addActionListener(e -> {
+            resetAllButtons();
+            selectedButton(buttons.get(2));
+            new FormWindow(database).getTabbedPane().setSelectedIndex(1);
         });
     }
 

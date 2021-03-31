@@ -71,7 +71,6 @@ public abstract class BigTab extends JPanel {
     public void initialiseMenuPanel() {
         menuPanel = new JPanel();
         menuPanel.setBackground(new Color(40, 40, 40));
-        //menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
         int height = dimension.height - dimension.height / 10;
         menuPanel.setBounds(0, dimension.height / 10, dimension.width / 5, height);

@@ -1,12 +1,10 @@
 package ui;
 
 import database.Database;
-import model.Item;
-import ui.screens.BigAppWindow;
-import ui.screens.DialogueBox;
-import ui.screens.Form;
+import ui.screens.FormWindow;
 import ui.screens.SmallAppWindow;
-import ui.tabs.UserTab;
+
+import java.text.Normalizer;
 
 public class Main extends MyApp {
     public static void main(String[] args) {
@@ -18,7 +16,7 @@ public class Main extends MyApp {
 
 //        new DialogueBox(new Item(), database, "admin");
 
-//        new Form(new Database());
+//        new FormWindow(new Database());
 //        new BigAppWindow("hello", new Database());
     }
 }

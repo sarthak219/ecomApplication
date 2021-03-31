@@ -47,7 +47,6 @@ public class LoginScreenTab extends SmallTab {
         status.setForeground(new Color(241, 14, 14));
         status.setVisible(true);
         status.setAlignmentX(Component.CENTER_ALIGNMENT);
-        //status.setBounds(WIDTH / 4, marginTop + 3 * GAP_IN_BETWEEN + 3 * HEIGHT / 10, WIDTH / 2, GAP_IN_BETWEEN);
         add(status);
     }
 

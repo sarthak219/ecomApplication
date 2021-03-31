@@ -1,7 +1,7 @@
 package ui.tabs;
 
 import database.Database;
-import ui.screens.Form;
+import ui.screens.FormWindow;
 import ui.screens.SmallAppWindow;
 //import ui.screens.big.ScreenForUser;
 
@@ -46,14 +46,13 @@ public class WelcomeScreenTab extends SmallTab {
         setupButton(userSignup);
         userSignup.addActionListener(e -> {
 //            JOptionPane.showConfirmDialog(this, "Do you wish to continue?", "Yes", 0, 3)
-            new Form(database);
+            new FormWindow(database).getTabbedPane().setSelectedIndex(0);
         });
         add(userSignup);
     }
 
     public void guestLoginButton() {
         guestLogin = new JButton("Login as Guest");
-//        guestLogin.setBounds(WIDTH / 4, marginTop + 5 * GAP_IN_BETWEEN + 4 * HEIGHT / 10, WIDTH / 2, BUTTON_HEIGHT);
         setupButton(guestLogin);
         guestLogin.addActionListener(e -> {
             //new ScreenForUser("Guest HomePage", database);

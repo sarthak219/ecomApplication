@@ -117,7 +117,6 @@ public class ProductCard extends Card {
         add(inStock);
     }
 
-
     //EFFECTS: formats the JLabel according to Card theme
     public void setupLabel(JLabel label) {
         label.setForeground(new Color(231, 231, 231));
