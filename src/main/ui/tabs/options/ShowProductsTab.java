@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * represents a card to display a product
+ * represents an OptionTab to display all products
  */
 public class ShowProductsTab extends OptionTab {
     protected ProductCard productCard;
@@ -30,8 +30,8 @@ public class ShowProductsTab extends OptionTab {
         }
     }
 
-    //EFFECTS: updates the panel
-    public void updatePanel() {
+    @Override
+    public void update() {
         removeAll();
         addTitle(title);
         displayAllProducts(database);

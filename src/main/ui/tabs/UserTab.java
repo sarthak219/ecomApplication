@@ -39,7 +39,7 @@ public class UserTab extends BigTab {
         buttons.get(3).addActionListener(e -> {
             resetAllButtons();
             selectedButton(buttons.get(3));
-            showOrderHistoryTab.updatePanel();
+            showOrderHistoryTab.update();
             workspaceTabbedPane.setSelectedIndex(3);
         });
     }
@@ -48,7 +48,7 @@ public class UserTab extends BigTab {
         buttons.get(2).addActionListener(e -> {
             resetAllButtons();
             selectedButton(buttons.get(2));
-            showCartTab.updatePanel();
+            showCartTab.update();
             workspaceTabbedPane.setSelectedIndex(2);
         });
     }
@@ -57,7 +57,7 @@ public class UserTab extends BigTab {
         buttons.get(1).addActionListener(e -> {
             resetAllButtons();
             selectedButton(buttons.get(1));
-            showWishlistTab.updatePanel();
+            showWishlistTab.update();
             workspaceTabbedPane.setSelectedIndex(1);
         });
     }
@@ -66,7 +66,7 @@ public class UserTab extends BigTab {
         buttons.get(0).addActionListener(e -> {
             resetAllButtons();
             selectedButton(buttons.get(0));
-            showProductsTabForUser.updatePanel();
+            showProductsTabForUser.update();
             workspaceTabbedPane.setSelectedIndex(0);
         });
     }

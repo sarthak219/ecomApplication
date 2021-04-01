@@ -5,7 +5,7 @@ import database.Database;
 import javax.swing.*;
 import java.awt.*;
 
-public abstract class OptionTab extends JPanel {
+public abstract class OptionTab extends JPanel implements Observer {
     public static final int GAP = 20;
     protected Dimension dimension;
     protected Database database;

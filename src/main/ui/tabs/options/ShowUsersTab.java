@@ -9,6 +9,9 @@ import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
+/**
+ * represents an OptionTab to display a Table of Users
+ */
 public class ShowUsersTab extends OptionTab {
     protected AllUsers users;
     protected Object[][] rows = null;
@@ -23,7 +26,7 @@ public class ShowUsersTab extends OptionTab {
         super(title, dimension, database);
         this.users = database.getUsers();
         this.tableModel = new DefaultTableModel(rows, columnNames);
-        updatePanel();
+        update();
         validate();
         repaint();
     }
@@ -52,7 +55,7 @@ public class ShowUsersTab extends OptionTab {
         add(scrollPane);
     }
 
-    //EFFECTS: adds rows to the table with User credentials
+    //EFFECTS: adds rows to the table, with each row having User credentials
     public void addRows() {
         int i = 1;
         for (User user : users.getAllUsers()) {
@@ -71,8 +74,8 @@ public class ShowUsersTab extends OptionTab {
         }
     }
 
-    //EFFECTS: refreshes the table
-    public void updatePanel() {
+    @Override
+    public void update() {
         removeAll();
         addTitle(title);
         this.tableModel.getDataVector().removeAllElements();

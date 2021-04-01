@@ -32,7 +32,7 @@ public class AdminTab extends BigTab {
         buttons.get(0).addActionListener(e -> {
             resetAllButtons();
             selectedButton(buttons.get(0));
-            showUsersTab.updatePanel();
+            showUsersTab.update();
             workspaceTabbedPane.setSelectedIndex(4);
         });
     }
@@ -41,7 +41,7 @@ public class AdminTab extends BigTab {
         buttons.get(1).addActionListener(e -> {
             resetAllButtons();
             selectedButton(buttons.get(1));
-            showProductsTabForAdmin.updatePanel();
+            showProductsTabForAdmin.update();
             workspaceTabbedPane.setSelectedIndex(5);
         });
     }
