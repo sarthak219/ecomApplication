@@ -1,10 +1,12 @@
 package ui.tabs;
 
+import model.User;
 import ui.Database;
 import ui.screens.FormWindow;
 import ui.screens.SmallAppWindow;
 //import ui.screens.big.ScreenForUser;
 
+import javax.jws.soap.SOAPBinding;
 import javax.swing.*;
 import java.awt.*;
 
@@ -56,6 +58,7 @@ public class WelcomeScreenTab extends SmallTab {
         setupButton(guestLogin);
         guestLogin.addActionListener(e -> {
             //new ScreenForUser("Guest HomePage", database);
+            JOptionPane.showMessageDialog(null, "Feature unavailable at the moment");
         });
         add(guestLogin);
     }

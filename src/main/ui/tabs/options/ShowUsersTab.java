@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.Locale;
 
 /**
  * represents an OptionTab to display a Table of Users
@@ -22,6 +23,7 @@ public class ShowUsersTab extends OptionTab {
     protected DefaultTableModel tableModel;
     protected JScrollPane scrollPane;
 
+    //EFFECTS: constructs a Show Users tab
     public ShowUsersTab(String title, Dimension dimension, Database database) {
         super(title, dimension, database);
         this.users = database.getUsers();
@@ -56,10 +58,10 @@ public class ShowUsersTab extends OptionTab {
     }
 
     //EFFECTS: adds rows to the table, with each row having User credentials
-    public void addRows(String searchString) {
+    public void addRows(String subString) {
         int i = 1;
         for (User user : users.getAllUsers()) {
-            if (user.getFirstName().contains(searchString)) {
+            if (isInFirstName(user, subString) | isInUserName(user, subString) | isInLastName(user, subString)) {
                 String sno = Integer.toString(i);
                 String firstName = user.getFirstName();
                 String lastName = user.getLastName();
@@ -74,6 +76,24 @@ public class ShowUsersTab extends OptionTab {
                 ++i;
             }
         }
+    }
+
+    //EFFECTS: returns true if the user's first name contains the given string (ignoring case)
+    //         false otherwise
+    private boolean isInFirstName(User user, String searchString) {
+        return user.getFirstName().toLowerCase(Locale.ROOT).contains(searchString.toLowerCase(Locale.ROOT));
+    }
+
+    //EFFECTS: returns true if the user's first name contains the given string (ignoring case)
+    //         false otherwise
+    private boolean isInLastName(User user, String searchString) {
+        return user.getLastName().toLowerCase(Locale.ROOT).contains(searchString.toLowerCase(Locale.ROOT));
+    }
+
+    //EFFECTS: returns true if the user's first name contains the given string (ignoring case)
+    //         false otherwise
+    private boolean isInUserName(User user, String searchString) {
+        return user.getUsername().toLowerCase(Locale.ROOT).contains(searchString.toLowerCase(Locale.ROOT));
     }
 
     @Override

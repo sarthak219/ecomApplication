@@ -5,7 +5,6 @@ import ui.screens.BigAppWindow;
 import ui.screens.FormWindow;
 import ui.screens.SmallAppWindow;
 
-import javax.sql.rowset.CachedRowSet;
 import javax.swing.*;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;

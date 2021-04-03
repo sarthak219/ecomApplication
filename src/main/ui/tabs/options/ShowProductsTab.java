@@ -6,6 +6,7 @@ import ui.ProductCard;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Locale;
 
 /**
  * represents an OptionTab to display all products
@@ -20,10 +21,10 @@ public class ShowProductsTab extends OptionTab {
         update("");
     }
 
-    //EFFECTS: adds the cards with product details on the current tab
+    //EFFECTS: adds those cards with product details on the current tab which contain the searchString
     public void displayAllProducts(Database database, String searchString) {
         for (Item item : database.getAllProducts().getAllProducts()) {
-            if (item.getName().contains(searchString)) {
+            if (isInName(item, searchString) || isInBrand(item, searchString)) {
                 productCard = new ProductCard(dimension, item, database, loggedInPerson);
                 add(Box.createRigidArea(new Dimension(0, 20)));
                 add(productCard);

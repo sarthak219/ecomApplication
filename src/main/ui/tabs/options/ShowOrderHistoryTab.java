@@ -22,7 +22,7 @@ public class ShowOrderHistoryTab extends OptionTab {
     //EFFECTS: adds the cards with details of products in Order History on the current tab
     public void displayOrderHistory(Database database, String searchString) {
         for (Item item : database.getCurrentUser().getOrderHistory()) {
-            if (item.getName().contains(searchString)) {
+            if (isInName(item, searchString) || isInBrand(item, searchString)) {
                 productCard = new ProductCard(dimension, item, database, "user");
                 add(Box.createRigidArea(new Dimension(0, 20)));
                 add(productCard);

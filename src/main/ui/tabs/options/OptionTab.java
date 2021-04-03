@@ -1,9 +1,11 @@
 package ui.tabs.options;
 
+import model.Item;
 import ui.Database;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Locale;
 
 public abstract class OptionTab extends JPanel implements Observer {
     public static final int GAP = 20;
@@ -38,5 +40,17 @@ public abstract class OptionTab extends JPanel implements Observer {
     public void initialiseTitle(JLabel titleLabel) {
         titleLabel.setFont(new Font("helvetica", Font.PLAIN, 24));
         titleLabel.setForeground(Color.WHITE);
+    }
+
+    //EFFECTS: returns true if the item's name contains the given string (ignoring case)
+    //         false otherwise
+    public boolean isInName(Item item, String searchString) {
+        return item.getName().toLowerCase(Locale.ROOT).contains(searchString.toLowerCase(Locale.ROOT));
+    }
+
+    //EFFECTS: returns true if the item's name contains the given string (ignoring case)
+    //         false otherwise
+    public boolean isInBrand(Item item, String searchString) {
+        return item.getBrand().toLowerCase(Locale.ROOT).contains(searchString.toLowerCase(Locale.ROOT));
     }
 }
