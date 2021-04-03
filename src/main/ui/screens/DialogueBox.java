@@ -34,7 +34,7 @@ public class DialogueBox extends JFrame {
             initialiseCartButton();
             initialiseOrderOrReturnButton();
         } else if (loggedInPerson.equalsIgnoreCase("admin")) {
-            initialiseDeleteButton();
+            initialiseDeleteItemButton();
         }
         setVisible(true);
     }
@@ -71,7 +71,7 @@ public class DialogueBox extends JFrame {
         add(wishlistButton);
     }
 
-    //MODIFIES: database
+    //MODIFIES: this
     //EFFECTS: removes the item with the given id from wishlist
     private void removeFromWishlistWithId(int id) {
         for (Item item : database.getCurrentUser().getWishlist()) {
@@ -104,7 +104,7 @@ public class DialogueBox extends JFrame {
         add(cartButton);
     }
 
-    //MODIFIES: database
+    //MODIFIES: this
     //EFFECTS: removes the item with the given id from cart
     private void removeFromCartWithId(int id) {
         for (Item item : database.getCurrentUser().getCart()) {
@@ -118,16 +118,78 @@ public class DialogueBox extends JFrame {
     public void initialiseOrderOrReturnButton() {
         if (database.getCurrentUser().orderHistoryContainsItemWithId(item.getId()) && !item.getInStock()) {
             orderOrReturnButton = new JButton("Return Item");
+            orderOrReturnButton.addActionListener(e -> {
+                returnItem(item);
+                dispose();
+            });
         } else {
             orderOrReturnButton = new JButton("Buy Now");
+            orderOrReturnButton.addActionListener(e -> {
+                orderOneItem(item);
+                dispose();
+            });
         }
         setupButton(orderOrReturnButton);
         add(orderOrReturnButton);
     }
 
 
+    //MODIFIES: this
+    //EFFECTS: orders the given item if user approves
+    public void orderOneItem(Item item) {
+        if (item.getInStock()) {
+            float price = item.getPrice();
+            float priceAfterDiscount = price - (price * item.getDiscount()) / 100;
+            String message = "The item would cost CAD$" + priceAfterDiscount + "\nAre you sure you want proceed?";
+            int response = JOptionPane.showConfirmDialog(null, message, "Confirm", 0, 3);
+            if (response == JOptionPane.YES_OPTION) {
+                database.getCurrentUser().orderItem(item);
+                database.getCurrentUser().removeItemsFromCart(item);
+                database.getCurrentUser().removeItemsFromWishlist(item);
+                JOptionPane.showMessageDialog(null, "Order Placed successfully!\nIt will be delivered within 2 days.");
+                database.saveEverything();
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Action Aborted! No order was placed!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Item out of stock!");
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: orders the given item if user approves
+    public void returnItem(Item item) {
+        float price = item.getPrice();
+        float priceAfterDiscount = price - (price * item.getDiscount()) / 100;
+        String message = "Are you sure you want to return " + item.getName() + "?";
+        int response = JOptionPane.showConfirmDialog(null, message, "Confirm", 0, 3);
+        if (response == JOptionPane.YES_OPTION) {
+            database.getCurrentUser().returnItem(item);
+            String refundMsg1 = "Item returned successfully!\nYour refund of CAD$" + priceAfterDiscount;
+            String refundMsg2 = refundMsg1 + " will be initiated shortly";
+            JOptionPane.showMessageDialog(null, refundMsg2);
+            setInStockToTrueInAllProducts(item);
+            database.saveEverything();
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Action Aborted! No order was returned!");
+        }
+
+    }
+
+    //MODIFIES: this
+    //EFFECTS: sets item.inStock to true if found in database.allProducts
+    private void setInStockToTrueInAllProducts(Item item) {
+        for (Item product : database.getAllProducts().getAllProducts()) {
+            if (product.getId() == item.getId()) {
+                product.setInStock(true);
+            }
+        }
+    }
+
     //EFFECTS: adds a button which can delete item from Collection
-    public void initialiseDeleteButton() {
+    public void initialiseDeleteItemButton() {
         deleteButton = new JButton("Delete item");
         setupButton(deleteButton);
         deleteButton.addActionListener(e -> {

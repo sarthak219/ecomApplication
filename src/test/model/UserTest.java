@@ -304,4 +304,26 @@ public class UserTest {
         user.addItemToCart(item3);
         assertEquals(190 + 180, user.totalBill());
     }
+
+    @Test
+    public void orderItemTest() {
+        Item item1 = new Item();
+        item1.setId(1001);
+        item1.setPrice(200);
+        item1.setDiscount(10);
+        user.addItemToCart(item1);
+        user.addItemToWishlist(item1);
+        user.orderItem(item1);
+        assertFalse(user.inCart(item1));
+        assertFalse(user.cartContainsItemWithId(item1.getId()));
+        assertFalse(user.wishListContainsItemWithId(item1.getId()));
+        assertFalse(user.inWishlist(item1));
+        assertTrue(user.orderHistoryContainsItemWithId(item1.getId()));
+        assertFalse(item1.getInStock());
+        for (Item product : user.getOrderHistory()) {
+            if (item1.getId() == product.getId()) {
+                assertFalse(product.getInStock());
+            }
+        }
+    }
 }

@@ -5,44 +5,7 @@
         "password": "123",
         "gender": "male",
         "mobileNumber": "9876543210",
-        "wishlist": [
-            {
-                "colour": "black",
-                "size": "XS",
-                "price": 199,
-                "name": "jacket",
-                "description": "stylish zippers",
-                "discount": 10,
-                "inStock": true,
-                "id": 1003,
-                "category": "kids",
-                "brand": "zara"
-            },
-            {
-                "colour": "black",
-                "size": "M",
-                "price": 499,
-                "name": "tshirt1",
-                "description": "premium tshirt",
-                "discount": 10,
-                "inStock": true,
-                "id": 1001,
-                "category": "men",
-                "brand": "Armani Exchange"
-            },
-            {
-                "colour": "white",
-                "size": "L",
-                "price": 249,
-                "name": "tshirt2",
-                "description": "premium tshirt",
-                "discount": 20,
-                "inStock": true,
-                "id": 1006,
-                "category": "men",
-                "brand": "hackett"
-            }
-        ],
+        "wishlist": [],
         "emailId": "sarthak123",
         "orderHistory": [
             {
@@ -116,21 +79,118 @@
                 "id": 1002,
                 "category": "women",
                 "brand": "levi's"
+            },
+            {
+                "colour": "yellow",
+                "size": "L",
+                "price": 80,
+                "name": "hoodie2",
+                "description": "comfortable hoodie for casual wear",
+                "discount": 10,
+                "inStock": true,
+                "id": 1011,
+                "category": "kids",
+                "brand": "zara"
+            },
+            {
+                "colour": "blue",
+                "size": "L",
+                "price": 299,
+                "name": "jeans",
+                "description": "slim fit",
+                "discount": 10,
+                "inStock": true,
+                "id": 1002,
+                "category": "women",
+                "brand": "levi's"
+            },
+            {
+                "colour": "black",
+                "size": "M",
+                "price": 499,
+                "name": "tshirt1",
+                "description": "premium tshirt",
+                "discount": 10,
+                "inStock": true,
+                "id": 1001,
+                "category": "men",
+                "brand": "Armani Exchange"
+            },
+            {
+                "colour": "black",
+                "size": "M",
+                "price": 499,
+                "name": "tshirt1",
+                "description": "premium tshirt",
+                "discount": 10,
+                "inStock": true,
+                "id": 1001,
+                "category": "men",
+                "brand": "Armani Exchange"
+            },
+            {
+                "colour": "blue",
+                "size": "L",
+                "price": 299,
+                "name": "jeans",
+                "description": "slim fit",
+                "discount": 10,
+                "inStock": true,
+                "id": 1002,
+                "category": "women",
+                "brand": "levi's"
+            },
+            {
+                "colour": "black",
+                "size": "M",
+                "price": 499,
+                "name": "tshirt1",
+                "description": "premium tshirt",
+                "discount": 10,
+                "inStock": true,
+                "id": 1001,
+                "category": "men",
+                "brand": "Armani Exchange"
+            },
+            {
+                "colour": "blue",
+                "size": "L",
+                "price": 99,
+                "name": "jeans2",
+                "description": "loose fit jeans",
+                "discount": 5,
+                "inStock": true,
+                "id": 1004,
+                "category": "women",
+                "brand": "indian terrain"
+            },
+            {
+                "colour": "blue",
+                "size": "L",
+                "price": 99,
+                "name": "jeans2",
+                "description": "loose fit jeans",
+                "discount": 5,
+                "inStock": true,
+                "id": 1004,
+                "category": "women",
+                "brand": "indian terrain"
+            },
+            {
+                "colour": "blue",
+                "size": "L",
+                "price": 299,
+                "name": "jeans",
+                "description": "slim fit",
+                "discount": 10,
+                "inStock": true,
+                "id": 1002,
+                "category": "women",
+                "brand": "levi's"
             }
         ],
         "age": 19,
-        "cart": [{
-            "colour": "black",
-            "size": "M",
-            "price": 499,
-            "name": "tshirt1",
-            "description": "premium tshirt",
-            "discount": 10,
-            "inStock": true,
-            "id": 1001,
-            "category": "men",
-            "brand": "Armani Exchange"
-        }],
+        "cart": [],
         "username": "sarthak123"
     },
     {

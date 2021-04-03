@@ -20,7 +20,7 @@ public class ShowWishlistTab extends OptionTab {
 
     //EFFECTS: adds the cards with details of products in wishlist on the current tab
     public void displayWishlist(Database database, String searchString) {
-        for (Item item : database.getCurrentUser().getCart()) {
+        for (Item item : database.getCurrentUser().getWishlist()) {
             if (isInName(item, searchString) || isInBrand(item, searchString)) {
                 productCard = new ProductCard(dimension, item, database, "user");
                 add(Box.createRigidArea(new Dimension(0, 20)));

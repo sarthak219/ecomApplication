@@ -269,6 +269,37 @@ public class User implements Writable {
         return bill;
     }
 
+    //REQUIRES: item.getInStock() must be true
+    //MODIFIES: this, item
+    //EFFECTS: orders the given item, removes it from cart and wishlist if present,
+    //         changes item.inStock to false everywhere
+    public void orderItem(Item item) {
+        item.setInStock(false);
+        this.orderHistory.add(item);
+        if (cartContainsItemWithId(item.getId())) {
+            removeItemsFromCart(item);
+        }
+        if (wishListContainsItemWithId(item.getId())) {
+            removeItemsFromWishlist(item);
+        }
+        for (Item product : orderHistory) {
+            if (item.getId() == product.getId()) {
+                product.setInStock(false);
+            }
+        }
+    }
+
+    //MODIFIES: this, item
+    //EFFECTS: returns the given item, sets item.inStock to true everywhere
+    public void returnItem(Item item) {
+//        item.setInStock(true);
+        for (Item product : orderHistory) {
+            if (product.getId() == item.getId()) {
+                product.setInStock(true);
+            }
+        }
+    }
+
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
