@@ -84,13 +84,13 @@ public class ShowUsersTab extends OptionTab {
         return user.getFirstName().toLowerCase(Locale.ROOT).contains(searchString.toLowerCase(Locale.ROOT));
     }
 
-    //EFFECTS: returns true if the user's first name contains the given string (ignoring case)
+    //EFFECTS: returns true if the user's last name contains the given string (ignoring case)
     //         false otherwise
     private boolean isInLastName(User user, String searchString) {
         return user.getLastName().toLowerCase(Locale.ROOT).contains(searchString.toLowerCase(Locale.ROOT));
     }
 
-    //EFFECTS: returns true if the user's first name contains the given string (ignoring case)
+    //EFFECTS: returns true if the user's username contains the given string (ignoring case)
     //         false otherwise
     private boolean isInUserName(User user, String searchString) {
         return user.getUsername().toLowerCase(Locale.ROOT).contains(searchString.toLowerCase(Locale.ROOT));

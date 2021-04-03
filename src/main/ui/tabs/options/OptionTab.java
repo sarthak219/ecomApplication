@@ -48,7 +48,7 @@ public abstract class OptionTab extends JPanel implements Observer {
         return item.getName().toLowerCase(Locale.ROOT).contains(searchString.toLowerCase(Locale.ROOT));
     }
 
-    //EFFECTS: returns true if the item's name contains the given string (ignoring case)
+    //EFFECTS: returns true if the item's brand contains the given string (ignoring case)
     //         false otherwise
     public boolean isInBrand(Item item, String searchString) {
         return item.getBrand().toLowerCase(Locale.ROOT).contains(searchString.toLowerCase(Locale.ROOT));
