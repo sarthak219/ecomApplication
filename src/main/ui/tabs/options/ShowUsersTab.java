@@ -1,6 +1,6 @@
 package ui.tabs.options;
 
-import database.Database;
+import ui.Database;
 import model.AllUsers;
 import model.User;
 

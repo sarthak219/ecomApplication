@@ -143,7 +143,18 @@
         "emailId": "cpsc210-ta@student.ubc.ca",
         "orderHistory": [],
         "age": 22,
-        "cart": [],
+        "cart": [{
+            "colour": "black",
+            "size": "M",
+            "price": 499,
+            "name": "tshirt1",
+            "description": "premium tshirt",
+            "discount": 10,
+            "inStock": true,
+            "id": 1001,
+            "category": "men",
+            "brand": "Armani Exchange"
+        }],
         "username": "cpsc210"
     },
     {

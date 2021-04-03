@@ -1,6 +1,6 @@
 package ui.tabs.forms;
 
-import database.Database;
+import ui.Database;
 import ui.screens.FormWindow;
 
 import javax.swing.*;

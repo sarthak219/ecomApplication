@@ -1,6 +1,6 @@
 package ui.screens;
 
-import database.Database;
+import ui.Database;
 import ui.tabs.LoginScreenTab;
 import ui.tabs.WelcomeScreenTab;
 

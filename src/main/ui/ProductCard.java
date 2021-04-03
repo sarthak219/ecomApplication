@@ -1,6 +1,5 @@
 package ui;
 
-import database.Database;
 import model.Item;
 import ui.screens.DialogueBox;
 

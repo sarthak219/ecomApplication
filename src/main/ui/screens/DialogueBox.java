@@ -1,6 +1,6 @@
 package ui.screens;
 
-import database.Database;
+import ui.Database;
 import model.Item;
 
 import javax.swing.*;

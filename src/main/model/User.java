@@ -16,7 +16,6 @@ public class User implements Writable {
     private String mobileNumber;
     private int age;
     private String gender;
-    //    private boolean isAdmin;
     private ArrayList<Item> wishlist;
     private ArrayList<Item> cart;
     private ArrayList<Item> orderHistory;

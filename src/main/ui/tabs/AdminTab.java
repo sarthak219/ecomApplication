@@ -1,6 +1,6 @@
 package ui.tabs;
 
-import database.Database;
+import ui.Database;
 import ui.screens.BigAppWindow;
 import ui.screens.FormWindow;
 import ui.screens.SmallAppWindow;

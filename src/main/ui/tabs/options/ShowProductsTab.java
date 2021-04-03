@@ -1,6 +1,6 @@
 package ui.tabs.options;
 
-import database.Database;
+import ui.Database;
 import model.Item;
 import ui.ProductCard;
 

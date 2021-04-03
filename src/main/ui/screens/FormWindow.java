@@ -1,6 +1,6 @@
 package ui.screens;
 
-import database.Database;
+import ui.Database;
 import ui.tabs.forms.NewAccountFormTab;
 import ui.tabs.forms.NewProductFormTab;
 

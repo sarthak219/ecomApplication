@@ -1,6 +1,6 @@
 package ui.tabs;
 
-import database.Database;
+import ui.Database;
 import ui.screens.BigAppWindow;
 import ui.tabs.options.*;
 
@@ -42,6 +42,7 @@ public abstract class BigTab extends JPanel {
         this.showCartTab = new ShowCartTab("Cart", dimension, database);
         this.showOrderHistoryTab = new ShowOrderHistoryTab("Order History", dimension, database);
         this.showUsersTab = new ShowUsersTab("All Users", dimension, database);
+
         initialisePanel();
         initialiseTitlePanel();
         initialiseWorkspaceTabbedPane();

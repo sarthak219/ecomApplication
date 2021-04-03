@@ -1,4 +1,4 @@
-package database;
+package ui;
 
 import model.Admin;
 import model.AllUsers;
@@ -8,8 +8,6 @@ import persistence.JsonReaderForAllUsers;
 import persistence.JsonReaderForCollection;
 import persistence.JsonWriterForAllUsers;
 import persistence.JsonWriterForCollection;
-import ui.Display;
-import ui.LoadingScreen;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -114,7 +112,6 @@ public class Database {
         try {
             users = jsonReaderForAllUsers.read();
             System.out.println("Loaded users from " + JSON_USER_DATABASE);
-            new LoadingScreen("Loaded users from " + JSON_USER_DATABASE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_USER_DATABASE);
         }
@@ -126,7 +123,6 @@ public class Database {
         try {
             allProducts = jsonReaderForCollection.read();
             System.out.println("Loaded items from " + JSON_ITEMS_DATABASE);
-            new LoadingScreen("Loaded items from " + JSON_ITEMS_DATABASE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_ITEMS_DATABASE);
         }
@@ -134,6 +130,7 @@ public class Database {
 
     //EFFECTS: loads items and users from their respective source files
     public void updateDatabases() {
+        new LoadingScreen("Loading files from " + JSON_ITEMS_DATABASE + " and " + JSON_USER_DATABASE);
         loadItems();
         loadUsers();
     }

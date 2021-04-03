@@ -1,6 +1,6 @@
 package ui.tabs.options;
 
-import database.Database;
+import ui.Database;
 import ui.ProductCard;
 
 import javax.swing.*;
@@ -15,6 +15,7 @@ public class ShowCartTab extends OptionTab {
     public ShowCartTab(String title, Dimension dimension, Database database) {
         super(title, dimension, database);
         displayCart(database);
+        System.out.println(getComponentCount());
     }
 
     //EFFECTS: adds the cards with details of products in cart on the current tab

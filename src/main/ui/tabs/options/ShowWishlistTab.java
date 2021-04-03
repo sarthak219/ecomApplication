@@ -1,6 +1,6 @@
 package ui.tabs.options;
 
-import database.Database;
+import ui.Database;
 import ui.ProductCard;
 
 import javax.swing.*;
