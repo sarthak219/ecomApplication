@@ -276,12 +276,8 @@ public class User implements Writable {
     public void orderItem(Item item) {
         item.setInStock(false);
         this.orderHistory.add(item);
-        if (cartContainsItemWithId(item.getId())) {
-            removeItemsFromCart(item);
-        }
-        if (wishListContainsItemWithId(item.getId())) {
-            removeItemsFromWishlist(item);
-        }
+        removeItemsFromCart(item);
+        removeItemsFromWishlist(item);
         for (Item product : orderHistory) {
             if (item.getId() == product.getId()) {
                 product.setInStock(false);
@@ -289,10 +285,9 @@ public class User implements Writable {
         }
     }
 
-    //MODIFIES: this, item
-    //EFFECTS: returns the given item, sets item.inStock to true everywhere
+    //MODIFIES: this
+    //EFFECTS: sets all occurrences of item.inStock to true in Order history
     public void returnItem(Item item) {
-//        item.setInStock(true);
         for (Item product : orderHistory) {
             if (product.getId() == item.getId()) {
                 product.setInStock(true);

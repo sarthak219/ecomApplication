@@ -1,5 +1,6 @@
 package model;
 
+import com.sun.javafx.binding.SelectBinding;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -319,11 +320,66 @@ public class UserTest {
         assertFalse(user.wishListContainsItemWithId(item1.getId()));
         assertFalse(user.inWishlist(item1));
         assertTrue(user.orderHistoryContainsItemWithId(item1.getId()));
+        assertEquals(1, user.getOrderHistory().size());
         assertFalse(item1.getInStock());
         for (Item product : user.getOrderHistory()) {
             if (item1.getId() == product.getId()) {
                 assertFalse(product.getInStock());
             }
         }
+    }
+
+    @Test
+    public void returnItemWhenOrderedOnlyOnceTest() {
+        Item tempItem1 = new Item();
+        for (int i = 0; i < NUM_ITEMS; ++i) {
+            Item item = new Item();
+            item.setId(i);
+            if (i == 1) {
+                tempItem1 = item;
+            }
+            user.addItemToOrderHistory(item);
+            item.setInStock(false);
+            assertTrue(user.orderHistoryContainsItemWithId(tempItem1.getId()));
+        }
+        user.returnItem(tempItem1);
+
+        for (Item item : user.getOrderHistory()) {
+            if (item.getId() != tempItem1.getId()) {
+                assertFalse(item.getInStock());
+            } else {
+                assertTrue(tempItem1.getInStock());
+            }
+        }
+
+    }
+
+    @Test
+    public void returnItemWhenOrderedPreviouslyTest() {
+        Item tempItem1 = new Item();
+        for (int i = 0; i < NUM_ITEMS; ++i) {
+            Item item = new Item();
+            item.setId(i);
+            if (i == 1) {
+                tempItem1 = item;
+            }
+            user.addItemToOrderHistory(item);
+            item.setInStock(false);
+            assertTrue(user.orderHistoryContainsItemWithId(tempItem1.getId()));
+        }
+        user.returnItem(tempItem1);
+        assertTrue(tempItem1.getInStock());
+        user.orderItem(tempItem1);
+        assertFalse(tempItem1.getInStock());
+        user.returnItem(tempItem1);
+
+        for (Item item : user.getOrderHistory()) {
+            if (item.getId() != tempItem1.getId()) {
+                assertFalse(item.getInStock());
+            } else {
+                assertTrue(tempItem1.getInStock());
+            }
+        }
+
     }
 }
