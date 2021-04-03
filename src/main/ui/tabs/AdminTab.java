@@ -5,10 +5,13 @@ import ui.screens.BigAppWindow;
 import ui.screens.FormWindow;
 import ui.screens.SmallAppWindow;
 
+import javax.sql.rowset.CachedRowSet;
 import javax.swing.*;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import java.awt.*;
 
-public class AdminTab extends BigTab {
+public class AdminTab extends BigTab implements CaretListener {
 
     public AdminTab(BigAppWindow controller, String title, Dimension dimension, Database database) {
         super(controller, dimension, database);
@@ -32,8 +35,9 @@ public class AdminTab extends BigTab {
         buttons.get(0).addActionListener(e -> {
             resetAllButtons();
             selectedButton(buttons.get(0));
-            showUsersTab.update();
+            showUsersTab.update("");
             workspaceTabbedPane.setSelectedIndex(4);
+            searchBar.setText("");
         });
     }
 
@@ -41,16 +45,17 @@ public class AdminTab extends BigTab {
         buttons.get(1).addActionListener(e -> {
             resetAllButtons();
             selectedButton(buttons.get(1));
-            showProductsTabForAdmin.update();
+            showProductsTabForAdmin.update("");
+            showProductsTabForAdmin.update("");
             workspaceTabbedPane.setSelectedIndex(5);
+            searchBar.setText("");
         });
     }
 
     private void button3Action() {
         buttons.get(2).addActionListener(e -> {
-            resetAllButtons();
-            selectedButton(buttons.get(2));
             new FormWindow(database).getTabbedPane().setSelectedIndex(1);
+            searchBar.setText("");
         });
     }
 
@@ -72,4 +77,9 @@ public class AdminTab extends BigTab {
         }
     }
 
+    @Override
+    public void caretUpdate(CaretEvent e) {
+        showProductsTabForAdmin.update(searchBar.getText());
+        showUsersTab.update(searchBar.getText());
+    }
 }

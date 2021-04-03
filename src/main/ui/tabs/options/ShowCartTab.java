@@ -1,5 +1,6 @@
 package ui.tabs.options;
 
+import model.Item;
 import ui.Database;
 import ui.ProductCard;
 
@@ -14,24 +15,25 @@ public class ShowCartTab extends OptionTab {
 
     public ShowCartTab(String title, Dimension dimension, Database database) {
         super(title, dimension, database);
-        displayCart(database);
-        System.out.println(getComponentCount());
+        displayCart(database, "");
     }
 
     //EFFECTS: adds the cards with details of products in cart on the current tab
-    public void displayCart(Database database) {
-        for (int i = 0; i < database.getCurrentUser().getCart().size(); ++i) {
-            productCard = new ProductCard(dimension, database.getCurrentUser().getCart().get(i), database, "user");
-            add(Box.createRigidArea(new Dimension(0, 20)));
-            add(productCard);
+    public void displayCart(Database database, String searchString) {
+        for (Item item : database.getCurrentUser().getCart()) {
+            if (item.getName().contains(searchString)) {
+                productCard = new ProductCard(dimension, item, database, "user");
+                add(Box.createRigidArea(new Dimension(0, 20)));
+                add(productCard);
+            }
         }
     }
 
     @Override
-    public void update() {
+    public void update(String searchString) {
         removeAll();
         addTitle(title);
-        displayCart(database);
+        displayCart(database, searchString);
         revalidate();
         repaint();
     }

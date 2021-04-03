@@ -16,24 +16,25 @@ public class ShowOrderHistoryTab extends OptionTab {
 
     public ShowOrderHistoryTab(String title, Dimension dimension, Database database) {
         super(title, dimension, database);
-        displayOrderHistory(database);
+        displayOrderHistory(database, "");
     }
 
     //EFFECTS: adds the cards with details of products in Order History on the current tab
-    public void displayOrderHistory(Database database) {
-        for (int i = 0; i < database.getCurrentUser().getOrderHistory().size(); ++i) {
-            Item product = database.getAllProducts().getAllProducts().get(i);
-            productCard = new ProductCard(dimension, product, database, "user");
-            add(Box.createRigidArea(new Dimension(0, 20)));
-            add(productCard);
+    public void displayOrderHistory(Database database, String searchString) {
+        for (Item item : database.getCurrentUser().getOrderHistory()) {
+            if (item.getName().contains(searchString)) {
+                productCard = new ProductCard(dimension, item, database, "user");
+                add(Box.createRigidArea(new Dimension(0, 20)));
+                add(productCard);
+            }
         }
     }
 
     @Override
-    public void update() {
+    public void update(String searchString) {
         removeAll();
         addTitle(title);
-        displayOrderHistory(database);
+        displayOrderHistory(database, searchString);
         validate();
         repaint();
     }

@@ -17,24 +17,25 @@ public class ShowProductsTab extends OptionTab {
     public ShowProductsTab(String title, Dimension dimension, Database database, String loggedInPerson) {
         super(title, dimension, database);
         this.loggedInPerson = loggedInPerson;
-        displayAllProducts(database);
+        update("");
     }
 
     //EFFECTS: adds the cards with product details on the current tab
-    public void displayAllProducts(Database database) {
-        for (int i = 0; i < database.getAllProducts().size(); ++i) {
-            Item product = database.getAllProducts().getAllProducts().get(i);
-            productCard = new ProductCard(dimension, product, database, loggedInPerson);
-            add(Box.createRigidArea(new Dimension(0, 20)));
-            add(productCard);
+    public void displayAllProducts(Database database, String searchString) {
+        for (Item item : database.getAllProducts().getAllProducts()) {
+            if (item.getName().contains(searchString)) {
+                productCard = new ProductCard(dimension, item, database, loggedInPerson);
+                add(Box.createRigidArea(new Dimension(0, 20)));
+                add(productCard);
+            }
         }
     }
 
     @Override
-    public void update() {
+    public void update(String searchString) {
         removeAll();
         addTitle(title);
-        displayAllProducts(database);
+        displayAllProducts(database, searchString);
         validate();
         repaint();
     }

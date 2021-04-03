@@ -6,13 +6,14 @@ import ui.tabs.options.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.event.CaretListener;
 import java.awt.*;
 import java.util.ArrayList;
 
 /**
  * represents an abstract tab for tabbedPane in BigAppWindow
  */
-public abstract class BigTab extends JPanel {
+public abstract class BigTab extends JPanel implements CaretListener {
     public static final int OPTIONS_HEIGHT = 65;
     protected BigAppWindow controller;
     protected Border border;
@@ -90,7 +91,7 @@ public abstract class BigTab extends JPanel {
     }
 
     public void initialiseSearchBar() {
-        searchBar = new JTextField(20);
+        searchBar = new JTextField("", 20);
         searchBar.setLayout(null);
         int tenthOfHeight = dimension.height / 10;
         searchBar.setBounds(3 * dimension.width / 4 - 20, tenthOfHeight / 4, dimension.width / 5, tenthOfHeight / 2);
@@ -99,6 +100,7 @@ public abstract class BigTab extends JPanel {
         searchBar.setHorizontalAlignment(JTextField.LEFT);
         searchBar.setOpaque(true);
         searchBar.setFont(new Font("Helvetica", Font.PLAIN, dimension.height / 40));
+        searchBar.addCaretListener(this);
         titlePanel.add(searchBar);
     }
 

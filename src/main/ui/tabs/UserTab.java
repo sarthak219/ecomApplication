@@ -5,9 +5,11 @@ import ui.screens.BigAppWindow;
 import ui.screens.SmallAppWindow;
 
 import javax.swing.*;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import java.awt.*;
 
-public class UserTab extends BigTab {
+public class UserTab extends BigTab implements CaretListener {
 
     public UserTab(BigAppWindow controller, String title, Dimension dimension, Database database) {
         super(controller, dimension, database);
@@ -39,8 +41,9 @@ public class UserTab extends BigTab {
         buttons.get(3).addActionListener(e -> {
             resetAllButtons();
             selectedButton(buttons.get(3));
-            showOrderHistoryTab.update();
+            showOrderHistoryTab.update("");
             workspaceTabbedPane.setSelectedIndex(3);
+            searchBar.setText("");
         });
     }
 
@@ -48,8 +51,9 @@ public class UserTab extends BigTab {
         buttons.get(2).addActionListener(e -> {
             resetAllButtons();
             selectedButton(buttons.get(2));
-            showCartTab.update();
+            showCartTab.update("");
             workspaceTabbedPane.setSelectedIndex(2);
+            searchBar.setText("");
         });
     }
 
@@ -57,8 +61,9 @@ public class UserTab extends BigTab {
         buttons.get(1).addActionListener(e -> {
             resetAllButtons();
             selectedButton(buttons.get(1));
-            showWishlistTab.update();
+            showWishlistTab.update("");
             workspaceTabbedPane.setSelectedIndex(1);
+            searchBar.setText("");
         });
     }
 
@@ -66,8 +71,9 @@ public class UserTab extends BigTab {
         buttons.get(0).addActionListener(e -> {
             resetAllButtons();
             selectedButton(buttons.get(0));
-            showProductsTabForUser.update();
+            showProductsTabForUser.update("");
             workspaceTabbedPane.setSelectedIndex(0);
+            searchBar.setText("");
         });
     }
 
@@ -76,5 +82,13 @@ public class UserTab extends BigTab {
             button.setOpaque(false);
             button.setForeground(Color.WHITE);
         }
+    }
+
+    @Override
+    public void caretUpdate(CaretEvent e) {
+        showProductsTabForUser.update(searchBar.getText());
+        showWishlistTab.update(searchBar.getText());
+        showCartTab.update(searchBar.getText());
+        showOrderHistoryTab.update(searchBar.getText());
     }
 }

@@ -2,5 +2,5 @@ package ui.tabs.options;
 
 public interface Observer {
     //EFFECTS: updates the panel
-    void update();
+    void update(String searchString);
 }

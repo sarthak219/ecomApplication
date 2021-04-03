@@ -26,13 +26,13 @@ public class ShowUsersTab extends OptionTab {
         super(title, dimension, database);
         this.users = database.getUsers();
         this.tableModel = new DefaultTableModel(rows, columnNames);
-        update();
+        update("");
         validate();
         repaint();
     }
 
     //EFFECTS: initialises the JTable
-    public void initializeTable() {
+    public void initializeTable(String searchString) {
         this.table = new JTable(tableModel) {
             public boolean editCellAt(int row, int column, java.util.EventObject e) {
                 return false;
@@ -43,7 +43,7 @@ public class ShowUsersTab extends OptionTab {
         table.getTableHeader().setFont(new Font("helvetica", Font.PLAIN, 13));
         table.getTableHeader().setPreferredSize(new Dimension(getWidth(), 30));
         table.setCellSelectionEnabled(false);
-        addRows();
+        addRows(searchString);
         initialiseScrollPane();
     }
 
@@ -56,30 +56,32 @@ public class ShowUsersTab extends OptionTab {
     }
 
     //EFFECTS: adds rows to the table, with each row having User credentials
-    public void addRows() {
+    public void addRows(String searchString) {
         int i = 1;
         for (User user : users.getAllUsers()) {
-            String sno = Integer.toString(i);
-            String firstName = user.getFirstName();
-            String lastName = user.getLastName();
-            String username = user.getUsername();
-            String email = user.getEmailId();
-            String password = user.getPassword();
-            String mobileNum = user.getMobileNumber();
-            String age = Integer.toString(user.getAge());
-            String gender = user.getGender();
-            String[] row = {sno, firstName, lastName, username, email, password, mobileNum, age, gender};
-            tableModel.addRow(row);
-            ++i;
+            if (user.getFirstName().contains(searchString)) {
+                String sno = Integer.toString(i);
+                String firstName = user.getFirstName();
+                String lastName = user.getLastName();
+                String username = user.getUsername();
+                String email = user.getEmailId();
+                String password = user.getPassword();
+                String mobileNum = user.getMobileNumber();
+                String age = Integer.toString(user.getAge());
+                String gender = user.getGender();
+                String[] row = {sno, firstName, lastName, username, email, password, mobileNum, age, gender};
+                tableModel.addRow(row);
+                ++i;
+            }
         }
     }
 
     @Override
-    public void update() {
+    public void update(String searchString) {
         removeAll();
         addTitle(title);
         this.tableModel.getDataVector().removeAllElements();
-        initializeTable();
+        initializeTable(searchString);
         validate();
         repaint();
     }

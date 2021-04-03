@@ -1,5 +1,6 @@
 package ui.tabs.options;
 
+import model.Item;
 import ui.Database;
 import ui.ProductCard;
 
@@ -14,23 +15,25 @@ public class ShowWishlistTab extends OptionTab {
 
     public ShowWishlistTab(String title, Dimension dimension, Database database) {
         super(title, dimension, database);
-        displayWishlist(database);
+        displayWishlist(database, "");
     }
 
     //EFFECTS: adds the cards with details of products in wishlist on the current tab
-    public void displayWishlist(Database database) {
-        for (int i = 0; i < database.getCurrentUser().getWishlist().size(); ++i) {
-            productCard = new ProductCard(dimension, database.getCurrentUser().getWishlist().get(i), database, "user");
-            add(Box.createRigidArea(new Dimension(0, 20)));
-            add(productCard);
+    public void displayWishlist(Database database, String searchString) {
+        for (Item item : database.getCurrentUser().getCart()) {
+            if (item.getName().contains(searchString)) {
+                productCard = new ProductCard(dimension, item, database, "user");
+                add(Box.createRigidArea(new Dimension(0, 20)));
+                add(productCard);
+            }
         }
     }
 
     @Override
-    public void update() {
+    public void update(String searchString) {
         removeAll();
         addTitle(title);
-        displayWishlist(database);
+        displayWishlist(database, searchString);
         validate();
         repaint();
     }

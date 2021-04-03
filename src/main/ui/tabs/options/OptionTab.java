@@ -10,14 +10,12 @@ public abstract class OptionTab extends JPanel implements Observer {
     protected Dimension dimension;
     protected Database database;
     protected String title;
-    protected String nothingFoundLabel;
 
     public OptionTab(String title, Dimension dimension, Database database) {
         this.dimension = dimension;
         this.database = database;
         this.title = title;
         initialisePanel();
-        initialiseNothingFoundLabel();
         addTitle(title);
     }
 
@@ -41,10 +39,4 @@ public abstract class OptionTab extends JPanel implements Observer {
         titleLabel.setFont(new Font("helvetica", Font.PLAIN, 24));
         titleLabel.setForeground(Color.WHITE);
     }
-
-    //EFFECTS: initialises "Nothing Found" label when no results were found during search
-    public void initialiseNothingFoundLabel() {
-
-    }
-
 }
