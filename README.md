@@ -44,7 +44,7 @@ again. Also, when the app is closed, the collection database gets saved automati
 
 
 ## Phase-4: Task-2
-I have chosen to implement a <ins>Type Hierarchy</ins> in my project. The following hierarhcies are present in my project:
+I have chosen to implement a <ins>Type Hierarchy</ins> in my project. The following hierarchies are present in my project:
 
 ### In model package:
 - Admin class is a sub-class of User
@@ -70,3 +70,27 @@ I have chosen to implement a <ins>Type Hierarchy</ins> in my project. The follow
         - OptionTab is an abstract class which has 5 sub-classes namely- ShowCartTab, ShowOrderHistoryTab, 
           ShowProductsTab, ShowUsersTab, ShowWishlistTab. OptionTab also implements the Observer
           interface and therefore all its sub-classes override the update() method.
+
+
+## Phase-4: Task-3
+Although, I tried my best to write code that needs minimal refactoring, there still are a few places
+where I would refactor my code.
+
+- I would like to replace the use or ArrayList<Item> in Collection class with a HashMap since the order in which the 
+  products are displayed doesn't matter and, a HashMap would make adding/removing products much faster. Using the 
+  field- "id" as the key would also avoid products with same id to be added to the list. 
+    
+- The user class has A LOT OF FIELDS! instead of writing everything inside the User class, I can probably make another
+  class called Customer that inherits a User class and divide the fields among them. For example, every User would have
+  a firstName, lastName, username and password. Hence, the User class could contain these 4 fields and, the Customer class
+  would contain the rest of the fields of the User class such as age, gender, etc. Therefore, the User class would 
+  finally have 2 sub-classes, Admin and Customer.
+  
+- I would also think about adding 3 more classes in models package called WishlistManager, CartManager and 
+  OrderHistoryManager and then moving code from the "now Customer class" into these 3 classes and having objects of these
+  classes inside the Customer class.
+  
+- This isn't necessarily related to this project at the moment since placing an order is just a simulation, but in future 
+  if this app is further developed, I can probably add an OrderManager class as well in the models package to manage 
+  ordering and returning of products. An object of this OrderManager would go inside the Customer class. 
+  
