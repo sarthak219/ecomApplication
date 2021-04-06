@@ -13,7 +13,7 @@ import java.awt.*;
  */
 public abstract class SmallTab extends JPanel {
     public static final int GAP = 20;
-    private SmallAppWindow controller;
+    private final SmallAppWindow controller;
     protected Border border;
     protected Dimension dimension;
     protected Database database;

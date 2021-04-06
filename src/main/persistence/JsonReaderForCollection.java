@@ -28,7 +28,6 @@ public class JsonReaderForCollection extends JsonReader {
 
     // EFFECTS: parses allItems from JSON object and returns it
     private Collection parseCollection(JSONObject jsonObject) {
-//        String name = jsonObject.getString("name");
         Collection items = new Collection();
         addItems(items, jsonObject);
         return items;

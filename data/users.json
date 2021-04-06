@@ -255,5 +255,29 @@
         "age": 19,
         "cart": [],
         "username": "sarthak1234"
+    },
+    {
+        "firstName": "ishita",
+        "lastName": "chauhan",
+        "password": "ishita24",
+        "gender": "female",
+        "mobileNumber": "9876543210",
+        "wishlist": [],
+        "emailId": "qwerty@gmail.com",
+        "orderHistory": [{
+            "colour": "black",
+            "size": "M",
+            "price": 499,
+            "name": "tshirt1",
+            "description": "premium tshirt",
+            "discount": 10,
+            "inStock": true,
+            "id": 1001,
+            "category": "men",
+            "brand": "Armani Exchange"
+        }],
+        "age": 18,
+        "cart": [],
+        "username": "ishita24"
     }
 ]}

@@ -54,6 +54,7 @@ public abstract class BigTab extends JPanel implements CaretListener {
         repaint();
     }
 
+    //EFFECTS: initialises the BigTab panel to match the theme of the app
     public void initialisePanel() {
         setSize(dimension);
         setLayout(null);
@@ -61,6 +62,7 @@ public abstract class BigTab extends JPanel implements CaretListener {
 
     }
 
+    //EFFECTS: initialises the title panel to match the theme of the app and adds it
     public void initialiseTitlePanel() {
         titlePanel = new JPanel();
         titlePanel.setBackground(new Color(76, 76, 76));
@@ -70,6 +72,7 @@ public abstract class BigTab extends JPanel implements CaretListener {
         add(titlePanel);
     }
 
+    //EFFECTS: initialises the menu panel to match the theme of the app and adds it
     public void initialiseMenuPanel() {
         menuPanel = new JPanel();
         menuPanel.setBackground(new Color(40, 40, 40));
@@ -81,6 +84,7 @@ public abstract class BigTab extends JPanel implements CaretListener {
         add(menuPanel);
     }
 
+    //EFFECTS: initialises the title to match the theme of the app and adds it
     public void initialiseTitle(String title) {
         JLabel pageHeading = new JLabel(title);
         pageHeading.setBounds(dimension.width / 5 + dimension.height / 30, 5, dimension.width, dimension.height / 11);
@@ -90,6 +94,7 @@ public abstract class BigTab extends JPanel implements CaretListener {
         titlePanel.add(pageHeading);
     }
 
+    //EFFECTS: initialises the search text field to match the theme of the app and adds it
     public void initialiseSearchBar() {
         searchBar = new JTextField("", 20);
         searchBar.setLayout(null);
@@ -104,6 +109,7 @@ public abstract class BigTab extends JPanel implements CaretListener {
         titlePanel.add(searchBar);
     }
 
+    //EFFECTS: initialises the search button to match the theme of the app and adds it
     public void initialiseSearchButton() {
         JButton searchButton = new JButton("Search");
         searchButton.setLayout(null);
@@ -130,6 +136,7 @@ public abstract class BigTab extends JPanel implements CaretListener {
         selectedButton(this.buttons.get(0));
     }
 
+    //EFFECTS: initialises the tabbed pane having various screens of the application as its tabs and adds it
     public void initialiseWorkspaceTabbedPane() {
         workspaceTabbedPane = new JTabbedPane();
         int height = dimension.height / 10;
@@ -140,6 +147,7 @@ public abstract class BigTab extends JPanel implements CaretListener {
         add(workspaceTabbedPane);
     }
 
+    //EFFECTS: adds various optionTabs to the workspaceTabbedPane
     public void addElementsToWorkspaceTabbedPane() {
         JScrollPane showProductsForUser = new JScrollPane(showProductsTabForUser, 22, 30);
         setupScrollPane(showProductsForUser);
@@ -161,12 +169,14 @@ public abstract class BigTab extends JPanel implements CaretListener {
         workspaceTabbedPane.add("Products(Admin)", showProductsForAdmin);
     }
 
+    //EFFECTS: initialises the scrollPane to match the theme of the app which contains various optionTabs
     private void setupScrollPane(JScrollPane scrollPane) {
         scrollPane.getVerticalScrollBar().setUnitIncrement(10);
         scrollPane.setBorder(null);
         scrollPane.setPreferredSize(new Dimension(dimension.width - 10, dimension.height));
     }
 
+    //EFFECTS: sets up the given button to match the theme of the app
     public void setupButton(JButton button) {
         button.setMaximumSize(new Dimension(dimension.width / 5 + 4, OPTIONS_HEIGHT));
         button.setBorder(border);
@@ -176,6 +186,7 @@ public abstract class BigTab extends JPanel implements CaretListener {
         button.setFont(new Font("Helvetica", Font.PLAIN, OPTIONS_HEIGHT / 5));
     }
 
+    //EFFECTS: changes foreground colour to black and background colour to white of the given button
     public void selectedButton(JButton button) {
         button.setBackground(Color.WHITE);
         button.setForeground(Color.BLACK);

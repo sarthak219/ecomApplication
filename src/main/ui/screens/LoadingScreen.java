@@ -1,4 +1,4 @@
-package ui;
+package ui.screens;
 
 import javax.swing.*;
 import java.awt.*;

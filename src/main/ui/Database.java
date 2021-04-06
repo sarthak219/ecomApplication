@@ -8,6 +8,7 @@ import persistence.JsonReaderForAllUsers;
 import persistence.JsonReaderForCollection;
 import persistence.JsonWriterForAllUsers;
 import persistence.JsonWriterForCollection;
+import ui.screens.LoadingScreen;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,7 +20,6 @@ public class Database {
     protected Admin admin;
     protected AllUsers users;
     protected Collection allProducts;
-    protected Display display;
     protected String[] userOptions = {"Show Products", "View Wishlist",
             "View Cart", "You Orders", "Log Out"};
 
@@ -37,7 +37,6 @@ public class Database {
         this.users = new AllUsers();
         this.admin = new Admin();
         this.allProducts = new Collection();
-        display = new Display();
         jsonWriterForAllUsers = new JsonWriterForAllUsers(JSON_USER_DATABASE);
         jsonReaderForAllUsers = new JsonReaderForAllUsers(JSON_USER_DATABASE);
         jsonWriterForCollection = new JsonWriterForCollection(JSON_ITEMS_DATABASE);

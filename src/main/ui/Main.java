@@ -3,10 +3,10 @@ package ui;
 import ui.screens.SmallAppWindow;
 
 
-public class Main extends MyApp {
+public class Main {
     public static void main(String[] args) {
 
-        //Runs the application
+        //runs the application
         new SmallAppWindow(new Database());
     }
 }

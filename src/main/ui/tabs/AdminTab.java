@@ -27,9 +27,6 @@ public class AdminTab extends BigTab implements CaretListener {
         button4Action();
     }
 
-    /* protected String[] adminOptions = {"Show Users", "Show Products", "Add Products", "Log Out"};
-     */
-
     private void button1Action() {
         buttons.get(0).addActionListener(e -> {
             resetAllButtons();

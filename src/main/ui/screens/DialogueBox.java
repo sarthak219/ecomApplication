@@ -9,7 +9,8 @@ import java.awt.*;
 
 /**
  * represents a dialogue box asking user to either add/remove given item to/from card,
- * add/remove item to/from wishlist, buy an item, return an item
+ * add/remove item to/from wishlist, buy an item or return an item or delete an item from store if
+ * the user is admin
  */
 public class DialogueBox extends JFrame {
     public static final int WIDTH = 400;
@@ -23,6 +24,7 @@ public class DialogueBox extends JFrame {
     protected JButton orderOrReturnButton;
     protected JButton deleteButton;
 
+    //EFFECTS: initialises the dialogue box according to the logged in person
     public DialogueBox(Item item, Database database, String loggedInPerson) {
         this.item = item;
         this.loggedInPerson = loggedInPerson;
@@ -49,6 +51,7 @@ public class DialogueBox extends JFrame {
         setResizable(false);
     }
 
+    //EFFECTS: creates a button to add/remove items from the current user's wishlist
     public void initialiseWishlistButton() {
         if (database.getCurrentUser().wishListContainsItemWithId(item.getId())) {
             wishlistButton = new JButton("Remove from Wishlist");
@@ -82,6 +85,7 @@ public class DialogueBox extends JFrame {
         }
     }
 
+    //EFFECTS: creates a button to add/remove items from the current user's cart
     public void initialiseCartButton() {
         if (database.getCurrentUser().cartContainsItemWithId(item.getId())) {
             cartButton = new JButton("Remove from Cart");
@@ -115,6 +119,7 @@ public class DialogueBox extends JFrame {
         }
     }
 
+    //EFFECTS: creates a button to order or return an item
     public void initialiseOrderOrReturnButton() {
         if (database.getCurrentUser().orderHistoryContainsItemWithId(item.getId()) && !item.getInStock()) {
             orderOrReturnButton = new JButton("Return Item");
@@ -208,7 +213,7 @@ public class DialogueBox extends JFrame {
         add(deleteButton);
     }
 
-    //EFFECTS: formats the given button according to theme
+    //EFFECTS: formats the given button according to the app theme
     public void setupButton(JButton button) {
         button.setBorder(border);
         button.setPreferredSize(new Dimension(150, 30));

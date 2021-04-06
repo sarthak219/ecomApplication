@@ -13,18 +13,14 @@ import java.util.Locale;
 public class ProductCard extends Card {
     public static final String SPACE = "  ";
     private final Item item;
-    private Database database;
 
+    //EFFECTS: initialises a card to display products and open a DialogueBox when clicked
     public ProductCard(Dimension dimension, Item item, Database database, String loggedInPerson) {
         super(dimension);
         this.item = item;
-        this.database = database;
         setupLabels();
 
-        this.addActionListener(e -> {
-            //JOptionPane.showConfirmDialog(this, "Do you wish to continue?", "Yes", 0, 3);
-            new DialogueBox(item, database, loggedInPerson);
-        });
+        this.addActionListener(e -> new DialogueBox(item, database, loggedInPerson));
     }
 
 
