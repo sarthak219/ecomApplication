@@ -12,7 +12,6 @@ import java.awt.*;
  */
 
 public class ShowOrderHistoryTab extends OptionTab {
-    protected ProductCard productCard;
 
     public ShowOrderHistoryTab(String title, Dimension dimension, Database database) {
         super(title, dimension, database);

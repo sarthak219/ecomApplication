@@ -46,6 +46,7 @@ public class SmallAppWindow extends JFrame {
         setResizable(false);
     }
 
+    //EFFECTS: initializes the tabbedPane to contains various pages in this window as tabs
     public void initialiseTabbedPane() {
         tabbedPane = new JTabbedPane();
         tabbedPane.setBounds(0, -30, WIDTH, HEIGHT);

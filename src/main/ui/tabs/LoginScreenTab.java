@@ -42,6 +42,8 @@ public class LoginScreenTab extends SmallTab {
         });
     }
 
+    //MODIFIES: this
+    //EFFECT: initialises and adds a JLabel status as a blank string and matches it with the app theme
     private void setupStatus() {
         status = new JLabel("");
         status.setForeground(new Color(241, 14, 14));
@@ -50,30 +52,35 @@ public class LoginScreenTab extends SmallTab {
         add(status);
     }
 
+    //EFFECTS: initialises and adds the JTextField which accepts username
     public void getUsernameSetup() {
         username = new JTextField("Username");
         setupTextField(username);
         add(username);
     }
 
+    //EFFECTS: initialises and adds the JPasswordField which accepts password
     public void getPasswordSetup() {
         passwordField = new JPasswordField("Password");
         setupTextField(passwordField);
         add(passwordField);
     }
 
+    //EFFECTS: initialises and adds the login button
     public void loginButtonSetup() {
         login = new JButton("Login");
         setupButton(login);
         add(login);
     }
 
+    //EFFECTS: initialises and adds up the back button
     public void backButtonSetup() {
         back = new JButton("Back");
         setupButton(back);
         add(back);
     }
 
+    //EFFECTS: sets up the given JTextField to match the app theme
     public void setupTextField(JTextField textField) {
         add(Box.createRigidArea(new Dimension(dimension.width, GAP)));
         textField.setBorder(border);
@@ -84,6 +91,9 @@ public class LoginScreenTab extends SmallTab {
         textField.setMaximumSize(new Dimension(dimension.width / 2, 50));
     }
 
+    //MODIFIES: this, database
+    //EFFECTS: Logs the user into admin account if the username and password are correct and opens a BigAppWindow
+    //         sets status to "Incorrect username or password!" if credentials are invalid
     public void adminLogin(Database database) {
         String name = username.getText();
         String pass = String.valueOf(passwordField.getPassword());
@@ -95,6 +105,9 @@ public class LoginScreenTab extends SmallTab {
         }
     }
 
+    //MODIFIES: this, database
+    //EFFECTS: Logs the user into his/her account if the username and password are correct and opens a BigAppWindow
+    //         sets status to "Incorrect username or password!" if credentials are invalid
     public void userLogin(Database database) {
         String name = username.getText();
         String pass = String.valueOf(passwordField.getPassword());
@@ -112,6 +125,8 @@ public class LoginScreenTab extends SmallTab {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: resets the text in the JTextField to "Username", JPasswordField to "Password" and status to ""
     public void reset() {
         username.setText("Username");
         passwordField.setText("Password");

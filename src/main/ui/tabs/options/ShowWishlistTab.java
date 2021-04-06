@@ -11,7 +11,6 @@ import java.awt.*;
  * represents an OptionTab to display User's Wishlist
  */
 public class ShowWishlistTab extends OptionTab {
-    protected ProductCard productCard;
 
     public ShowWishlistTab(String title, Dimension dimension, Database database) {
         super(title, dimension, database);

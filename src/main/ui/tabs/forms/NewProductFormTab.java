@@ -41,6 +41,7 @@ public class NewProductFormTab extends FormTab {
     }
 
 
+    @Override
     //EFFECTS: adds all form components to the panel
     public void addFields() {
         setupProductIdField();
@@ -57,19 +58,20 @@ public class NewProductFormTab extends FormTab {
         setupCancelButton();
     }
 
+    //EFFECTS: adds a JCheckBox to to set value for inStock
     public void setupInStock() {
         add(Box.createRigidArea(new Dimension(dimension.width, GAP)));
         JLabel enterStockStatus = new JLabel("Item in stock?: ");
         setupLabel(enterStockStatus);
         inStock = new JCheckBox();
-        JPanel categoryPanel = new JPanel();
-        categoryPanel.add(enterStockStatus);
-        categoryPanel.add(inStock);
-        categoryPanel.setForeground(Color.WHITE);
-        categoryPanel.setFont(new Font("Helvetica", Font.PLAIN, 14));
-        categoryPanel.setOpaque(false);
-        categoryPanel.setMaximumSize(new Dimension(dimension.width, 30));
-        add(categoryPanel);
+        JPanel inStockPanel = new JPanel();
+        inStockPanel.add(enterStockStatus);
+        inStockPanel.add(inStock);
+        inStockPanel.setForeground(Color.WHITE);
+        inStockPanel.setFont(new Font("Helvetica", Font.PLAIN, 14));
+        inStockPanel.setOpaque(false);
+        inStockPanel.setMaximumSize(new Dimension(dimension.width, 30));
+        add(inStockPanel);
 
     }
 
@@ -183,10 +185,11 @@ public class NewProductFormTab extends FormTab {
         sizePanel.add(largeBtn);
         sizePanel.add(xlBtn);
         sizePanel.add(xxlBtn);
-        addRadioButtonsToJPanel(sizePanel);
+        formatSizePanel(sizePanel);
     }
 
-    private void addRadioButtonsToJPanel(JPanel sizePanel) {
+    //EFFECTS: formats the sizePanel to match the app theme
+    private void formatSizePanel(JPanel sizePanel) {
         sizePanel.setForeground(Color.WHITE);
         sizePanel.setFont(new Font("Helvetica", Font.PLAIN, 14));
         sizePanel.setOpaque(false);

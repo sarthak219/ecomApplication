@@ -14,7 +14,6 @@ public class BigAppWindow extends JFrame {
     public static final int WIDTH = (int) (1440 * SCALE);
     public static final int HEIGHT = (int) (900 * SCALE);
     protected JTabbedPane tabbedPane;
-    protected JTabbedPane workspaceTabbedPane;
     protected Border border;
     protected Database database;
     protected String title;
@@ -25,7 +24,6 @@ public class BigAppWindow extends JFrame {
         initialiseGraphics();
         border = BorderFactory.createLineBorder(Color.BLACK);
         initialiseTabbedPane();
-
         setVisible(true);
     }
 
@@ -59,8 +57,4 @@ public class BigAppWindow extends JFrame {
         return tabbedPane;
     }
 
-    //EFFECTS: returns workspaceTabbedPane of this UI
-    public JTabbedPane getWorkspaceTabbedPane() {
-        return workspaceTabbedPane;
-    }
 }

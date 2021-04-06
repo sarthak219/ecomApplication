@@ -2,6 +2,7 @@ package ui.tabs.options;
 
 import model.Item;
 import ui.Database;
+import ui.ProductCard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +13,7 @@ public abstract class OptionTab extends JPanel implements Observer {
     protected Dimension dimension;
     protected Database database;
     protected String title;
+    protected ProductCard productCard;
 
     public OptionTab(String title, Dimension dimension, Database database) {
         this.dimension = dimension;

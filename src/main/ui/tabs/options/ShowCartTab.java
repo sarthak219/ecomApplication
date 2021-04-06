@@ -11,7 +11,6 @@ import java.awt.*;
  * represents an OptionTab to display User's Cart
  */
 public class ShowCartTab extends OptionTab {
-    protected ProductCard productCard;
 
     public ShowCartTab(String title, Dimension dimension, Database database) {
         super(title, dimension, database);

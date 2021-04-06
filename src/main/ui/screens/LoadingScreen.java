@@ -11,6 +11,7 @@ public class LoadingScreen extends JFrame implements ActionListener {
     private JProgressBar progressBar;
     private int progress;
 
+    //EFFECTS: constructs a LoadingScreen
     public LoadingScreen(String message) {
         add(Box.createRigidArea(new Dimension(WIDTH, HEIGHT / 3)));
         initialiseGraphics();
@@ -21,18 +22,21 @@ public class LoadingScreen extends JFrame implements ActionListener {
         t.start();
     }
 
+    //EFFECTS: displays the given message in the frame
     public void insertMessage(String message) {
         JLabel message1 = new JLabel(message);
         message1.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(message1);
     }
 
+    //EFFECTS: creates a new progress bar with 100 ticks
     public void initialiseProgressBar() {
         progressBar = new JProgressBar(0, 100);
         progressBar.setPreferredSize(new Dimension(WIDTH / 2, 10));
         add(progressBar);
     }
 
+    //EFFECTS: sets up the frame
     public void initialiseGraphics() {
         setSize(new Dimension(WIDTH, HEIGHT));
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

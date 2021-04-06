@@ -12,7 +12,6 @@ import java.util.Locale;
  * represents an OptionTab to display all products
  */
 public class ShowProductsTab extends OptionTab {
-    protected ProductCard productCard;
     protected String loggedInPerson;
 
     public ShowProductsTab(String title, Dimension dimension, Database database, String loggedInPerson) {

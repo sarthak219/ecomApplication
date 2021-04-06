@@ -29,6 +29,7 @@ public class NewAccountFormTab extends FormTab {
     }
 
 
+    @Override
     //EFFECTS: adds all form components to the panel
     public void addFields() {
         setupFirstNameField();
