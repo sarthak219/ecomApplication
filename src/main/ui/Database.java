@@ -57,10 +57,6 @@ public class Database {
         return admin;
     }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
-    }
-
     public AllUsers getUsers() {
         return users;
     }

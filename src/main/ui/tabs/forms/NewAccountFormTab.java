@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * represents a JPanel with a form to create new user account
+ * represents a FormTab with a form to create new user account
  */
 public class NewAccountFormTab extends FormTab {
     private JTextField firstName;

@@ -1,7 +1,6 @@
 package ui.tabs.options;
 
 import ui.Database;
-import model.AllUsers;
 import model.User;
 
 import javax.swing.*;
@@ -14,7 +13,6 @@ import java.util.Locale;
  * represents an OptionTab to display a Table of Users
  */
 public class ShowUsersTab extends OptionTab {
-    protected AllUsers users;
     protected Object[][] rows = null;
     protected Border border = BorderFactory.createLineBorder(Color.BLACK);
     String[] columnNames = {"SNo.", "First Name", "Last Name", "Username", "Email", "Password", "Mobile Number", "Age",
@@ -26,7 +24,7 @@ public class ShowUsersTab extends OptionTab {
     //EFFECTS: constructs a Show Users tab
     public ShowUsersTab(String title, Dimension dimension, Database database) {
         super(title, dimension, database);
-        this.users = database.getUsers();
+//        this.users = database.getUsers();
         this.tableModel = new DefaultTableModel(rows, columnNames);
         update("");
         validate();
@@ -60,7 +58,7 @@ public class ShowUsersTab extends OptionTab {
     //EFFECTS: adds rows to the table, with each row having User credentials
     public void addRows(String subString) {
         int i = 1;
-        for (User user : users.getAllUsers()) {
+        for (User user : database.getUsers().getAllUsers()) {
             if (isInFirstName(user, subString) | isInUserName(user, subString) | isInLastName(user, subString)) {
                 String sno = Integer.toString(i);
                 String firstName = user.getFirstName();

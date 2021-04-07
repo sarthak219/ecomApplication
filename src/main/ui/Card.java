@@ -9,7 +9,7 @@ import java.awt.*;
 /**
  * represents an abstract card which displays Items or users
  */
-public class Card extends JButton {
+public abstract class Card extends JButton {
     protected Border border;
     protected Dimension dimension;
 
@@ -19,6 +19,9 @@ public class Card extends JButton {
         initialiseCard();
         setVisible(true);
     }
+
+    //EFFECTS: sets up different labels which are to be displayed on the card
+    public abstract void setupLabels();
 
     //EFFECTS: initialises a card to match the app theme
     private void initialiseCard() {

@@ -23,7 +23,7 @@ public class ProductCard extends Card {
         this.addActionListener(e -> new DialogueBox(item, database, loggedInPerson));
     }
 
-
+    @Override
     //EFFECTS: sets up different labels, each with a particular field of the given Item
     public void setupLabels() {
         setupBrand();
@@ -117,6 +117,5 @@ public class ProductCard extends Card {
         label.setForeground(new Color(231, 231, 231));
         label.setFont(new Font("Helvetica", Font.PLAIN, 16));
         label.setAlignmentX(Component.LEFT_ALIGNMENT);
-        //TODO: test out of stock items
     }
 }
