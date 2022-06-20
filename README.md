@@ -1,4 +1,4 @@
-# CPSC-210 Personal Project
+# Personal Project
 
 ## E-Commerce Application for Fashion
 
